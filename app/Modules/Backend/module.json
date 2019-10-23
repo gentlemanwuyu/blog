@@ -1,0 +1,8 @@
+{
+	"name": "Backend",
+	"slug": "backend",
+	"namespace": "Backend",
+	"version": "1.0",
+	"description": "This is the description for the Backend module.",
+	"enabled": true
+}

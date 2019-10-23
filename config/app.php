@@ -156,6 +156,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // 模块化
+        \Caffeinated\Modules\ModulesServiceProvider::class,
     ],
 
     /*

@@ -11,8 +11,7 @@
 |
 */
 
-Route::group(['prefix' => 'frontend'], function() {
-	Route::get('/', function() {
-		dd('This is the Frontend module index page.');
-	});
+Route::group(['as' => 'index.'], function() {
+	// 首页
+	Route::get('/', ['as'=>'index', 'uses'=>'IndexController@index']);
 });

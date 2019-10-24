@@ -12,5 +12,13 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix.copy('node_modules/layui-src/src','public/assets/layui-src/src');
+    mix.copy('resources/assets/js','public/assets/js');
+    mix.copy('resources/assets/css','public/assets/css');
+
+    // 添加版本管理
+    mix.version([
+        'assets/css/blog.css',
+        'assets/js/blog.js'
+    ]);
 });

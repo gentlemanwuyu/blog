@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{asset('/assets/layui-src/src/css/layui.css')}}" media="all">
     @yield('css')
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body>
 @yield('body')
 
 <script src="{{asset('/assets/layui-src/src/layui.js')}}"></script>

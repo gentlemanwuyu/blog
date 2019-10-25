@@ -15,10 +15,11 @@ elixir(function(mix) {
     mix.copy('node_modules/layui-src/src','public/assets/layui-src/src');
     mix.copy('resources/assets/js','public/assets/js');
     mix.copy('resources/assets/css','public/assets/css');
+    mix.copy('resources/assets/img','public/assets/img');
 
     // 添加版本管理
     mix.version([
-        'assets/css/blog.css',
-        'assets/js/blog.js'
+        'assets/css/frontend.css',
+        'assets/js/frontend.js'
     ]);
 });

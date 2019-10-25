@@ -11,12 +11,18 @@
     <meta name="csrf-token" content="{!! csrf_token() !!}">
     <link href="{{asset('/favicon.ico')}}" rel="shortcut icon" type="image/ico"/>
     <link rel="stylesheet" href="{{asset('/assets/layui-src/src/css/layui.css')}}" media="all">
+    <link rel="stylesheet" href="{{asset('/assets/css/frontend.css')}}" media="all">
     @yield('css')
 </head>
-<body class="layui-layout-body layui-bg-gray">
+<body>
 @yield('body')
 
 <script src="{{asset('/assets/layui-src/src/layui.js')}}"></script>
 @yield('scripts')
+<script>
+    layui.use('element', function(){
+        var element = layui.element;
+    });
+</script>
 </body>
 </html>

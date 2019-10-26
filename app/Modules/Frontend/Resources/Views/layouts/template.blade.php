@@ -15,14 +15,14 @@
     @yield('css')
 </head>
 <body>
+<!--[if lt IE 8]>
+<div class="browsehappy" role="dialog">
+    当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请升级你的浏览器
+</div>
+<![endif]-->
 @yield('body')
-
 <script src="{{asset('/assets/layui-src/src/layui.js')}}"></script>
+<script src="{{asset('/assets/js/frontend.js')}}"></script>
 @yield('scripts')
-<script>
-    layui.use('element', function(){
-        var element = layui.element;
-    });
-</script>
 </body>
 </html>

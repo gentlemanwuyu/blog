@@ -15,3 +15,8 @@ Route::group(['as' => 'index.'], function() {
 	// 首页
 	Route::get('/', ['as'=>'index', 'uses'=>'IndexController@index']);
 });
+
+Route::group(['prefix' => 'article', 'as' => 'index.'], function() {
+	// 文章详情页
+	Route::get('/{id}.html', ['as'=>'detail', 'uses'=>'ArticleController@detail']);
+});

@@ -16,6 +16,7 @@ elixir(function(mix) {
     mix.copy('resources/assets/js','public/assets/js');
     mix.copy('resources/assets/css','public/assets/css');
     mix.copy('resources/assets/img','public/assets/img');
+    mix.copy('resources/assets/layuiadmin','public/assets/layuiadmin');
 
     // 添加版本管理
     mix.version([

@@ -9,7 +9,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">Woozee后台管理</div>
+        <a href="{{route('admin::index')}}"><div class="layui-logo">Woozee后台管理</div></a>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">

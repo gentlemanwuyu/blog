@@ -158,6 +158,9 @@ return [
 
         // 模块化
         \Caffeinated\Modules\ModulesServiceProvider::class,
+
+        // 验证码
+        Mews\Captcha\CaptchaServiceProvider::class,
     ],
 
     /*

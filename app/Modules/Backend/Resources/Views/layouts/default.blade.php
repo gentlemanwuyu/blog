@@ -40,7 +40,7 @@
                         <dd><a href="javascript:;">评论列表</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">分类管理</a></li>
+                <li class="layui-nav-item"><a href="{{route('admin::category.list')}}">分类管理</a></li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">标签管理</a>
                     <dl class="layui-nav-child">

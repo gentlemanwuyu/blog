@@ -15,3 +15,8 @@ Route::get('/', ['middleware' => ['auth'], 'as'=>'index', 'uses'=>'IndexControll
 Route::get('/login', ['as'=>'login_page', 'uses'=>'IndexController@loginPage']);
 Route::post('/login', ['as'=>'login', 'uses'=>'IndexController@login']);
 Route::get('/logout', ['middleware' => ['auth'], 'as'=>'logout', 'uses'=>'IndexController@logout']);
+
+// 分类控制器
+Route::group(['middleware'=>['auth'], 'prefix'=>'category', 'as'=>'category.'], function (){
+    Route::get('list', ['as'=>'list', 'uses'=>'CategoryController@getList']);
+});

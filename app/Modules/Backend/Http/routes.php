@@ -12,4 +12,4 @@
 */
 
 Route::get('/', ['as'=>'index', 'uses'=>'IndexController@index']);
-
+Route::get('/login', ['as'=>'login_page', 'uses'=>'IndexController@loginPage']);

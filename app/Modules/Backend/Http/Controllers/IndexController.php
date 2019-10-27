@@ -16,4 +16,9 @@ class IndexController extends Controller
     {
         return view('backend::index.index');
     }
+
+    public function loginPage()
+    {
+        return view('backend::index.login');
+    }
 }

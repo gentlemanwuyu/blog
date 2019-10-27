@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Woozee后台管理</title>
+    <link rel="stylesheet" href="{{asset('/assets/layui-src/src/css/layui.css')}}" media="all">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">Woozee后台管理</div>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="https://www.gravatar.com/avatar/e7f04fb1d406bc12f3d8bece06e59d11.jpg?s=80&d=mm&r=g" class="layui-nav-img">admin
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">退出</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">文章管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">文章列表</a></dd>
+                        <dd><a href="javascript:;">发布文章</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">评论管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">评论列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">分类管理</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">标签管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">标签列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">系统管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">系统设置</a></dd>
+                        <dd><a href="javascript:;">友情链接</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="layui-body">
+        @yield('content')
+    </div>
+    <div class="layui-footer">
+        Copyright &copy; 2018-2019 <a href="http://www.gentlemanwuyu.top">Woozee</a>
+    </div>
+</div>
+<script src="{{asset('/assets/layui-src/src/layui.js')}}"></script>
+<script>
+    var element = layui.use('element');
+</script>
+@yield('scripts')
+</body>
+</html>

@@ -11,8 +11,5 @@
 |
 */
 
-Route::group(['prefix' => 'backend'], function() {
-	Route::get('/', function() {
-		dd('This is the Backend module index page.');
-	});
-});
+Route::get('/', ['as'=>'index', 'uses'=>'IndexController@index']);
+

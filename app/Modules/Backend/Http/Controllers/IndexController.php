@@ -47,10 +47,19 @@ class IndexController extends Controller
             'name' => $request->get('username'),
             'password' => $request->get('password'),
             'deleted_at' => null,
-        ])) {
+        ], true)) {
             return Redirect::intended('/admin');
         }else {
             return Redirect::back()->withErrors("用户名或密码不正确");
         }
+    }
+
+    public function logout()
+    {
+        if (Auth::check()) {
+            Auth::logout();
+        }
+
+        return Redirect::intended('/admin');
     }
 }

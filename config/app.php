@@ -161,6 +161,9 @@ return [
 
         // 验证码
         Mews\Captcha\CaptchaServiceProvider::class,
+
+        // Gravatar头像扩展包
+        \Creativeorange\Gravatar\GravatarServiceProvider::class,
     ],
 
     /*

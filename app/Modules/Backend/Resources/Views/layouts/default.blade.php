@@ -13,10 +13,13 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="https://www.gravatar.com/avatar/e7f04fb1d406bc12f3d8bece06e59d11.jpg?s=80&d=mm&r=g" class="layui-nav-img">admin
+                    <?php
+                        $gravatar = \Creativeorange\Gravatar\Facades\Gravatar::exists(Auth::user()->email) ? \Creativeorange\Gravatar\Facades\Gravatar::get(\Auth::user()->email) : asset('/assets/img/system/avatar_default.jpg');
+                    ?>
+                    <img src="{{$gravatar}}" class="layui-nav-img">{{\Auth::user()->name}}
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">退出</a></dd>
+                    <dd><a href="{{route('admin::logout')}}">退出</a></dd>
                 </dl>
             </li>
         </ul>

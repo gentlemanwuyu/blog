@@ -12,7 +12,7 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.copy('node_modules/layui-src/src','public/assets/layui-src/src');
+    mix.copy('node_modules/layui-src/dist','public/assets/layui-src/dist');
     mix.copy('resources/assets/js','public/assets/js');
     mix.copy('resources/assets/css','public/assets/css');
     mix.copy('resources/assets/img','public/assets/img');

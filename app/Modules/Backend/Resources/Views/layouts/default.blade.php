@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Woozee后台管理</title>
-    <link rel="stylesheet" href="{{asset('/assets/layui-src/src/css/layui.css')}}" media="all">
+    <link rel="stylesheet" href="{{asset('/assets/layui-src/dist/css/layui.css')}}" media="all">
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -64,7 +64,7 @@
         Copyright &copy; 2018-2019 <a href="http://www.gentlemanwuyu.top">Woozee</a>
     </div>
 </div>
-<script src="{{asset('/assets/layui-src/src/layui.js')}}"></script>
+<script src="{{asset('/assets/layui-src/dist/layui.all.js')}}"></script>
 <script>
     var element = layui.use('element');
 </script>

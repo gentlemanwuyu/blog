@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Woozee后台管理</title>
     <link rel="stylesheet" href="{{asset('/assets/layui-src/dist/css/layui.css')}}" media="all">
+    <link rel="stylesheet" href="{{asset('/assets/jstree/dist/themes/default/style.min.css')}}" media="all">
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -65,8 +66,9 @@
     </div>
 </div>
 <script src="{{asset('/assets/layui-src/dist/layui.all.js')}}"></script>
+<script src="{{asset('/assets/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{asset('/assets/jstree/dist/jstree.min.js')}}"></script>
 <script>
-    var $ = layui.$;
     var element = layui.use('element');
     var layer = layui.layer;
 </script>

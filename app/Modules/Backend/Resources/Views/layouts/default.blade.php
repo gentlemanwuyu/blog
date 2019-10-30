@@ -66,7 +66,9 @@
 </div>
 <script src="{{asset('/assets/layui-src/dist/layui.all.js')}}"></script>
 <script>
+    var $ = layui.$;
     var element = layui.use('element');
+    var layer = layui.layer;
 </script>
 @yield('scripts')
 </body>

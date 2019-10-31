@@ -19,4 +19,6 @@ Route::get('/logout', ['middleware' => ['auth'], 'as'=>'logout', 'uses'=>'IndexC
 // 分类控制器
 Route::group(['middleware'=>['auth'], 'prefix'=>'category', 'as'=>'category.'], function (){
     Route::get('list', ['as'=>'list', 'uses'=>'CategoryController@getList']);
+    Route::get('get_tree', ['as'=>'get_tree', 'uses'=>'CategoryController@getTree']);
+    Route::post('/create_or_update_category', ['as'=>'create_or_update_category', 'uses'=>'CategoryController@createOrUpdateCategory']);
 });

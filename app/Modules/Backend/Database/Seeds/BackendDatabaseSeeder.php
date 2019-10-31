@@ -15,7 +15,7 @@ class BackendDatabaseSeeder extends Seeder
 	{
 		Model::unguard();
 
-		// $this->call('App\Modules\Backend\Database\Seeds\FoobarTableSeeder');
+		 $this->call(CategoriesTableSeeder::class);
 	}
 
 }

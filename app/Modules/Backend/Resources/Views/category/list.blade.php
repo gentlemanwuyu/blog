@@ -1,4 +1,9 @@
 @extends('backend::layouts.default')
+@section('css')
+    <style>
+        .vakata-context, .jstree-contextmenu, .jstree-default-contextmenu{z-index: 1000;}
+    </style>
+@endsection
 @section('content')
     <div class="layui-tab">
         <ul class="layui-tab-title">

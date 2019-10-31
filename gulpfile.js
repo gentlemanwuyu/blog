@@ -23,6 +23,7 @@ elixir(function(mix) {
     // 添加版本管理
     mix.version([
         'assets/css/frontend.css',
-        'assets/js/frontend.js'
+        'assets/js/frontend.js',
+        'assets/js/backend.js'
     ]);
 });

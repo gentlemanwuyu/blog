@@ -54,7 +54,7 @@
                     <a href="javascript:;">系统管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;">系统设置</a></dd>
-                        <dd><a href="javascript:;">友情链接</a></dd>
+                        <dd><a href="{{route('admin::friendlink.index')}}">友情链接</a></dd>
                     </dl>
                 </li>
             </ul>

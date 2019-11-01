@@ -31,3 +31,8 @@ Route::group(['middleware'=>['auth'], 'prefix'=>'label', 'as'=>'label.'], functi
     Route::post('create_or_update_label', ['as'=>'create_or_update_label', 'uses'=>'LabelController@createOrUpdateLabel']);
     Route::post('delete_label', ['as'=>'delete_label', 'uses'=>'LabelController@deleteLabel']);
 });
+
+// 友链控制器
+Route::group(['middleware'=>['auth'], 'prefix'=>'friendlink', 'as'=>'friendlink.'], function (){
+    Route::get('index', ['as'=>'index', 'uses'=>'FriendlinkController@index']);
+});

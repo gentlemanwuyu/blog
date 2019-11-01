@@ -35,4 +35,8 @@ Route::group(['middleware'=>['auth'], 'prefix'=>'label', 'as'=>'label.'], functi
 // 友链控制器
 Route::group(['middleware'=>['auth'], 'prefix'=>'friendlink', 'as'=>'friendlink.'], function (){
     Route::get('index', ['as'=>'index', 'uses'=>'FriendlinkController@index']);
+    Route::get('paginate', ['as'=>'paginate', 'uses'=>'FriendlinkController@paginate']);
+    Route::get('create_or_update_friendlink_page', ['as'=>'create_or_update_friendlink_page', 'uses'=>'FriendlinkController@createOrUpdateFriendlinkPage']);
+    Route::post('create_or_update_friendlink', ['as'=>'create_or_update_friendlink', 'uses'=>'FriendlinkController@createOrUpdateFriendlink']);
+    Route::post('delete_friendlink', ['as'=>'delete_friendlink', 'uses'=>'FriendlinkController@deleteFriendlink']);
 });

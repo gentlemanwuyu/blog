@@ -4,7 +4,7 @@
         <legend>标签列表</legend>
     </fieldset>
     <div class="layui-main">
-        <button id="add_label" type="button" class="layui-btn layui-btn-sm layui-btn-normal">新增标签</button>
+        <button id="add_label" type="button" class="layui-btn layui-btn-sm layui-btn-normal">添加标签</button>
         <table id="label_list"  lay-filter="list"></table>
     </div>
     <script type="text/html" id="action">

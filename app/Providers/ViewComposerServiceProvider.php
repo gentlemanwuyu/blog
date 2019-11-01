@@ -11,6 +11,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\ViewComposers\GlobalComposer;
+use App\ViewComposers\AdminComposer;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', GlobalComposer::class);
+        View::composer(['backend::layouts.default'], AdminComposer::class);
     }
 
     /**

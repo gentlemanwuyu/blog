@@ -19,34 +19,19 @@
         </div>
         <div class="layui-side layui-bg-black">
             <div class="layui-side-scroll">
-                <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-                    <li class="layui-nav-item">
-                        <a href="javascript:;">文章管理</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">文章列表</a></dd>
-                            <dd><a href="javascript:;">发布文章</a></dd>
-                        </dl>
+                <ul class="layui-nav layui-nav-tree">
+                    @foreach($navs as $nav)
+                    <li class="layui-nav-item @if(!empty($nav->children) && !empty($nav->active)) layui-nav-itemed @elseif(empty($nav->children) && !empty($nav->active)) layui-this @endif">
+                        <a href="@if(!empty($nav->children))javascript:;@else{{$nav->link}}@endif">{{$nav->title}}</a>
+                        @if(!empty($nav->children))
+                            <dl class="layui-nav-child">
+                                @foreach($nav->children as $sub_nav)
+                                    <dd @if(!empty($sub_nav->active)) class="layui-this" @endif><a href="{{$sub_nav->link}}">{{$sub_nav->title}}</a></dd>
+                                @endforeach
+                            </dl>
+                        @endif
                     </li>
-                    <li class="layui-nav-item layui-nav-itemed">
-                        <a class="" href="javascript:;">评论管理</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">评论列表</a></dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item"><a href="{{route('admin::category.list')}}">分类管理</a></li>
-                    <li class="layui-nav-item">
-                        <a href="javascript:;">标签管理</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="{{route('admin::label.list')}}">标签列表</a></dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a href="javascript:;">系统管理</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">系统设置</a></dd>
-                            <dd><a href="{{route('admin::friendlink.index')}}">友情链接</a></dd>
-                        </dl>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>

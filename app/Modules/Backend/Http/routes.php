@@ -21,4 +21,5 @@ Route::group(['middleware'=>['auth'], 'prefix'=>'category', 'as'=>'category.'], 
     Route::get('list', ['as'=>'list', 'uses'=>'CategoryController@getList']);
     Route::get('get_tree', ['as'=>'get_tree', 'uses'=>'CategoryController@getTree']);
     Route::post('/create_or_update_category', ['as'=>'create_or_update_category', 'uses'=>'CategoryController@createOrUpdateCategory']);
+    Route::post('/delete_category', ['as'=>'delete_category', 'uses'=>'CategoryController@deleteCategory']);
 });

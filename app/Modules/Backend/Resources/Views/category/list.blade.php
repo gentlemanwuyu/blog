@@ -31,9 +31,133 @@
             "plugins": ['contextmenu', "state", "types"],
             "core" : {
                 "data" : function (node, callback) {
-                    $.get("{{route('admin::category.get_tree')}}?section_id=" + this.element.attr('data-section_id'), callback);
+                    $.get("{{route('admin::category.get_tree')}}?section_id=" + this.element.attr('data-section_id'), function (data) {
+                        $.each(data, function (key, val) {
+                            val.text = val.name;
+                            val.li_attr = {"data-level": 1};
+                            if (val.children) {
+                                $.each(val.children, function (c_key, c_val) {
+                                    c_val.text = c_val.name;
+                                    c_val.li_attr = {"data-level": 2};
+                                });
+                            }
+                        });
+                        callback(data);
+                    });
                 },
                 "themes": {"icons": false}
+            },
+            "contextmenu": {
+                "items": function (node) {
+                    var category_id = node.id;
+                    var category_name = node.text;
+                    var category_level = node.li_attr['data-level'];
+                    var that = this;
+                    var items = {
+                        "add": {
+                            "label": "添加子分类",
+                            "icon": "layui-icon layui-icon-add-1",
+                            "action": function () {
+                                layer.prompt({
+                                    title: "添加子分类"
+                                }, function(value, index, elem){
+                                    var load_index = layer.load();
+                                    $.ajax({
+                                        method: "post",
+                                        url: "{{route('admin::category.create_or_update_category')}}",
+                                        data: {name: value, parent_id: category_id},
+                                        success: function (data) {
+                                            layer.close(load_index);
+                                            if ('success' == data.status) {
+                                                layer.close(index);
+                                                layer.msg("添加子分类成功", {icon:1});
+                                                that.refresh();
+                                            } else {
+                                                layer.msg("添加子分类失败:"+data.msg, {icon:2});
+                                                return false;
+                                            }
+                                        },
+                                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                            layer.close(load_index);
+                                            layer.msg(packageValidatorResponseText(XMLHttpRequest.responseText), {icon:2});
+                                            return false;
+                                        }
+                                    });
+                                });
+                            }
+                        },
+                        "edit": {
+                            "label": "编辑",
+                            "icon": "layui-icon layui-icon-edit",
+                            "action": function () {
+                                layer.prompt({
+                                    value: category_name,
+                                    title: "编辑分类"
+                                }, function(value, index, elem){
+                                    var load_index = layer.load();
+                                    $.ajax({
+                                        method: "post",
+                                        url: "{{route('admin::category.create_or_update_category')}}",
+                                        data: {name: value, category_id: category_id},
+                                        success: function (data) {
+                                            layer.close(load_index);
+                                            if ('success' == data.status) {
+                                                layer.close(index);
+                                                layer.msg("编辑分类成功", {icon:1});
+                                                that.refresh();
+                                            } else {
+                                                layer.msg("编辑分类失败:"+data.msg, {icon:2});
+                                                return false;
+                                            }
+                                        },
+                                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                            layer.close(load_index);
+                                            layer.msg(packageValidatorResponseText(XMLHttpRequest.responseText), {icon:2});
+                                            return false;
+                                        }
+                                    });
+                                });
+                            }
+                        },
+                        "delete": {
+                            "label": "删除",
+                            "icon": "layui-icon layui-icon-delete",
+                            "action": function () {
+                                layer.confirm("确认要删除该分类？", {icon: 3, title:"确认"}, function (index) {
+                                    layer.close(index);
+                                    var load_index = layer.load();
+                                    $.ajax({
+                                        method: "post",
+                                        url: "{{route('admin::category.delete_category')}}",
+                                        data: {category_id: category_id},
+                                        success: function (data) {
+                                            layer.close(load_index);
+                                            if ('success' == data.status) {
+                                                layer.msg("分类删除成功", {icon:1});
+                                                that.refresh();
+                                            } else {
+                                                layer.msg("分类删除失败:"+data.msg, {icon:2});
+                                                return false;
+                                            }
+                                        },
+                                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                            layer.close(load_index);
+                                            layer.msg(packageValidatorResponseText(XMLHttpRequest.responseText), {icon:2});
+                                            return false;
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    };
+
+                    // 最多两级分类，两级分类的右键菜单不显示添加子分类
+                    if (2 == category_level) {
+                        delete items.add;
+                    }
+
+                    return items;
+                }
             }
         }).on('ready.jstree', function () {$(this).jstree('open_all')});
 

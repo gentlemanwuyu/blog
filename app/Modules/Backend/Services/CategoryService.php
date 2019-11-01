@@ -31,7 +31,7 @@ class CategoryService
         foreach ($categories as $category) {
             $item = [];
             $item['id'] = $category->id;
-            $item['text'] = $category->name;
+            $item['name'] = $category->name;
             $subs = $this->getTree($section_id, $category->id);
             if ($subs) {
                 $item['children'] = $subs;
@@ -56,8 +56,41 @@ class CategoryService
             if ($request->get('section_id')) {
                 $data['section_id'] = $request->get('section_id');
             }
+            if ($request->get('parent_id')) {
+                $data['parent_id'] = $request->get('parent_id');
+                $parent_category = Category::find($request->get('parent_id'));
+                if (!$parent_category) {
+                    throw new \Exception("找不到父分类[" . $request->get('parent_id') . "]");
+                }
+                $data['section_id'] = $parent_category->section_id;
+            }
 
             Category::updateOrCreate(['id' => $request->get('category_id')], $data);
+
+            return ['status' => 'success'];
+        }catch (\Exception $e) {
+            return ['status' => 'fail', 'msg'=>$e->getMessage()];
+        }
+    }
+
+    /**
+     * 删除分类
+     *
+     * @param $id
+     * @return array
+     */
+    public function deleteCategory($id)
+    {
+        try {
+            $category = Category::find($id);
+
+            if (!$category->children->isEmpty()) {
+                throw new \Exception("该分类下还有子分类，不能删除");
+            }
+
+            // TODO: 判断分类下是否含有文章
+
+            $category->delete();
 
             return ['status' => 'success'];
         }catch (\Exception $e) {

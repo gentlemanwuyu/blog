@@ -29,4 +29,9 @@ class CategoryController extends Controller
     {
         return response()->json($this->categoryService->createOrUpdateCategory($request));
     }
+
+    public function deleteCategory(Request $request)
+    {
+        return response()->json($this->categoryService->deleteCategory($request->get('category_id')));
+    }
 }

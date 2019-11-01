@@ -5,6 +5,9 @@
     </style>
 @endsection
 @section('content')
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>分类管理</legend>
+    </fieldset>
     <div class="layui-tab">
         <ul class="layui-tab-title">
             @foreach(config('sections') as $section_id => $section)

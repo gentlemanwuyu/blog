@@ -40,3 +40,8 @@ Route::group(['middleware'=>['auth'], 'prefix'=>'friendlink', 'as'=>'friendlink.
     Route::post('create_or_update_friendlink', ['as'=>'create_or_update_friendlink', 'uses'=>'FriendlinkController@createOrUpdateFriendlink']);
     Route::post('delete_friendlink', ['as'=>'delete_friendlink', 'uses'=>'FriendlinkController@deleteFriendlink']);
 });
+
+// 系统控制器
+Route::group(['middleware'=>['auth'], 'prefix'=>'system', 'as'=>'system.'], function (){
+    Route::get('config', ['as'=>'config', 'uses'=>'SystemController@config']);
+});

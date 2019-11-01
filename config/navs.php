@@ -47,7 +47,7 @@ return [
         'children' => [
             [
                 'title' => '系统设置',
-                'link' => '#',
+                'link' => '/admin/system/config',
             ],
             [
                 'title' => '友情链接',

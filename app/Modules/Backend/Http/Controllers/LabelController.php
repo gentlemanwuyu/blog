@@ -29,4 +29,9 @@ class LabelController extends Controller
     {
         return response()->json($this->labelService->createOrUpdateLabel($request));
     }
+
+    public function deleteLabel(Request $request)
+    {
+        return response()->json($this->labelService->deleteLabel($request->get('label_id')));
+    }
 }

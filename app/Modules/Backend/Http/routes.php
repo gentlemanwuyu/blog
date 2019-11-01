@@ -29,4 +29,5 @@ Route::group(['middleware'=>['auth'], 'prefix'=>'label', 'as'=>'label.'], functi
     Route::get('list', ['as'=>'list', 'uses'=>'LabelController@getList']);
     Route::get('paginate', ['as'=>'paginate', 'uses'=>'LabelController@paginate']);
     Route::post('create_or_update_label', ['as'=>'create_or_update_label', 'uses'=>'LabelController@createOrUpdateLabel']);
+    Route::post('delete_label', ['as'=>'delete_label', 'uses'=>'LabelController@deleteLabel']);
 });

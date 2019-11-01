@@ -19,9 +19,15 @@ class LabelService
 
     public function paginate($request)
     {
-        return Label::orderBy('updated_at', 'desc')->paginate($request->get('limit'));
+        return Label::orderBy('id', 'desc')->paginate($request->get('limit'));
     }
 
+    /**
+     * 创建/修改标签
+     *
+     * @param $request
+     * @return array
+     */
     public function createOrUpdateLabel($request)
     {
         try {
@@ -30,6 +36,27 @@ class LabelService
             ];
 
             Label::updateOrCreate(['id' => $request->get('label_id')], $data);
+
+            return ['status' => 'success'];
+        }catch (\Exception $e) {
+            return ['status' => 'fail', 'msg'=>$e->getMessage()];
+        }
+    }
+
+    /**
+     * 删除标签
+     *
+     * @param $id
+     * @return array
+     */
+    public function deleteLabel($id)
+    {
+        try {
+            $label = Label::find($id);
+
+            // TODO: 判断分类下是否含有文章
+
+            $label->delete();
 
             return ['status' => 'success'];
         }catch (\Exception $e) {

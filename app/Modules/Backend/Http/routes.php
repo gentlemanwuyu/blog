@@ -23,3 +23,8 @@ Route::group(['middleware'=>['auth'], 'prefix'=>'category', 'as'=>'category.'], 
     Route::post('/create_or_update_category', ['as'=>'create_or_update_category', 'uses'=>'CategoryController@createOrUpdateCategory']);
     Route::post('/delete_category', ['as'=>'delete_category', 'uses'=>'CategoryController@deleteCategory']);
 });
+
+// 标签控制器
+Route::group(['middleware'=>['auth'], 'prefix'=>'label', 'as'=>'label.'], function (){
+    Route::get('list', ['as'=>'list', 'uses'=>'LabelController@getList']);
+});

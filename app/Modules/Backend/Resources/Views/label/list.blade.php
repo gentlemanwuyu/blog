@@ -4,7 +4,7 @@
         <legend>标签列表</legend>
     </fieldset>
     <div class="layui-main">
-        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">新增标签</button>
+        <button id="add_label" type="button" class="layui-btn layui-btn-sm layui-btn-normal">新增标签</button>
         <table id="label_list"></table>
     </div>
 @endsection
@@ -12,8 +12,7 @@
     <script>
         layui.use('table', function(){
             var table = layui.table;
-
-            table.render({
+            var tableIns = table.render({
                 elem: '#label_list',
                 url: "{{route('admin::label.paginate')}}",
                 page: true,
@@ -39,6 +38,35 @@
                 ]]
             });
 
+            var $ = layui.$;
+            $('#add_label').on('click', function () {
+                layer.prompt({
+                    title: "添加标签"
+                }, function(value, index, elem){
+                    var load_index = layer.load();
+                    $.ajax({
+                        method: "post",
+                        url: "{{route('admin::label.create_or_update_label')}}",
+                        data: {name: value},
+                        success: function (data) {
+                            layer.close(load_index);
+                            if ('success' == data.status) {
+                                layer.close(index);
+                                layer.msg("添加标签成功", {icon:1});
+                                tableIns.reload();
+                            } else {
+                                layer.msg("添加标签失败:"+data.msg, {icon:2});
+                                return false;
+                            }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            layer.close(load_index);
+                            layer.msg(packageValidatorResponseText(XMLHttpRequest.responseText), {icon:2});
+                            return false;
+                        }
+                    });
+                });
+            });
         });
     </script>
 @endsection

@@ -19,6 +19,21 @@ class LabelService
 
     public function paginate($request)
     {
-        return Label::paginate($request->get('limit'));
+        return Label::orderBy('updated_at', 'desc')->paginate($request->get('limit'));
+    }
+
+    public function createOrUpdateLabel($request)
+    {
+        try {
+            $data = [
+                'name' => $request->get('name'),
+            ];
+
+            Label::updateOrCreate(['id' => $request->get('label_id')], $data);
+
+            return ['status' => 'success'];
+        }catch (\Exception $e) {
+            return ['status' => 'fail', 'msg'=>$e->getMessage()];
+        }
     }
 }

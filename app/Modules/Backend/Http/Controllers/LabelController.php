@@ -24,4 +24,9 @@ class LabelController extends Controller
     {
         return response()->json($this->labelService->paginate($request));
     }
+
+    public function createOrUpdateLabel(Request $request)
+    {
+        return response()->json($this->labelService->createOrUpdateLabel($request));
+    }
 }

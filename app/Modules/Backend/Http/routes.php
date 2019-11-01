@@ -28,4 +28,5 @@ Route::group(['middleware'=>['auth'], 'prefix'=>'category', 'as'=>'category.'], 
 Route::group(['middleware'=>['auth'], 'prefix'=>'label', 'as'=>'label.'], function (){
     Route::get('list', ['as'=>'list', 'uses'=>'LabelController@getList']);
     Route::get('paginate', ['as'=>'paginate', 'uses'=>'LabelController@paginate']);
+    Route::post('create_or_update_label', ['as'=>'create_or_update_label', 'uses'=>'LabelController@createOrUpdateLabel']);
 });

@@ -16,6 +16,7 @@ class BackendDatabaseSeeder extends Seeder
 		Model::unguard();
 
 		 $this->call(CategoriesTableSeeder::class);
+		 $this->call(LabelsTableSeeder::class);
 	}
 
 }

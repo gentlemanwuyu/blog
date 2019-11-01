@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: Woozee
- * Date: 2019/10/31
- * Time: 15:57
+ * Date: 2019/11/1
+ * Time: 12:03
  */
 
 namespace App\Modules\Backend\Models;
@@ -11,14 +11,9 @@ namespace App\Modules\Backend\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class Label extends Model
 {
     use SoftDeletes;
 
     protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
-
-    public function children()
-    {
-        return $this->hasMany(self::class, 'parent_id');
-    }
 }

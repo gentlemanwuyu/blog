@@ -19,6 +19,8 @@ Route::get('logout', ['middleware' => ['auth'], 'as'=>'logout', 'uses'=>'IndexCo
 // 评论控制器
 Route::group(['middleware'=>['auth'], 'prefix'=>'comment', 'as'=>'comment.'], function (){
     Route::get('list', ['as'=>'list', 'uses'=>'CommentController@getList']);
+    Route::get('paginate', ['as'=>'paginate', 'uses'=>'CommentController@paginate']);
+    Route::post('delete_comment', ['as'=>'delete_comment', 'uses'=>'CommentController@deleteComment']);
 });
 
 // 分类控制器

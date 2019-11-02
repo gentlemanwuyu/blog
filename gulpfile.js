@@ -15,6 +15,7 @@ elixir(function(mix) {
     mix.copy('node_modules/layui-src/dist','public/assets/layui-src/dist');
     mix.copy('node_modules/jstree/dist','public/assets/jstree/dist');
     mix.copy('node_modules/jquery/dist','public/assets/jquery/dist');
+    mix.copy('node_modules/tinymce','public/assets/tinymce');
     mix.copy('resources/assets/js','public/assets/js');
     mix.copy('resources/assets/css','public/assets/css');
     mix.copy('resources/assets/img','public/assets/img');

@@ -12,7 +12,7 @@ return [
         'children' => [
             [
                 'title' => '文章列表',
-                'link' => '#',
+                'link' => '/admin/article/list',
             ],
             [
                 'title' => '发布文章',

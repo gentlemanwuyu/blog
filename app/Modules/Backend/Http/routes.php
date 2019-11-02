@@ -16,6 +16,11 @@ Route::get('login', ['as'=>'login_page', 'uses'=>'IndexController@loginPage']);
 Route::post('login', ['as'=>'login', 'uses'=>'IndexController@login']);
 Route::get('logout', ['middleware' => ['auth'], 'as'=>'logout', 'uses'=>'IndexController@logout']);
 
+// 文章控制器
+Route::group(['middleware'=>['auth'], 'prefix'=>'article', 'as'=>'article.'], function (){
+    Route::get('list', ['as'=>'list', 'uses'=>'ArticleController@getList']);
+});
+
 // 评论控制器
 Route::group(['middleware'=>['auth'], 'prefix'=>'comment', 'as'=>'comment.'], function (){
     Route::get('list', ['as'=>'list', 'uses'=>'CommentController@getList']);

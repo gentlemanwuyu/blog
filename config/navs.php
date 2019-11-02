@@ -25,7 +25,7 @@ return [
         'children' => [
             [
                 'title' => '评论列表',
-                'link' => '#',
+                'link' => '/admin/comment/list',
             ],
         ],
     ],

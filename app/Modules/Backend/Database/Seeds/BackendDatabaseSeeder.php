@@ -19,6 +19,7 @@ class BackendDatabaseSeeder extends Seeder
 		 $this->call(LabelsTableSeeder::class);
 		 $this->call(FriendlinksTableSeeder::class);
 		 $this->call(SystemConfigsTableSeeder::class);
+		 $this->call(CommentsTableSeeder::class);
 	}
 
 }

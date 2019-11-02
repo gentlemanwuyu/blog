@@ -44,4 +44,5 @@ Route::group(['middleware'=>['auth'], 'prefix'=>'friendlink', 'as'=>'friendlink.
 // 系统控制器
 Route::group(['middleware'=>['auth'], 'prefix'=>'system', 'as'=>'system.'], function (){
     Route::get('config', ['as'=>'config', 'uses'=>'SystemController@config']);
+    Route::post('save_config', ['as'=>'save_config', 'uses'=>'SystemController@saveConfig']);
 });

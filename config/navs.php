@@ -16,7 +16,7 @@ return [
             ],
             [
                 'title' => '发布文章',
-                'link' => '#',
+                'link' => '/admin/article/add_article',
             ],
         ],
     ],

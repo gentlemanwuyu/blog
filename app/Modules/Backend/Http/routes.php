@@ -19,6 +19,7 @@ Route::get('logout', ['middleware' => ['auth'], 'as'=>'logout', 'uses'=>'IndexCo
 // 文章控制器
 Route::group(['middleware'=>['auth'], 'prefix'=>'article', 'as'=>'article.'], function (){
     Route::get('list', ['as'=>'list', 'uses'=>'ArticleController@getList']);
+    Route::get('add_article', ['as'=>'add_article', 'uses'=>'ArticleController@addArticle']);
 });
 
 // 评论控制器

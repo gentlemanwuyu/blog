@@ -16,4 +16,9 @@ class ArticleController extends Controller
     {
         return view('backend::article.list');
     }
+
+    public function addArticle(Request $request)
+    {
+        return view('backend::article.create_or_update_article');
+    }
 }

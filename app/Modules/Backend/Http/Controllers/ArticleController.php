@@ -45,7 +45,7 @@ class ArticleController extends Controller
 
         $result = Storage::disk('public')->put("images/article/{$image_name}.{$ext}", file_get_contents($image->path()), 'public');
         if ($result) {
-            return response()->json(['status' => true, "url" => trim(env('APP_URL'), '/') . "/app/images/article/{$image_name}.{$ext}"]);
+            return response()->json(['status' => true, "url" => trim(env('APP_URL'), '/') . "/storage/images/article/{$image_name}.{$ext}"]);
         }else {
             return response()->json(['status' => false, "msg" => "图片上传失败"]);
         }

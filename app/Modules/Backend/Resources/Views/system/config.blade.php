@@ -46,7 +46,6 @@
             var form = layui.form;
 
             form.on('submit(system_config)', function(data){
-                console.log(this);
                 var load_index = layer.load();
                 $.ajax({
                     method: "post",

@@ -6,12 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Modules\Backend\Models\Category;
 use App\Modules\Backend\Models\Label;
+use App\Modules\Backend\Services\ArticleService;
 
 class ArticleController extends Controller
 {
-    public function __construct()
-    {
+    protected $articleService;
 
+    public function __construct(ArticleService $articleService)
+    {
+        $this->articleService = $articleService;
     }
 
     public function getList(Request $request)
@@ -25,5 +28,10 @@ class ArticleController extends Controller
         $labels = Label::all();
 
         return view('backend::article.create_or_update_article', compact('categories', 'labels'));
+    }
+
+    public function saveArticle(Request $request)
+    {
+        return response()->json($this->articleService->saveArticle($request));
     }
 }

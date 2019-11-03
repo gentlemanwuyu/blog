@@ -58,8 +58,8 @@
             selector: 'textarea[name=content]',
             language:'zh_CN',
             skin: 'oxide',
-            plugins: 'lists,advlist image code',
-            toolbar:'bold italic underline strikethrough alignleft aligncenter alignright alignjustify forecolor backcolor styleselect formatselect fontselect fontsizeselect bullist numlist outdent indent blockquote undo redo removeformat subscript superscript image code',
+            plugins: 'lists,advlist image code link',
+            toolbar:'bold italic underline strikethrough alignleft aligncenter alignright alignjustify forecolor backcolor styleselect formatselect fontselect fontsizeselect bullist numlist outdent indent blockquote undo redo removeformat subscript superscript link image code',
             statusbar: false,
             height: 500
         });
@@ -68,7 +68,29 @@
             var form = layui.form;
 
             form.on('submit(article)', function(data){
-
+                var form_data = data.field;
+                form_data.content = tinyMCE.activeEditor.getContent();
+                var load_index = layer.load();
+                $.ajax({
+                    method: "post",
+                    url: "{{route('admin::article.save_article')}}",
+                    data: form_data,
+                    success: function (data) {
+                        layer.close(load_index);
+                        if ('success' == data.status) {
+                            layer.msg("文章发布成功", {icon:1});
+                            window.location.href = "{{route('admin::article.list')}}";
+                        } else {
+                            layer.msg("文章发布失败:"+data.msg, {icon:2});
+                            return false;
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        layer.close(load_index);
+                        layer.msg(packageValidatorResponseText(XMLHttpRequest.responseText), {icon:2});
+                        return false;
+                    }
+                });
 
                 return false;
             });

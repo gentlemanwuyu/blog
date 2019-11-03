@@ -12,5 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ArticleLabel extends Model
 {
+    protected $fillable = ['article_id', 'label_id'];
 
+    public $timestamps = false;
 }

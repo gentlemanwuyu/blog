@@ -20,6 +20,7 @@ Route::get('logout', ['middleware' => ['auth'], 'as'=>'logout', 'uses'=>'IndexCo
 Route::group(['middleware'=>['auth'], 'prefix'=>'article', 'as'=>'article.'], function (){
     Route::get('list', ['as'=>'list', 'uses'=>'ArticleController@getList']);
     Route::get('add_article', ['as'=>'add_article', 'uses'=>'ArticleController@addArticle']);
+    Route::post('save_article', ['as'=>'save_article', 'uses'=>'ArticleController@saveArticle']);
 });
 
 // 评论控制器

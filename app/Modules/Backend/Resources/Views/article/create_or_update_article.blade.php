@@ -3,7 +3,7 @@
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
         <legend>发布文章</legend>
     </fieldset>
-    <form class="layui-form" lay-filter="system_config" style="padding-left: 20px;padding-right: 20px;">
+    <form class="layui-form" lay-filter="article" style="padding-left: 20px;padding-right: 20px;">
         <div class="layui-form-item">
             <label class="layui-form-label">标题</label>
             <div class="layui-input-block">
@@ -46,7 +46,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button type="button" class="layui-btn" lay-submit lay-filter="system_config">发布</button>
+                <button type="button" class="layui-btn" lay-submit lay-filter="article">发布</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
@@ -62,6 +62,16 @@
             toolbar:'bold italic underline strikethrough alignleft aligncenter alignright alignjustify forecolor backcolor styleselect formatselect fontselect fontsizeselect bullist numlist outdent indent blockquote undo redo removeformat subscript superscript image code',
             statusbar: false,
             height: 500
+        });
+
+        layui.use(['form'], function () {
+            var form = layui.form;
+
+            form.on('submit(article)', function(data){
+
+
+                return false;
+            });
         });
     </script>
 @endsection

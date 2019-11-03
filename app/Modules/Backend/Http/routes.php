@@ -21,6 +21,7 @@ Route::group(['middleware'=>['auth'], 'prefix'=>'article', 'as'=>'article.'], fu
     Route::get('list', ['as'=>'list', 'uses'=>'ArticleController@getList']);
     Route::get('add_article', ['as'=>'add_article', 'uses'=>'ArticleController@addArticle']);
     Route::post('save_article', ['as'=>'save_article', 'uses'=>'ArticleController@saveArticle']);
+    Route::post('upload', ['as'=>'upload', 'uses'=>'ArticleController@upload']);
 });
 
 // 评论控制器

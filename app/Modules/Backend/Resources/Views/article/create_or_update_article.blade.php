@@ -61,7 +61,28 @@
             plugins: 'lists,advlist image code link',
             toolbar:'bold italic underline strikethrough alignleft aligncenter alignright alignjustify forecolor backcolor styleselect formatselect fontselect fontsizeselect bullist numlist outdent indent blockquote undo redo removeformat subscript superscript link image code',
             statusbar: false,
-            height: 500
+            height: 500,
+            images_upload_url: "{{route('admin::article.upload')}}",
+            images_upload_handler: function (blobInfo, success, failure) {
+                var formData = new FormData();
+                formData.append('image', blobInfo.blob());
+                $.ajax({
+                    url: '{{route("admin::article.upload")}}',
+                    type: 'POST',
+                    cache: false,
+                    data: formData,
+                    processData: false,
+                    contentType: false
+                }).done(function(res) {
+                    if (res.status) {
+                        success(res.url);
+                    }else {
+                        failure(res.msg);
+                    }
+                }).fail(function(res) {
+                    failure(res.msg);
+                });
+            }
         });
 
         layui.use(['form'], function () {

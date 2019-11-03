@@ -14,6 +14,7 @@
 <script src="{{asset('/assets/layui-src/dist/layui.all.js')}}"></script>
 <script src="{{asset('/assets/jquery/dist/jquery.min.js')}}"></script>
 <script src="{{asset('/assets/jstree/dist/jstree.min.js')}}"></script>
+<script src="{{asset('/assets/tinymce/tinymce.min.js')}}"></script>
 <script src="{{asset('/assets/js/backend.js')}}"></script>
 <script>
     var element = layui.use('element');

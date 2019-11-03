@@ -54,6 +54,14 @@
 @endsection
 @section('scripts')
     <script>
-
+        tinymce.init({
+            selector: 'textarea[name=content]',
+            language:'zh_CN',
+            skin: 'oxide',
+            plugins: 'lists,advlist image code',
+            toolbar:'bold italic underline strikethrough alignleft aligncenter alignright alignjustify forecolor backcolor styleselect formatselect fontselect fontsizeselect bullist numlist outdent indent blockquote undo redo removeformat subscript superscript image code',
+            statusbar: false,
+            height: 500
+        });
     </script>
 @endsection

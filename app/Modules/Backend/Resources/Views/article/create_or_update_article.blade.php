@@ -58,11 +58,39 @@
             selector: 'textarea[name=content]',
             language:'zh_CN',
             skin: 'oxide',
-            plugins: 'lists,advlist image code link',
+            plugins: 'lists,advlist image code link paste',
             toolbar:'bold italic underline strikethrough alignleft aligncenter alignright alignjustify forecolor backcolor styleselect formatselect fontselect fontsizeselect bullist numlist outdent indent blockquote undo redo removeformat subscript superscript link image code',
             statusbar: false,
             height: 500,
             images_upload_url: "{{route('admin::article.upload')}}",
+            paste_data_images: true,
+            paste_postprocess: function(plugin, args) {
+                $(args.node).find('img').each(function (key, val) {
+                    var that = this;
+                    var formData = new FormData();
+                    formData.append('image_url', val.src);
+                    $.ajax({
+                        url: '{{route("admin::article.paste_upload")}}',
+                        type: 'POST',
+                        cache: false,
+                        async: false,
+                        data: formData,
+                        processData: false,
+                        contentType: false
+                    }).done(function(res) {
+                        if (res.status) {
+                            that.src = res.url;
+                        }else {
+                            layer.msg("图片上传失败", {icon:2});
+                            that.src = '';
+                        }
+                        console.log(that);
+                    }).fail(function(res) {
+                        layer.msg("图片上传失败", {icon:2});
+                        that.src = '';
+                    });
+                });
+            },
             images_upload_handler: function (blobInfo, success, failure) {
                 var formData = new FormData();
                 formData.append('image', blobInfo.blob());

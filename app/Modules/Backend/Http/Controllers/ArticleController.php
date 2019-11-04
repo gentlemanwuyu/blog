@@ -50,4 +50,28 @@ class ArticleController extends Controller
             return response()->json(['status' => false, "msg" => "图片上传失败"]);
         }
     }
+
+    public function pasteUpload(Request $request)
+    {
+        if (!$request->get('image_url')) {
+            return response()->json(['status' => false, "msg" => "图片地址无效：" . $request->get('image_url')]);
+        }
+
+        $content_type = get_content_type($request->get('image_url'));
+        $array = explode('/', $content_type);
+
+        if (!$ext = $array[1]) {
+            return response()->json(['status' => false, "msg" => "获取图片后缀失败"]);
+        }
+
+        $image_name = uniqid();
+
+        $result = Storage::disk('public')->put("images/article/{$image_name}.{$ext}", file_get_contents($request->get('image_url')), 'public');
+        if ($result) {
+            return response()->json(['status' => true, "url" => trim(env('APP_URL'), '/') . "/storage/images/article/{$image_name}.{$ext}"]);
+        }else {
+            return response()->json(['status' => false, "msg" => "图片上传失败"]);
+        }
+
+    }
 }

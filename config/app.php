@@ -167,6 +167,9 @@ return [
 
         // Gravatar头像扩展包
         \Creativeorange\Gravatar\GravatarServiceProvider::class,
+
+        // laravel-log-viewer
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
     ],
 
     /*

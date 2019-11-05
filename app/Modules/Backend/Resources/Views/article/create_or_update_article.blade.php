@@ -4,7 +4,7 @@
         <legend>发布文章</legend>
     </fieldset>
     <form class="layui-form" lay-filter="article" style="padding-left: 20px;padding-right: 20px;">
-        <input type="hidden" name="article_id" value="{{$article_id}}">
+        <input type="hidden" name="article_id" value="{{$article_id or ''}}">
         <div class="layui-form-item">
             <label class="layui-form-label">标题</label>
             <div class="layui-input-block">

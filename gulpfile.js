@@ -16,6 +16,7 @@ elixir(function(mix) {
     mix.copy('node_modules/jstree/dist','public/assets/jstree/dist');
     mix.copy('node_modules/jquery/dist','public/assets/jquery/dist');
     mix.copy('node_modules/tinymce','public/assets/tinymce');
+    mix.copy('node_modules/@fancyapps/fancybox/dist','public/assets/fancybox/dist');
     mix.copy('resources/assets/tinymce/langs','public/assets/tinymce/langs');
     mix.copy('resources/assets/tinymce/plugins/powerpaste','public/assets/tinymce/plugins/powerpaste');
     mix.copy('resources/assets/js','public/assets/js');

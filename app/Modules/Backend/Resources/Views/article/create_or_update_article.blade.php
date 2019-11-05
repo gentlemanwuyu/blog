@@ -84,7 +84,6 @@
                             layer.msg("图片上传失败", {icon:2});
                             that.src = '';
                         }
-                        console.log(that);
                     }).fail(function(res) {
                         layer.msg("图片上传失败", {icon:2});
                         that.src = '';

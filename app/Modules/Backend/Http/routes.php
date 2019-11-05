@@ -25,6 +25,7 @@ Route::group(['middleware'=>['auth'], 'prefix'=>'article', 'as'=>'article.'], fu
     Route::post('upload', ['as'=>'upload', 'uses'=>'ArticleController@upload']);
     Route::post('paste_upload', ['as'=>'paste_upload', 'uses'=>'ArticleController@pasteUpload']);
     Route::post('delete_article', ['as'=>'delete_article', 'uses'=>'ArticleController@deleteArticle']);
+    Route::get('summary_image_library', ['as'=>'summary_image_library', 'uses'=>'ArticleController@summaryImageLibrary']);
 });
 
 // 评论控制器

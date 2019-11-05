@@ -18,6 +18,10 @@ return [
                 'title' => '发布文章',
                 'link' => '/admin/article/add_article',
             ],
+            [
+                'title' => '摘要图片库',
+                'link' => '/admin/article/summary_image_library',
+            ],
         ],
     ],
     [

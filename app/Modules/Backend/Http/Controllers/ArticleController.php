@@ -88,6 +88,10 @@ class ArticleController extends Controller
         }else {
             return response()->json(['status' => false, "msg" => "图片上传失败"]);
         }
+    }
 
+    public function summaryImageLibrary(Request $request)
+    {
+        return view('backend::article.summary_image_library');
     }
 }

@@ -20,7 +20,12 @@ class ArticleService
 
     public function paginate($request)
     {
-        return Article::orderBy('id', 'desc')->paginate($request->get('limit'));
+        $paginate = Article::orderBy('id', 'desc')->paginate($request->get('limit'));
+        foreach ($paginate as $item) {
+            $item->category_name = $item->category->name;
+        }
+
+        return $paginate;
     }
 
     /**

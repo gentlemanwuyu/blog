@@ -34,7 +34,7 @@
                     {field: 'title', title: '标题', align: 'center'},
                     {field: 'keywords', title: '关键词', align: 'center'},
                     {field: 'summary', title: '摘要', align: 'center'},
-                    {field: 'category_id', title: '分类', align: 'center'},
+                    {field: 'category_name', title: '分类', align: 'center'},
                     {field: 'created_at', title: '创建时间', align: 'center', sort: true},
                     {field: 'updated_at', title: '最后更新时间', align: 'center', sort: true},
                     {field: 'action', title: '操作', align: 'center', toolbar: "#action"}

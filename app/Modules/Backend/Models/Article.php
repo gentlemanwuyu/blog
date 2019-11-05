@@ -40,4 +40,9 @@ class Article extends Model
     {
         return $this->hasMany(ArticleLabel::class)->select('label_id');
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

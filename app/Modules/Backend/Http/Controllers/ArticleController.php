@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Modules\Backend\Models\Label;
 use App\Modules\Backend\Models\Article;
 use App\Modules\Backend\Models\Category;
+use App\Modules\Backend\Models\SummaryImage;
 use App\Modules\Backend\Services\ArticleService;
 
 class ArticleController extends Controller
@@ -93,5 +94,31 @@ class ArticleController extends Controller
     public function summaryImageLibrary(Request $request)
     {
         return view('backend::article.summary_image_library');
+    }
+
+    public function createOrUpdateSummaryImagePage(Request $request)
+    {
+        $data = [];
+        if ($request->get('summary_image_id')) {
+            $summary_image = SummaryImage::find($request->get('summary_image_id'));
+            $data['summary_image'] = $summary_image;
+        }
+
+        return view('backend::article.create_or_update_summary_image', $data);
+    }
+
+    public function createOrUpdateSummaryImage(Request $request)
+    {
+        return response()->json($this->articleService->createOrUpdateSummaryImage($request->get('url'), $request->get('desc'), $request->get('summary_image_id')));
+    }
+
+    public function summaryImagePaginate(Request $request)
+    {
+        return response()->json($this->articleService->summaryImagePaginate($request));
+    }
+
+    public function deleteSummaryImage(Request $request)
+    {
+        return response()->json($this->articleService->deleteSummaryImage($request->get('summary_image_id')));
     }
 }

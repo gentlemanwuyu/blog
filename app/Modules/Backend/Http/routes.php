@@ -26,6 +26,10 @@ Route::group(['middleware'=>['auth'], 'prefix'=>'article', 'as'=>'article.'], fu
     Route::post('paste_upload', ['as'=>'paste_upload', 'uses'=>'ArticleController@pasteUpload']);
     Route::post('delete_article', ['as'=>'delete_article', 'uses'=>'ArticleController@deleteArticle']);
     Route::get('summary_image_library', ['as'=>'summary_image_library', 'uses'=>'ArticleController@summaryImageLibrary']);
+    Route::get('create_or_update_summary_image_page', ['as'=>'create_or_update_summary_image_page', 'uses'=>'ArticleController@createOrUpdateSummaryImagePage']);
+    Route::post('create_or_update_summary_image', ['as'=>'create_or_update_summary_image', 'uses'=>'ArticleController@createOrUpdateSummaryImage']);
+    Route::get('summary_image_paginate', ['as'=>'summary_image_paginate', 'uses'=>'ArticleController@summaryImagePaginate']);
+    Route::post('delete_summary_image', ['as'=>'delete_summary_image', 'uses'=>'ArticleController@deleteSummaryImage']);
 });
 
 // 评论控制器

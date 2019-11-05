@@ -10,6 +10,7 @@ namespace App\Modules\Backend\Services;
 
 use Illuminate\Support\Facades\DB;
 use App\Modules\Backend\Models\Article;
+use App\Modules\Backend\Models\SummaryImage;
 
 class ArticleService
 {
@@ -74,6 +75,55 @@ class ArticleService
             $article = Article::find($id);
 
             $article->delete();
+
+            return ['status' => 'success'];
+        }catch (\Exception $e) {
+            return ['status' => 'fail', 'msg'=>$e->getMessage()];
+        }
+    }
+
+    /**
+     * 保存摘要图片
+     *
+     * @param $url
+     * @param $desc
+     * @param int|null $summary_image_id
+     * @return array
+     */
+    public function createOrUpdateSummaryImage($url, $desc, $summary_image_id = null)
+    {
+        try {
+            $image_size = getimagesize($url);
+            SummaryImage::updateOrCreate(['id' => $summary_image_id], [
+                'url' => $url,
+                'desc' => $desc,
+                'width' => $image_size[0],
+                'height' => $image_size[1],
+            ]);
+
+            return ['status' => 'success'];
+        }catch (\Exception $e) {
+            return ['status' => 'fail', 'msg'=>$e->getMessage()];
+        }
+    }
+
+    public function summaryImagePaginate($request)
+    {
+        return SummaryImage::orderBy('id', 'desc')->paginate($request->get('limit'));
+    }
+
+    /**
+     * 删除摘要图片
+     *
+     * @param $id
+     * @return array
+     */
+    public function deleteSummaryImage($id)
+    {
+        try {
+            $summary_image = SummaryImage::find($id);
+
+            $summary_image->delete();
 
             return ['status' => 'success'];
         }catch (\Exception $e) {

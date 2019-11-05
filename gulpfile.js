@@ -23,6 +23,7 @@ elixir(function(mix) {
     mix.copy('resources/assets/img','public/assets/img');
     mix.copy('resources/assets/layui-plugins','public/assets/layui-plugins');
     mix.copy('resources/assets/layuiadmin','public/assets/layuiadmin');
+    mix.copy('resources/assets/prism','public/assets/prism');
 
     // 添加版本管理
     mix.version([

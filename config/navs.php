@@ -53,6 +53,10 @@ return [
                 'title' => '友情链接',
                 'link' => '/admin/friendlink/index',
             ],
+            [
+                'title' => '系统日志',
+                'link' => '/admin/system/logs',
+            ],
         ],
     ],
 ];

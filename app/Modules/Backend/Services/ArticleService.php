@@ -18,6 +18,11 @@ class ArticleService
 
     }
 
+    public function paginate($request)
+    {
+        return Article::orderBy('id', 'desc')->paginate($request->get('limit'));
+    }
+
     /**
      * 保存配置
      *
@@ -48,6 +53,25 @@ class ArticleService
             return ['status' => 'success'];
         }catch (\Exception $e) {
             DB::rollBack();
+            return ['status' => 'fail', 'msg'=>$e->getMessage()];
+        }
+    }
+
+    /**
+     * 删除文章
+     *
+     * @param $id
+     * @return array
+     */
+    public function deleteArticle($id)
+    {
+        try {
+            $article = Article::find($id);
+
+            $article->delete();
+
+            return ['status' => 'success'];
+        }catch (\Exception $e) {
             return ['status' => 'fail', 'msg'=>$e->getMessage()];
         }
     }

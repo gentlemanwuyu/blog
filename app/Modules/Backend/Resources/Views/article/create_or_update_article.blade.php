@@ -4,35 +4,36 @@
         <legend>发布文章</legend>
     </fieldset>
     <form class="layui-form" lay-filter="article" style="padding-left: 20px;padding-right: 20px;">
+        <input type="hidden" name="article_id" value="{{$article_id}}">
         <div class="layui-form-item">
             <label class="layui-form-label">标题</label>
             <div class="layui-input-block">
-                <input type="text" name="title" placeholder="" class="layui-input" value="{{$all_configs['title'] or ''}}">
+                <input type="text" name="title" placeholder="" class="layui-input" value="{{$article['title'] or ''}}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">关键字</label>
             <div class="layui-input-block">
-                <input type="text" name="keywords" placeholder="多个关键字以英文逗号分隔" class="layui-input">
+                <input type="text" name="keywords" placeholder="多个关键字以英文逗号分隔" class="layui-input" value="{{$article['keywords'] or ''}}">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">内容</label>
             <div class="layui-input-block">
-                <textarea name="content" placeholder="" class="layui-textarea"></textarea>
+                <textarea name="content" placeholder="" class="layui-textarea">{{$article['content'] or ''}}</textarea>
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">摘要</label>
             <div class="layui-input-block">
-                <textarea name="summary" placeholder="" class="layui-textarea"></textarea>
+                <textarea name="summary" placeholder="" class="layui-textarea">{{$article['summary'] or ''}}</textarea>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">分类</label>
             <div class="layui-input-block">
                 @foreach($categories as $category)
-                    <input type="radio" name="category_id" value="{{$category->id}}" title="{{$category->name}}">
+                    <input type="radio" name="category_id" value="{{$category->id}}" title="{{$category->name}}" @if(isset($article) && $article->category_id == $category->id) checked @endif>
                 @endforeach
             </div>
         </div>
@@ -40,7 +41,7 @@
             <label class="layui-form-label">标签</label>
             <div class="layui-input-block">
                 @foreach($labels as $label)
-                    <input type="checkbox" name="labels[]" value="{{$label->id}}" title="{{$label->name}}">
+                    <input type="checkbox" name="labels[]" value="{{$label->id}}" title="{{$label->name}}" @if(isset($article) && in_array($label->id, $article->labelIds->pluck('label_id')->toArray())) checked @endif>
                 @endforeach
             </div>
         </div>

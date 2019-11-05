@@ -19,10 +19,12 @@ Route::get('logout', ['middleware' => ['auth'], 'as'=>'logout', 'uses'=>'IndexCo
 // 文章控制器
 Route::group(['middleware'=>['auth'], 'prefix'=>'article', 'as'=>'article.'], function (){
     Route::get('list', ['as'=>'list', 'uses'=>'ArticleController@getList']);
+    Route::get('paginate', ['as'=>'paginate', 'uses'=>'ArticleController@paginate']);
     Route::get('add_article', ['as'=>'add_article', 'uses'=>'ArticleController@addArticle']);
     Route::post('save_article', ['as'=>'save_article', 'uses'=>'ArticleController@saveArticle']);
     Route::post('upload', ['as'=>'upload', 'uses'=>'ArticleController@upload']);
     Route::post('paste_upload', ['as'=>'paste_upload', 'uses'=>'ArticleController@pasteUpload']);
+    Route::post('delete_article', ['as'=>'delete_article', 'uses'=>'ArticleController@deleteArticle']);
 });
 
 // 评论控制器

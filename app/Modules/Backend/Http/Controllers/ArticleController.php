@@ -4,10 +4,11 @@ namespace App\Modules\Backend\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Modules\Backend\Models\Category;
-use App\Modules\Backend\Models\Label;
-use App\Modules\Backend\Services\ArticleService;
 use Illuminate\Support\Facades\Storage;
+use App\Modules\Backend\Models\Label;
+use App\Modules\Backend\Models\Article;
+use App\Modules\Backend\Models\Category;
+use App\Modules\Backend\Services\ArticleService;
 
 class ArticleController extends Controller
 {
@@ -23,17 +24,32 @@ class ArticleController extends Controller
         return view('backend::article.list');
     }
 
+    public function paginate(Request $request)
+    {
+        return response()->json($this->articleService->paginate($request));
+    }
+
     public function addArticle(Request $request)
     {
         $categories = Category::all();
         $labels = Label::all();
+        $data = compact('categories', 'labels');
+        if ($request->get('article_id')) {
+            $article = Article::find($request->get('article_id'));
+            $data['article'] = $article;
+        }
 
-        return view('backend::article.create_or_update_article', compact('categories', 'labels'));
+        return view('backend::article.create_or_update_article', $data);
     }
 
     public function saveArticle(Request $request)
     {
         return response()->json($this->articleService->saveArticle($request));
+    }
+
+    public function deleteArticle(Request $request)
+    {
+        return response()->json($this->articleService->deleteArticle($request->get('article_id')));
     }
 
     public function upload(Request $request)

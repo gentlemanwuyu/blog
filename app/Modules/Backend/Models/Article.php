@@ -35,4 +35,9 @@ class Article extends Model
 
         return $this;
     }
+
+    public function labelIds()
+    {
+        return $this->hasMany(ArticleLabel::class)->select('label_id');
+    }
 }

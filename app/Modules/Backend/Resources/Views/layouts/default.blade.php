@@ -22,11 +22,11 @@
                 <ul class="layui-nav layui-nav-tree">
                     @foreach($navs as $nav)
                     <li class="layui-nav-item @if(!empty($nav->children) && !empty($nav->active)) layui-nav-itemed @elseif(empty($nav->children) && !empty($nav->active)) layui-this @endif">
-                        <a href="@if(!empty($nav->children))javascript:;@else{{$nav->link}}@endif">{{$nav->title}}</a>
+                        <a href="@if(!empty($nav->children))javascript:;@else{{$nav->link}}@endif"><i class="{{$nav->icon}}"></i>&nbsp;&nbsp;{{$nav->title}}</a>
                         @if(!empty($nav->children))
                             <dl class="layui-nav-child">
                                 @foreach($nav->children as $sub_nav)
-                                    <dd @if(!empty($sub_nav->active)) class="layui-this" @endif><a href="{{$sub_nav->link}}">{{$sub_nav->title}}</a></dd>
+                                    <dd @if(!empty($sub_nav->active)) class="layui-this" @endif><a href="{{$sub_nav->link}}"><i class="{{$sub_nav->icon}}"></i>&nbsp;&nbsp;{{$sub_nav->title}}</a></dd>
                                 @endforeach
                             </dl>
                         @endif

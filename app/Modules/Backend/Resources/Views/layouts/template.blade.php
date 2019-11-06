@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{asset('/assets/layui-src/dist/css/layui.css')}}" media="all">
     @yield('css')
 </head>
-<body class="layui-layout-body">
+<body>
 @yield('body')
 <script src="{{asset('/assets/layui-src/dist/layui.all.js')}}"></script>
 <script src="{{asset('/assets/jquery/dist/jquery.min.js')}}"></script>

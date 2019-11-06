@@ -2,10 +2,10 @@
 @section('css')
     <style>
         .img_container {
-            width: 212px!important;
-            height: 212px;
+            width: 208px!important;
+            height: 208px;
             border: 1px dashed #8D8D8D;
-            padding: 5px;
+            padding: 3px;
             border-radius: 3px;
             display: table-cell;
             vertical-align: middle;
@@ -60,6 +60,7 @@
                 <div class="img_container">
 
                 </div>
+                <input type="checkbox" name="is_sync_summary_image" title="同步到摘要图库" lay-skin="primary">
             </div>
         </div>
         <div class="layui-form-item">
@@ -190,8 +191,7 @@
                 ,done: function(res, index, upload){
                     layer.closeAll('loading');
                     if (res.status) {
-                        $('.img_container').html('');
-                        $('.img_container').append('<img src="' + res.url + '">');
+                        $('.img_container').html('<img src="' + res.url + '">');
                         $('.img_container').parents('div.layui-form-item').show();
                         $('input[name=summary_image]').val(res.url);
                     }else {

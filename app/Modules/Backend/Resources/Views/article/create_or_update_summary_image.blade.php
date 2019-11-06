@@ -19,7 +19,7 @@
 @endsection
 @section('body')
     <div class="row" style="margin-top: 20px;">
-        <div class="layui-col-xs6 layui-col-xs-offset3">
+        <div class="layui-col-xs6">
             <form class="layui-form" action="">
                 <input type="hidden" name="summary_image_id" value="{{$summary_image_id or ''}}">
                 <div class="layui-form-item" style="">

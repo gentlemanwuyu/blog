@@ -2,14 +2,14 @@
 @section('css')
     <style>
         img {
-            width: auto;
-            height: 200px;
+            max-width: 200px;
+            max-height: 200px;
         }
         .img_container {
-            width: 212px!important;
-            height: 212px;
+            width: 208px;
+            height: 208px;
             border: 1px dashed #8D8D8D;
-            padding: 5px;
+            padding: 3px;
             border-radius: 3px;
             display: table-cell;
             vertical-align: middle;
@@ -67,7 +67,7 @@
                 ,done: function(res, index, upload){
                     layer.closeAll('loading');
                     if (res.status) {
-                        $('.img_container').append('<img src="' + res.url + '">');
+                        $('.img_container').html('<img src="' + res.url + '">');
                         $('input[name=url]').val(res.url);
                     }else {
                         layer.msg("图片上传失败", {icon:2});

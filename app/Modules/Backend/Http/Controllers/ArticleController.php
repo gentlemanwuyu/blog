@@ -4,6 +4,7 @@ namespace App\Modules\Backend\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Modules\Backend\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Modules\Backend\Models\Label;
 use App\Modules\Backend\Models\Article;
@@ -43,7 +44,7 @@ class ArticleController extends Controller
         return view('backend::article.create_or_update_article', $data);
     }
 
-    public function saveArticle(Request $request)
+    public function saveArticle(ArticleRequest $request)
     {
         return response()->json($this->articleService->saveArticle($request));
     }
@@ -120,5 +121,13 @@ class ArticleController extends Controller
     public function deleteSummaryImage(Request $request)
     {
         return response()->json($this->articleService->deleteSummaryImage($request->get('summary_image_id')));
+    }
+
+    public function selectSummaryImagePage(Request $request)
+    {
+        return view('backend::article.select_summary_image', [
+            'total' => SummaryImage::count(),
+            'limit' => 12,
+        ]);
     }
 }

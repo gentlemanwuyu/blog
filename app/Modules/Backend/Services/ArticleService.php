@@ -44,6 +44,8 @@ class ArticleService
                 'content' => $request->get('content'),
                 'summary' => $request->get('summary'),
                 'category_id' => $request->get('category_id'),
+                'summary_image_url' => $request->get('summary_image_url'),
+                'summary_image_desc' => $request->get('summary_image_desc'),
             ];
 
             DB::beginTransaction();
@@ -51,6 +53,16 @@ class ArticleService
 
             if (!$article) {
                 throw new \Exception("保存文章失败");
+            }
+
+            if ($request->get('is_sync_summary_image')) {
+                $image_size = getimagesize($data['summary_image_url']);
+                SummaryImage::create([
+                    'url' => $data['summary_image_url'],
+                    'desc' => $data['summary_image_desc'],
+                    'width' => $image_size[0],
+                    'height' => $image_size[1],
+                ]);
             }
 
             $article->syncLabel($request->get('labels'));

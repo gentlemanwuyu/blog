@@ -24,35 +24,35 @@
     <form class="layui-form" lay-filter="article" style="padding-left: 20px;padding-right: 20px;">
         <input type="hidden" name="article_id" value="{{$article_id or ''}}">
         <div class="layui-form-item">
-            <label class="layui-form-label">标题</label>
+            <label class="layui-form-label required">标题</label>
             <div class="layui-input-block">
                 <input type="text" name="title" placeholder="" class="layui-input" value="{{$article['title'] or ''}}">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">关键字</label>
+            <label class="layui-form-label required">关键词</label>
             <div class="layui-input-block">
-                <input type="text" name="keywords" placeholder="多个关键字以英文逗号分隔" class="layui-input" value="{{$article['keywords'] or ''}}">
+                <input type="text" name="keywords" placeholder="多个关键词以英文逗号分隔" class="layui-input" value="{{$article['keywords'] or ''}}">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">内容</label>
+            <label class="layui-form-label required">内容</label>
             <div class="layui-input-block">
                 <textarea name="content" placeholder="" class="layui-textarea">{{$article['content'] or ''}}</textarea>
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">摘要</label>
+            <label class="layui-form-label required">摘要</label>
             <div class="layui-input-block">
                 <textarea name="summary" placeholder="" class="layui-textarea">{{$article['summary'] or ''}}</textarea>
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
-            <input type="hidden" name="summary_image">
-            <label class="layui-form-label">摘要图片</label>
+            <input type="hidden" name="summary_image_url">
+            <label class="layui-form-label required">摘要图片</label>
             <div class="layui-input-block">
                 <button type="button" class="layui-btn" id="upload_img">上传图片</button>
-                <button type="button" class="layui-btn">从图库中选择</button>
+                <button type="button" class="layui-btn" id="select_img">从图库中选择</button>
             </div>
         </div>
         <div class="layui-form-item layui-form-text" style="display: none;">
@@ -60,7 +60,17 @@
                 <div class="img_container">
 
                 </div>
-                <input type="checkbox" name="is_sync_summary_image" title="同步到摘要图库" lay-skin="primary">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text" style="display: none;">
+            <div class="layui-input-block">
+                <input type="checkbox" name="is_sync_summary_image" value="1" title="同步到摘要图库" lay-skin="primary">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">摘要图片描述</label>
+            <div class="layui-input-block">
+                <input type="text" name="summary_image_desc" placeholder="" class="layui-input" value="">
             </div>
         </div>
         <div class="layui-form-item">
@@ -193,20 +203,47 @@
                     if (res.status) {
                         $('.img_container').html('<img src="' + res.url + '">');
                         $('.img_container').parents('div.layui-form-item').show();
-                        $('input[name=summary_image]').val(res.url);
+                        $('input[name=is_sync_summary_image]').parents('.layui-form-item').show();
+                        $('input[name=summary_image_url]').val(res.url);
                     }else {
                         layer.msg("图片上传失败", {icon:2});
                         $('.img_container').html('');
                         $('.img_container').parents('div.layui-form-item').hide();
-                        $('input[name=summary_image]').val('');
+                        $('input[name=summary_image_url]').val('');
                     }
                 }
                 ,error: function(index, upload){
                     layer.closeAll('loading');
                     $('.img_container').html('');
                     $('.img_container').parents('div.layui-form-item').hide();
-                    $('input[name=summary_image]').val('');
+                    $('input[name=summary_image_url]').val('');
                 }
+            });
+
+            $('#select_img').on('click', function () {
+                layer.open({
+                    type: 2,
+                    area: ['80%', '80%'],
+                    fix: false,
+                    skin: 'layui-layer-rim',
+                    maxmin: true,
+                    shade: 0.5,
+                    anim: 4,
+                    title: "选择摘要图片",
+                    btn: ['确定', '取消'],
+                    yes: function (index) {
+                        var form_data = array_column($(layer.getChildFrame('body',index)).find('form').serializeArray());
+                        $('input[name=is_sync_summary_image]').prop('checked', false);
+                        form.render(null, 'article');
+                        $('input[name=summary_image_url]').val(form_data.summary_image_url);
+                        $('input[name=summary_image_desc]').val(form_data.summary_image_desc);
+                        $('.img_container').html('<img src="' + form_data.summary_image_url + '">');
+                        $('.img_container').parents('div.layui-form-item').show();
+                        $('input[name=is_sync_summary_image]').parents('.layui-form-item').hide();
+                        layer.close(index);
+                    },
+                    content: "{{route('admin::article.select_summary_image_page')}}"
+                });
             });
         });
     </script>

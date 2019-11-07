@@ -20,3 +20,12 @@ function packageValidatorResponseText (text) {
     });
     return message.join('<br>');
 }
+
+function array_column (arr) {
+    var obj = {};
+    $.each(arr, function (key, val) {
+        obj[val.name] = val.value;
+    });
+
+    return obj;
+}

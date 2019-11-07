@@ -48,17 +48,19 @@
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
-            <input type="hidden" name="summary_image_url">
+            <input type="hidden" name="summary_image_url" value="{{$article->summary_image_url or ''}}">
             <label class="layui-form-label required">摘要图片</label>
             <div class="layui-input-block">
                 <button type="button" class="layui-btn" id="upload_img">上传图片</button>
                 <button type="button" class="layui-btn" id="select_img">从图库中选择</button>
             </div>
         </div>
-        <div class="layui-form-item layui-form-text" style="display: none;">
+        <div class="layui-form-item layui-form-text" @if(!isset($article) || !$article->summary_image_url) style="display: none;" @endif>
             <div class="layui-input-block">
                 <div class="img_container">
-
+                    @if(isset($article) && $article->summary_image_url)
+                        <img src="{{$article->summary_image_url}}">
+                    @endif
                 </div>
             </div>
         </div>
@@ -70,7 +72,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">摘要图片描述</label>
             <div class="layui-input-block">
-                <input type="text" name="summary_image_desc" placeholder="" class="layui-input" value="">
+                <input type="text" name="summary_image_desc" placeholder="" class="layui-input" value="{{$article->summary_image_desc or ''}}">
             </div>
         </div>
         <div class="layui-form-item">

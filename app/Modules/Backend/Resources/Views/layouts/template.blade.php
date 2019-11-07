@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{asset('/assets/jstree/dist/themes/default/style.min.css')}}" media="all">
     <link rel="stylesheet" href="{{asset('/assets/fancybox/dist/jquery.fancybox.min.css')}}" media="all">
     <link rel="stylesheet" href="{{asset('/assets/layui-src/dist/css/layui.css')}}" media="all">
+    <link rel="stylesheet" href="{{asset('/assets/css/backend.css')}}" media="all">
     @yield('css')
 </head>
 <body>

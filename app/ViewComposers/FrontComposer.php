@@ -10,7 +10,9 @@ namespace App\ViewComposers;
 
 use Illuminate\Contracts\View\View;
 use Carbon\Carbon;
+use App\Modules\Backend\Models\Label;
 use App\Modules\Backend\Models\Section;
+use App\Modules\Backend\Models\Friendlink;
 use App\Modules\Backend\Models\SystemConfig;
 
 class FrontComposer
@@ -23,6 +25,12 @@ class FrontComposer
             $view->with([
                 'blog_name' => $system_configs['name'],
                 'navs' => $this->handleNavs(),
+            ]);
+        }
+        if ('frontend::layouts.sidebar' == $view->name()) {
+            $view->with([
+                'friendlinks' => Friendlink::all(['name', 'link'])->toArray(),
+                'labels' => $this->handleLabels(),
             ]);
         }
         if ('frontend::layouts.footer' == $view->name()) {
@@ -52,5 +60,12 @@ class FrontComposer
         }
 
         return $navs;
+    }
+
+    protected function handleLabels()
+    {
+        $labels = Label::all(['id', 'name']);
+
+        return $labels->toArray();
     }
 }

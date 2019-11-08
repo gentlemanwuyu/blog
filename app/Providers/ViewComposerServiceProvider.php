@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\ViewComposers\GlobalComposer;
 use App\ViewComposers\AdminComposer;
+use App\ViewComposers\FrontComposer;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     {
         View::composer('*', GlobalComposer::class);
         View::composer(['backend::layouts.default'], AdminComposer::class);
+        View::composer(['frontend::layouts.header'], FrontComposer::class);
     }
 
     /**

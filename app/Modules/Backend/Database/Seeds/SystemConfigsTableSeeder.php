@@ -18,6 +18,7 @@ class SystemConfigsTableSeeder extends Seeder
         SystemConfig::create(['name' => 'title', 'value' => 'Woozee的个人博客']);
         SystemConfig::create(['name' => 'keywords', 'value' => 'php,全栈开发,Laravel']);
         SystemConfig::create(['name' => 'desc', 'value' => '分享个人在php开发中的经验']);
+        SystemConfig::create(['name' => 'about', 'value' => '一个80后的油腻腻的大叔']);
         SystemConfig::create(['name' => 'icp', 'value' => '粤ICP备18158153号-1']);
     }
 }

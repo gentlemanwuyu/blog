@@ -48,7 +48,7 @@ class ArticleRequest extends FormRequest
 			'labels.required' => "请至少勾选1个标签",
 			'summary_image_url.required' => "请上传/选择摘要图片",
 			'summary_image_url.max' => "摘要图片url不能为超过:max个字符",
-			'summary_image_desc.required' => "摘要图片描述不能温控",
+			'summary_image_desc.required' => "摘要图片描述不能为空",
 			'summary_image_desc.max' => "摘要图片描述不能为超过:max个字符",
 		];
 	}

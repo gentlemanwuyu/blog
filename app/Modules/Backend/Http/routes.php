@@ -43,6 +43,9 @@ Route::group(['middleware'=>['auth'], 'prefix'=>'comment', 'as'=>'comment.'], fu
 // 版块控制器
 Route::group(['middleware'=>['auth'], 'prefix'=>'section', 'as'=>'section.'], function (){
     Route::get('list', ['as'=>'list', 'uses'=>'SectionController@getList']);
+    Route::get('paginate', ['as'=>'paginate', 'uses'=>'SectionController@paginate']);
+    Route::post('create_or_update_section', ['as'=>'create_or_update_section', 'uses'=>'SectionController@createOrUpdateSection']);
+    Route::post('delete_section', ['as'=>'delete_section', 'uses'=>'SectionController@deleteSection']);
 });
 
 // 分类控制器

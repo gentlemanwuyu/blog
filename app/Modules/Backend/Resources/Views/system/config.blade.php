@@ -5,6 +5,18 @@
     </fieldset>
     <form class="layui-form" lay-filter="system_config" style="padding-left: 20px;padding-right: 20px;">
         <div class="layui-form-item">
+            <label class="layui-form-label">博客名</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" placeholder="" class="layui-input" value="{{$all_configs['name'] or ''}}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">博客地址</label>
+            <div class="layui-input-block">
+                <input type="text" name="address" placeholder="" class="layui-input" value="{{$all_configs['address'] or ''}}">
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">博客标题</label>
             <div class="layui-input-block">
                 <input type="text" name="title" placeholder="" class="layui-input" value="{{$all_configs['title'] or ''}}">

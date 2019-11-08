@@ -9,6 +9,7 @@
 namespace App\ViewComposers;
 
 use Illuminate\Contracts\View\View;
+use Carbon\Carbon;
 use App\Modules\Backend\Models\Section;
 use App\Modules\Backend\Models\SystemConfig;
 
@@ -22,6 +23,11 @@ class FrontComposer
             $view->with([
                 'blog_name' => $system_configs['name'],
                 'navs' => $this->handleNavs(),
+            ]);
+        }
+        if ('frontend::layouts.footer' == $view->name()) {
+            $view->with([
+                'year_interval' => 2019 == Carbon::now()->year ? 2019 : '2019~' . Carbon::now()->year,
             ]);
         }
     }

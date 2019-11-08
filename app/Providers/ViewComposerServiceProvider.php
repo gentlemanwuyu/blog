@@ -25,7 +25,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     {
         View::composer('*', GlobalComposer::class);
         View::composer(['backend::layouts.default'], AdminComposer::class);
-        View::composer(['frontend::layouts.header'], FrontComposer::class);
+        View::composer(['frontend::layouts.header', 'frontend::layouts.footer'], FrontComposer::class);
     }
 
     /**

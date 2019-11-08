@@ -40,6 +40,11 @@ Route::group(['middleware'=>['auth'], 'prefix'=>'comment', 'as'=>'comment.'], fu
     Route::post('delete_comment', ['as'=>'delete_comment', 'uses'=>'CommentController@deleteComment']);
 });
 
+// 版块控制器
+Route::group(['middleware'=>['auth'], 'prefix'=>'section', 'as'=>'section.'], function (){
+    Route::get('list', ['as'=>'list', 'uses'=>'SectionController@getList']);
+});
+
 // 分类控制器
 Route::group(['middleware'=>['auth'], 'prefix'=>'category', 'as'=>'category.'], function (){
     Route::get('list', ['as'=>'list', 'uses'=>'CategoryController@getList']);

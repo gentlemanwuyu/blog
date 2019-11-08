@@ -42,7 +42,18 @@ return [
     [
         'title' => '分类管理',
         'icon' => 'layui-icon layui-icon-tree',
-        'link' => '/admin/category/list',
+        'children' => [
+            [
+                'title' => '版块管理',
+                'icon' => 'layui-icon layui-icon-tabs',
+                'link' => '/admin/section/list',
+            ],
+            [
+                'title' => '分类树',
+                'icon' => 'layui-icon layui-icon-tree',
+                'link' => '/admin/category/list',
+            ],
+        ],
     ],
     [
         'title' => '标签管理',

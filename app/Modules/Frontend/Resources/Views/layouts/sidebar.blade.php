@@ -10,7 +10,7 @@
         </form>
     </div>
     <div class="column">
-        <h3 class="title-sidebar"><i class="layui-icon">&#xe705;</i>栏目分类</h3>
+        <h3 class="title-sidebar"><i class="layui-icon">&#xe705;</i>版块分类</h3>
         <ul class="layui-row layui-col-space5">
             <li class="layui-col-md12 layui-col-xs6"><a href="#"><i class="layui-icon">&#xe63c;</i>心情随笔<span class="layui-badge layui-bg-gray">2</span></a></li>
             <li class="layui-col-md12 layui-col-xs6"><a href="#"><i class="layui-icon">&#xe63c;</i>技术杂谈<span class="layui-badge layui-bg-gray">3</span></a></li>

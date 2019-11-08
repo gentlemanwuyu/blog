@@ -10,16 +10,16 @@
     </fieldset>
     <div class="layui-tab">
         <ul class="layui-tab-title">
-            @foreach(config('sections') as $section_id => $section)
-                <li @if(1 == $section_id)class="layui-this"@endif>{{$section['name']}}</li>
+            @foreach($sections as $section)
+                <li>{{$section->name}}</li>
             @endforeach
         </ul>
         <div class="layui-tab-content">
-            @foreach(config('sections') as $section_id => $section)
-                <div class="layui-tab-item @if(1 == $section_id) layui-show @endif">
+            @foreach($sections as $section)
+                <div class="layui-tab-item">
                     <div class="layui-main">
-                        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal add_category" data-section_id="{{$section_id}}">添加一级分类</button>
-                        <div class="category_tree" style="margin-top: 20px;" data-section_id="{{$section_id}}">
+                        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal add_category" data-section_id="{{$section->id}}">添加一级分类</button>
+                        <div class="category_tree" style="margin-top: 20px;" data-section_id="{{$section->id}}">
 
                         </div>
                     </div>

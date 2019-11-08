@@ -4,6 +4,7 @@ namespace App\Modules\Backend\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Modules\Backend\Models\Section;
 use App\Modules\Backend\Services\CategoryService;
 
 class CategoryController extends Controller
@@ -17,7 +18,9 @@ class CategoryController extends Controller
 
     public function getList(Request $request)
     {
-        return view('backend::category.list');
+        $sections = Section::all();
+
+        return view('backend::category.list', compact('sections'));
     }
 
     public function getTree(Request $request)

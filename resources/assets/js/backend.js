@@ -1,3 +1,6 @@
+$('ul.layui-tab-title>li:first-child').addClass('layui-this');
+$('div.layui-tab-content>div.layui-tab-item:first-child').addClass('layui-show');
+
 // 给所有的ajax请求加上csrf_token
 $.ajaxSetup({
     headers: {

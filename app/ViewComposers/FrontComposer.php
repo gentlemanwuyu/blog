@@ -23,7 +23,7 @@ class FrontComposer
 
         if ('frontend::layouts.header' == $view->name()) {
             $view->with([
-                'blog_name' => $system_configs['name'],
+                'blog_name' => isset($system_configs['name']) ? $system_configs['name'] : '',
                 'navs' => $this->handleNavs(),
             ]);
         }

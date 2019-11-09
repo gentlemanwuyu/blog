@@ -1,4 +1,4 @@
-<div class="sidebar layui-col-md3 layui-col-lg3".0>
+<div class="sidebar layui-col-md3 layui-col-lg3">
     <div class="component">
         <form class="layui-form" id="search" method="post" action="" role="search">
             <div class="layui-inline input">

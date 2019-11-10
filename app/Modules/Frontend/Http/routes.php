@@ -18,7 +18,7 @@ Route::group(['as' => 'index.'], function() {
 	Route::get('/about.html', ['as'=>'about', 'uses'=>'IndexController@about']);
 });
 
-Route::group(['prefix' => 'article', 'as' => 'index.'], function() {
+Route::group(['prefix' => 'article', 'as' => 'article.'], function() {
 	// 文章详情页
 	Route::get('/{id}.html', ['as'=>'detail', 'uses'=>'ArticleController@detail']);
 });

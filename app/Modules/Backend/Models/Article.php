@@ -10,6 +10,7 @@ namespace App\Modules\Backend\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Article extends Model
 {
@@ -44,5 +45,10 @@ class Article extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function getCreateDateAttribute()
+    {
+        return Carbon::parse($this->created_at)->toDateString();
     }
 }

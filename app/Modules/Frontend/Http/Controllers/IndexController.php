@@ -4,6 +4,7 @@ namespace App\Modules\Frontend\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Modules\Backend\Models\Article;
 
 class IndexController extends Controller
 {
@@ -14,7 +15,9 @@ class IndexController extends Controller
 
     public function index()
     {
-        return view('frontend::index.index');
+        $articles = Article::OrderBy('id', 'desc')->limit(10)->get();
+
+        return view('frontend::index.index', compact('articles'));
     }
 
     public function about()

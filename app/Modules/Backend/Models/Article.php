@@ -11,6 +11,7 @@ namespace App\Modules\Backend\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class Article extends Model
 {
@@ -50,5 +51,37 @@ class Article extends Model
     public function getCreateDateAttribute()
     {
         return Carbon::parse($this->created_at)->toDateString();
+    }
+
+    /**
+     * 上一篇文章
+     *
+     * @return mixed
+     */
+    public function getPreviousAttribute()
+    {
+        return DB::table('articles AS a')
+            ->leftJoin('categories AS c', 'c.id', '=', 'a.category_id')
+            ->where('c.section_id', $this->category->section_id)
+            ->where('a.id', '<', $this->id)
+            ->orderBy('a.id', 'desc')
+            ->select('a.id', 'a.title')
+            ->first();
+    }
+
+    /**
+     * 下一篇文章
+     *
+     * @return mixed
+     */
+    public function getNextAttribute()
+    {
+        return DB::table('articles AS a')
+            ->leftJoin('categories AS c', 'c.id', '=', 'a.category_id')
+            ->where('c.section_id', $this->category->section_id)
+            ->where('a.id', '>', $this->id)
+            ->orderBy('a.id', 'desc')
+            ->select('a.id', 'a.title')
+            ->first();
     }
 }

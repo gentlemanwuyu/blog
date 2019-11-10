@@ -27,14 +27,18 @@
         </div>
     </div>
     <div class="page-text">
-        <div>
-            <span class="layui-badge layui-bg-gray">上一篇</span>
-            mysqldump: Got error: 1044: ***when using LOCK TABLES解决方法
-        </div>
-        <div>
-            <span class="layui-badge layui-bg-gray">下一篇</span>
-            Typecho 评论 Emoji 表情报错 Database Query Error 解决方案！
-        </div>
+        @if($article->previous)
+            <div>
+                <span class="layui-badge layui-bg-gray">上一篇</span>
+                <a href="{{route('frontend::article.detail', ['id' => $article->previous->id])}}">{{$article->previous->title}}</a>
+            </div>
+        @endif
+        @if($article->next)
+            <div>
+                <span class="layui-badge layui-bg-gray">下一篇</span>
+                <a href="{{route('frontend::article.detail', ['id' => $article->next->id])}}">{{$article->next->title}}</a>
+            </div>
+        @endif
     </div>
     @include('frontend::layouts.comments')
 @endsection

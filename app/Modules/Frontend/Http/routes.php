@@ -22,3 +22,7 @@ Route::group(['prefix' => 'article', 'as' => 'article.'], function() {
 	// 文章详情页
 	Route::get('/{id}.html', ['as'=>'detail', 'uses'=>'ArticleController@detail']);
 });
+
+Route::group(['prefix' => 'comment', 'as' => 'comment.'], function() {
+	Route::post('/paginate', ['as'=>'paginate', 'uses'=>'CommentController@paginate']);
+});

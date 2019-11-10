@@ -4,6 +4,12 @@ layui.use(['layer', 'element', 'util'], function(){
         element = layui.element,
         util = layui.util;
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     $(".nav-btn").on('click', function(){
         $('.nav-btn dl').toggleClass('layui-show');
     });

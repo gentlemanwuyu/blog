@@ -84,6 +84,9 @@
                     ,$ = layui.$
                     ,form = layui.form;
 
+            $('input[name=author]').val(getCookie('author'));
+            $('input[name=mail]').val(getCookie('mail'));
+            $('input[name=url]').val(getCookie('url'));
             laypage.render({
                 elem: 'paginate'
                 ,count: "{{$article->paginate_total}}"
@@ -110,6 +113,17 @@
                 data.field.source = 1;
                 data.field.article_id = "{{$article->id}}";
                 var load_index = layer.load();
+
+                if (data.field.author) {
+                    setCookie('author', data.field.author);
+                }
+                if (data.field.mail) {
+                    setCookie('mail', data.field.mail);
+                }
+                if (data.field.url) {
+                    setCookie('url', data.field.url);
+                }
+
                 $.ajax({
                     method: "post",
                     url: "{{route('frontend::comment.create_comment')}}",

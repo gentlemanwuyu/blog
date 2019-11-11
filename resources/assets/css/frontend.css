@@ -530,16 +530,6 @@ textarea {
     display: inherit
 }
 
-.page-navigator a:hover {
-    background: #393d49;
-    color: #fff
-}
-
-.page-navigator .current {
-    background: #333742;
-    color: #fff
-}
-
 /* 底部 */
 .footer {
     background: #fff;

@@ -80,37 +80,6 @@
 @endsection
 @section('scripts')
     <script>
-        function renderComment(data) {
-            var html = '';
-            $.each(data, function (key, val) {
-                html += '<li id="li-comment-' + val.id + '" class="comment-body comment-parent comment-even">';
-                html += '<div id="comment-' + val.id + '" class="pl-dan comment-txt-box">';
-                html += '<div class="t-p comment-author">';
-                html += '<img class="avatar" src="' + val.avatar + '" alt="' + val.username + '" width="40" height="40">';
-                html += '</div>';
-                html += '<div class="t-u comment-author">';
-                html += '<strong>';
-                html += '<a href="' + val.link + '" rel="external nofollow">' + val.username + '</a>';
-                html += '<span class="layui-badge"></span>';
-                html += '</strong>';
-                html += '<div><b></b></div>';
-                html += '<div class="t-s">' + val.content + '</div>';
-                html += '<span class="t-btn"><a href="" rel="nofollow" onclick="">回复</a> <span class="t-g">' + val.created_at + '</span></span>';
-                html += '</div>';
-                html += '</div>';
-                if (val.children) {
-                    html += '<div class="pl-list comment-children">';
-                    html += '<ol class="comment-list">';
-                    html += renderComment(val.children);
-                    html += '</ol>';
-                    html += '</div>';
-                }
-                html += '</li>';
-            });
-
-            return html;
-        }
-
         layui.use(['laypage'], function () {
             var laypage = layui.laypage;
             var $ = layui.$;
@@ -127,12 +96,7 @@
                         url: "{{route('frontend::comment.paginate')}}",
                         data: {resource: 1, article_id: "{{$article->id}}", limit: obj.limit, page: obj.curr},
                         success: function (res) {
-                            var html = '';
-                            html += '<ol class="comment-list">';
-                            html += renderComment(res.data);
-                            html += '</ol>';
-                            $('div.pinglun').html(html);
-
+                            $('div.pinglun').html(makeCommentHtml(res.data));
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
 

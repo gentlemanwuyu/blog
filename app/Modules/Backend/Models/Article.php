@@ -84,4 +84,24 @@ class Article extends Model
             ->select('a.id', 'a.title')
             ->first();
     }
+
+    /**
+     * 评论分页时的总数
+     *
+     * @return mixed
+     */
+    public function getPaginateTotalAttribute()
+    {
+        return Comment::where('article_id', $this->id)->where('parent_id', 0)->count();
+    }
+
+    /**
+     * 评论总数量
+     *
+     * @return mixed
+     */
+    public function getCommentTotalAttribute()
+    {
+        return Comment::where('article_id', $this->id)->count();
+    }
 }

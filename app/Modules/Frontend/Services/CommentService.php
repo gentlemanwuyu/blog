@@ -8,6 +8,7 @@
 
 namespace App\Modules\Frontend\Services;
 
+use Creativeorange\Gravatar\Facades\Gravatar;
 use App\Modules\Backend\Models\Comment;
 
 class CommentService
@@ -22,6 +23,7 @@ class CommentService
         $comments = Comment::where('parent_id', 0)->orderBy('id', 'desc')->paginate($request->get('limit'));
 
         foreach ($comments as $comment) {
+            $comment->avatar = Gravatar::get($comment->email);
             $children = $this->getChildrenComments($comment->id);
             if ($children) {
                 $comment->children = $children;
@@ -38,6 +40,7 @@ class CommentService
             return null;
         }
         foreach ($children as $child) {
+            $child->avatar = Gravatar::get($child->email);
             $subs = $this->getChildrenComments($child->id);
             if ($subs) {
                 $child->children = $subs;

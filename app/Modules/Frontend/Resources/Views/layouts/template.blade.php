@@ -11,6 +11,7 @@
     <meta name="csrf-token" content="{!! csrf_token() !!}">
     <link href="{{asset('/favicon.ico')}}" rel="shortcut icon" type="image/ico"/>
     <link rel="stylesheet" href="{{asset('/assets/layui-src/src/css/layui.css')}}" media="all">
+    <link rel="stylesheet" href="{{asset('/assets/prism/prism.css')}}" media="all">
     <link rel="stylesheet" href="{{asset('/assets/css/frontend.css')}}" media="all">
     @yield('css')
 </head>
@@ -23,6 +24,7 @@
 @yield('body')
 <script src="{{asset('/assets/jquery/dist/jquery.min.js')}}"></script>
 <script src="{{asset('/assets/layui-src/dist/layui.all.js')}}"></script>
+<script src="{{asset('/assets/prism/prism.js')}}"></script>
 <script src="{{asset('/assets/js/frontend.js')}}"></script>
 @yield('scripts')
 </body>

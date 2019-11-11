@@ -87,4 +87,6 @@ layui.use(['layer', 'element', 'util'], function(){
     //右下角工具箱（返回顶部）
     util.fixbar();
 
+    // 代码加上行号
+    $('pre').addClass("line-numbers").css("white-space", "pre-wrap");
 });

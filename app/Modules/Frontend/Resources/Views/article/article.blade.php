@@ -125,7 +125,7 @@
                     $.ajax({
                         method: "post",
                         url: "{{route('frontend::comment.paginate')}}",
-                        data: {resource: 'article', article_id: 98, limit: obj.limit, page: obj.curr},
+                        data: {resource: 1, article_id: "{{$article->id}}", limit: obj.limit, page: obj.curr},
                         success: function (res) {
                             var html = '';
                             html += '<ol class="comment-list">';

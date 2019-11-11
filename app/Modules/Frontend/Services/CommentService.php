@@ -20,7 +20,7 @@ class CommentService
 
     public function paginate($request)
     {
-        $comments = Comment::where('parent_id', 0)->orderBy('id', 'desc')->paginate($request->get('limit'));
+        $comments = Comment::where('article_id', $request->get('article_id'))->where('parent_id', 0)->orderBy('id', 'desc')->paginate($request->get('limit'));
 
         foreach ($comments as $comment) {
             $comment->avatar = Gravatar::get($comment->email);

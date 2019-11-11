@@ -20,6 +20,7 @@ class CreateCommentsTable extends Migration
 			$table->string('email')->default('')->comment('用户email');
 			$table->string('link')->default('')->comment('用户链接');
 			$table->integer('parent_id')->default(0)->comment('主评论ID');
+			$table->tinyInteger('source')->default(0)->comment('评论来源, 1为文章, 2为关于');
 			$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('创建时间');
 			$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))->comment('最后更新时间');
 			$table->timestamp('deleted_at')->nullable()->comment('删除时间');

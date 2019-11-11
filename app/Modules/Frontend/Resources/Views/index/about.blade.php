@@ -4,12 +4,75 @@
         <h1>关于</h1>
     </div>
     <div class="text" itemprop="articleBody">
-        <div id="md_content_2" class="md_content markdown-body editormd-html-preview" style="min-height: 50px;"><p>94年不甘现状而又无力改变的孤狼一条<img src="//cdn.staticfile.org/emoji-cheat-sheet/1.0.0/pensive.png" class="emoji" title=":pensive:" alt=":pensive:"></p>
-            <h3 id="h3-u4E2Au4EBAu4FE1u606F"><a name="个人信息" class="reference-link"></a><span class="header-link octicon octicon-link"></span>个人信息</h3><ul>
-                <li>昵称：宁采陈</li><li>职业：攻城狮</li><li>城市：大南宁</li></ul>
-            <h3 id="h3-u5EFAu535Au521Du8877"><a name="建博初衷" class="reference-link"></a><span class="header-link octicon octicon-link"></span>建博初衷</h3><p>平常开发中经常会遇到一些问题难点,而好不容易解决之后，却懒得做笔记，所以常常隔一段时间后，相同或者相似的问题再重现时，又刚好把之前的解决方案忘得差不多了。常言道:”好记性不如烂笔头”确实如此，每当此时我都后悔当初没有记录下来，所以趁着五一放假时间还是抽空搭建了个博客出来，用作平常记录之用。希望此博给我提供便利之余，也能给大家一些或多或少的帮助！</p>
-            <h3 id="h3-u8054u7CFBu65B9u5F0F"><a name="联系方式" class="reference-link"></a><span class="header-link octicon octicon-link"></span>联系方式</h3><p><a href="mailto:admin@echo.so">admin@echo.so</a></p>
+        <div id="md_content_2" class="md_content markdown-body editormd-html-preview" style="min-height: 50px;">
+            {{$about or '这个家伙很懒，什么都没有留下。。。'}}
         </div>
     </div>
-    @include('frontend::layouts.comments')
+    <div class="comment-text layui-form">
+        <div id="comments">
+            <div id="respond-post-41" class="respond">
+                <h4 id="response"><i class="layui-icon"></i> 评论啦~</h4>
+                <br>
+                <form method="post" action="https://www.echo.so/life/41.html/comment" id="comment-form" role="form">
+                    <div class="layui-form-item">
+                        <textarea rows="5" cols="30" name="text" id="textarea" placeholder="嘿~ 大神，别默默的看了，快来点评一下吧" class="layui-textarea"></textarea>
+                    </div>
+                    <div class="layui-form-item layui-row layui-col-space5">
+                        <div class="layui-col-md4">
+                            <input type="text" name="author" id="author" class="layui-input" placeholder="* 怎么称呼" value="" required="">
+                        </div>
+                        <div class="layui-col-md4">
+                            <input type="email" name="mail" id="mail" lay-verify="email" class="layui-input" placeholder="* 邮箱(放心~会保密~.~)" value="123@test.com" required="">
+                        </div>
+                        <div class="layui-col-md4">
+                            <input type="url" name="url" id="url" lay-verify="url" class="layui-input" placeholder="http://您的主页" value="">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <button type="submit" class="layui-btn">提交评论</button>
+                    </div>
+                    <input type="hidden" name="_" value="68bdcf980fbe5ba6f990ba6881442a8d">
+                </form>
+            </div>
+            <br>
+            <h3>已有 {{$comment_total or 0}} 条评论</h3>
+            <br>
+            <div class="pinglun">
+
+            </div>
+            <div class="page-navigator" id="paginate">
+
+            </div>
+        </div>
+    </div>
+@endsection
+@section('scripts')
+    <script>
+        layui.use(['laypage'], function () {
+            var laypage = layui.laypage;
+            var $ = layui.$;
+
+            laypage.render({
+                elem: 'paginate'
+                ,count: "{{$paginate_total}}"
+                ,groups: 3
+                ,prev: '<i class="layui-icon layui-icon-left"></i>'
+                ,next: '<i class="layui-icon layui-icon-right"></i>'
+                ,jump: function(obj, first){
+                    $.ajax({
+                        method: "post",
+                        url: "{{route('frontend::comment.paginate')}}",
+                        data: {source: 2, limit: obj.limit, page: obj.curr},
+                        success: function (res) {
+                            $('div.pinglun').html(makeCommentHtml(res.data));
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                            return false;
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endsection

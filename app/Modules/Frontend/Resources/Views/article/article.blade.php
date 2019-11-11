@@ -83,7 +83,7 @@
         layui.use(['laypage'], function () {
             var laypage = layui.laypage;
             var $ = layui.$;
-            //总页数大于页码总数
+
             laypage.render({
                 elem: 'paginate'
                 ,count: "{{$article->paginate_total}}"
@@ -94,7 +94,7 @@
                     $.ajax({
                         method: "post",
                         url: "{{route('frontend::comment.paginate')}}",
-                        data: {resource: 1, article_id: "{{$article->id}}", limit: obj.limit, page: obj.curr},
+                        data: {source: 1, article_id: "{{$article->id}}", limit: obj.limit, page: obj.curr},
                         success: function (res) {
                             $('div.pinglun').html(makeCommentHtml(res.data));
                         },

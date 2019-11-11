@@ -20,7 +20,7 @@ var makeCommentHtml = function (comments) {
         if (val.children) {
             html += '<div class="pl-list comment-children">';
             html += '<ol class="comment-list">';
-            html += renderComment(val.children);
+            html += makeCommentHtml(val.children);
             html += '</ol>';
             html += '</div>';
         }

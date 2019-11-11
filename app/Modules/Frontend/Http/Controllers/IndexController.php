@@ -5,6 +5,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Modules\Backend\Models\Article;
+use App\Modules\Backend\Models\Comment;
+use App\Modules\Backend\Models\SystemConfig;
 
 class IndexController extends Controller
 {
@@ -22,6 +24,10 @@ class IndexController extends Controller
 
     public function about()
     {
-        return view('frontend::index.about');
+        $about = SystemConfig::where('name', 'about')->value('value');
+        $paginate_total = Comment::where('source', 2)->where('parent_id', 0)->count();
+        $comment_total = Comment::where('source', 2)->count();
+
+        return view('frontend::index.about', compact('about', 'paginate_total', 'comment_total'));
     }
 }

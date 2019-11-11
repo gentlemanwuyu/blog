@@ -101,7 +101,7 @@ pre code {
 blockquote {
     margin: 1em 0;
     padding-left: 1em;
-    border-left: 4px solid #6bc30d;
+    border-left: 4px solid #009688;
     color: #666;
 }
 
@@ -164,14 +164,14 @@ textarea {
 }
 .header .layui-nav .layui-nav-item:after,.header .layui-nav .layui-nav-bar{
     height: 1px;
-    background-color: #6bc30d;
+    background-color: #009688;
 }
 .header .layui-nav .layui-nav-item a{
     color: #212220;
     padding: 0 16px;
 }
 .header .layui-nav .layui-nav-item a:hover{
-    color: #6bc30d;
+    color: #009688;
 }
 .header .layui-nav .layui-nav-item[mobile]{
     display: none;

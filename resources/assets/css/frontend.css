@@ -542,13 +542,10 @@ textarea {
 
 /* 底部 */
 .footer {
-    width: 100%;
-    position: absolute;
-    bottom: 0;
     background: #fff;
     margin-top: 15px;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
 }
 
 .footer span {

@@ -83,8 +83,8 @@
         function renderComment(data) {
             var html = '';
             $.each(data, function (key, val) {
-                html += '<li id="li-comment-418" class="comment-body comment-parent comment-even">';
-                html += '<div id="comment-418" class="pl-dan comment-txt-box">';
+                html += '<li id="li-comment-' + val.id + '" class="comment-body comment-parent comment-even">';
+                html += '<div id="comment-' + val.id + '" class="pl-dan comment-txt-box">';
                 html += '<div class="t-p comment-author">';
                 html += '<img class="avatar" src="' + val.avatar + '" alt="' + val.username + '" width="40" height="40">';
                 html += '</div>';

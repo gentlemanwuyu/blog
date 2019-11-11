@@ -19,7 +19,7 @@
                 elem: '#comment_list',
                 url: "{{route('admin::comment.paginate')}}",
                 page: true,
-                parseData: function (res) {
+                parseData: function (res) {console.log(res);
                     return {
                         "code": 0,
                         "msg": '',
@@ -30,11 +30,12 @@
                 cols: [[
                     {field: 'id', title: 'ID', align: 'center', sort: true, fixed: 'left'},
                     {field: 'content', title: '内容', align: 'center'},
-                    {field: 'article_id', title: '文章', align: 'center'},
+                    {field: 'source', title: '来源', align: 'center'},
+                    {field: 'article_title', title: '文章', align: 'center'},
                     {field: 'username', title: '用户', align: 'center'},
                     {field: 'email', title: '邮箱', align: 'center'},
                     {field: 'link', title: '链接', align: 'center'},
-                    {field: 'parent_id', title: '主评论', align: 'center'},
+                    {field: 'parent_comment', title: '主评论', align: 'center'},
                     {field: 'created_at', title: '创建时间', align: 'center', sort: true},
                     {field: 'action', title: '操作', align: 'center', toolbar: "#action"}
                 ]]

@@ -19,7 +19,14 @@ class CommentService
 
     public function paginate($request)
     {
-        return Comment::orderBy('id', 'desc')->paginate($request->get('limit'));
+        $comments = Comment::orderBy('id', 'desc')->paginate($request->get('limit'));
+        foreach ($comments as $comment) {
+            $comment->source = $comment->source_page;
+            $comment->parent_comment = $comment->parent ? $comment->parent->content : '';
+            $comment->article_title = $comment->article ? $comment->article->title : '';
+        }
+
+        return $comments;
     }
 
     /**

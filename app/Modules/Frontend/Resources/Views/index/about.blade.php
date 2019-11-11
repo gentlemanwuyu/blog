@@ -3,7 +3,7 @@
     <div class="title-article text-center">
         <h1>关于</h1>
     </div>
-    <div class="text" itemprop="articleBody">
+    <div class="text" itemprop="articleBody" style="margin-bottom: 10px;">
         <div id="md_content_2" class="md_content markdown-body editormd-html-preview" style="min-height: 50px;">
             {{$about or '这个家伙很懒，什么都没有留下。。。'}}
         </div>

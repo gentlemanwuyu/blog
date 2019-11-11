@@ -42,28 +42,27 @@
     </div>
     <div class="comment-text layui-form">
         <div id="comments">
-            <div id="respond-post-41" class="respond">
+            <div id="respond-post-{{$article->id}}" class="respond">
                 <h4 id="response"><i class="layui-icon"></i> 评论啦~</h4>
                 <br>
-                <form method="post" action="https://www.echo.so/life/41.html/comment" id="comment-form" role="form">
+                <form method="post" role="form" lay-filter="article">
                     <div class="layui-form-item">
-                        <textarea rows="5" cols="30" name="text" id="textarea" placeholder="嘿~ 大神，别默默的看了，快来点评一下吧" class="layui-textarea"></textarea>
+                        <textarea rows="5" cols="30" name="text" id="textarea" placeholder="嘿~ 大神，别默默的看了，快来点评一下吧" class="layui-textarea" lay-verify="required" lay-reqText="请点评一下吧!"></textarea>
                     </div>
                     <div class="layui-form-item layui-row layui-col-space5">
                         <div class="layui-col-md4">
-                            <input type="text" name="author" id="author" class="layui-input" placeholder="* 怎么称呼" value="" required="">
+                            <input type="text" name="author" id="author" lay-verify="required" lay-reqText="请问您怎么称呼？" class="layui-input" placeholder="* 怎么称呼" value="">
                         </div>
                         <div class="layui-col-md4">
-                            <input type="email" name="mail" id="mail" lay-verify="email" class="layui-input" placeholder="* 邮箱(放心~会保密~.~)" value="123@test.com" required="">
+                            <input type="email" name="mail" id="mail" lay-verify="email" class="layui-input" placeholder="* 邮箱(放心~会保密~.~)" value="">
                         </div>
                         <div class="layui-col-md4">
-                            <input type="url" name="url" id="url" lay-verify="url" class="layui-input" placeholder="http://您的主页" value="">
+                            <input type="url" name="url" id="url" class="layui-input" placeholder="http://您的主页" value="">
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <button type="submit" class="layui-btn">提交评论</button>
+                        <button type="button" class="layui-btn" lay-submit lay-filter="article">提交评论</button>
                     </div>
-                    <input type="hidden" name="_" value="68bdcf980fbe5ba6f990ba6881442a8d">
                 </form>
             </div>
             <br>
@@ -80,9 +79,10 @@
 @endsection
 @section('scripts')
     <script>
-        layui.use(['laypage'], function () {
-            var laypage = layui.laypage;
-            var $ = layui.$;
+        layui.use(['laypage', 'form'], function () {
+            var laypage = layui.laypage
+                    ,$ = layui.$
+                    ,form = layui.form;
 
             laypage.render({
                 elem: 'paginate'
@@ -104,6 +104,34 @@
                         }
                     });
                 }
+            });
+
+            form.on('submit(article)', function(data){
+                data.field.source = 1;
+                data.field.article_id = "{{$article->id}}";
+                var load_index = layer.load();
+                $.ajax({
+                    method: "post",
+                    url: "{{route('frontend::comment.create_comment')}}",
+                    data: data.field,
+                    success: function (data) {
+                        layer.close(load_index);
+                        if ('success' == data.status) {
+                            layer.msg("谢谢您的点评!", {icon:1});
+                            window.location.reload();
+                        } else {
+                            layer.msg("对不起, 评论失败, 请联系博主!", {icon:2});
+                            return false;
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        layer.close(load_index);
+                        layer.msg("对不起, 评论失败, 请联系博主!", {icon:2});
+                        return false;
+                    }
+                });
+
+                return false;
             });
         });
     </script>

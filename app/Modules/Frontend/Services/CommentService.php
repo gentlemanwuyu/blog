@@ -53,4 +53,35 @@ class CommentService
 
         return $children;
     }
+
+    /**
+     * 创建评论
+     *
+     * @param $request
+     * @return array
+     */
+    public function createComment($request)
+    {
+        try {
+            $data = [
+                'content' => $request->get('text'),
+                'username' => $request->get('author'),
+                'email' => $request->get('mail'),
+                'link' => $request->get('url'),
+                'source' => $request->get('source'),
+            ];
+            if ($request->get('article_id')) {
+                $data['article_id'] = $request->get('article_id');
+            }
+            if ($request->get('parent_id')) {
+                $data['parent_id'] = $request->get('parent_id');
+            }
+
+            Comment::create($data);
+
+            return ['status' => 'success'];
+        }catch (\Exception $e) {
+            return ['status' => 'fail', 'msg'=>$e->getMessage()];
+        }
+    }
 }

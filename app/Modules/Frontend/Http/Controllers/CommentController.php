@@ -19,4 +19,9 @@ class CommentController extends Controller
     {
         return response()->json($this->commentService->paginate($request));
     }
+
+    public function createComment(Request $request)
+    {
+        return response()->json($this->commentService->createComment($request));
+    }
 }

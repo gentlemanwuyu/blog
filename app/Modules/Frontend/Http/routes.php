@@ -25,4 +25,5 @@ Route::group(['prefix' => 'article', 'as' => 'article.'], function() {
 
 Route::group(['prefix' => 'comment', 'as' => 'comment.'], function() {
 	Route::post('/paginate', ['as'=>'paginate', 'uses'=>'CommentController@paginate']);
+	Route::post('/create_comment', ['as'=>'create_comment', 'uses'=>'CommentController@createComment']);
 });

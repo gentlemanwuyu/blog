@@ -42,38 +42,10 @@
     </div>
     <div class="comment-text layui-form">
         <div id="comments">
-            <div id="respond-post-{{$article->id}}" class="respond">
-                <h4 id="response"><i class="layui-icon"></i> 评论啦~</h4>
-                <br>
-                <form method="post" role="form" lay-filter="article">
-                    <div class="layui-form-item">
-                        <textarea rows="5" cols="30" name="text" id="textarea" placeholder="嘿~ 大神，别默默的看了，快来点评一下吧" class="layui-textarea" lay-verify="required" lay-reqText="请点评一下吧!"></textarea>
-                    </div>
-                    <div class="layui-form-item layui-row layui-col-space5">
-                        <div class="layui-col-md4">
-                            <input type="text" name="author" id="author" lay-verify="required" lay-reqText="请问您怎么称呼？" class="layui-input" placeholder="* 怎么称呼" value="">
-                        </div>
-                        <div class="layui-col-md4">
-                            <input type="email" name="mail" id="mail" lay-verify="email" class="layui-input" placeholder="* 邮箱(放心~会保密~.~)" value="">
-                        </div>
-                        <div class="layui-col-md4">
-                            <input type="url" name="url" id="url" class="layui-input" placeholder="http://您的主页" value="">
-                        </div>
-                    </div>
-                    <div class="layui-inline">
-                        <button type="button" class="layui-btn" lay-submit lay-filter="article">提交评论</button>
-                    </div>
-                </form>
-            </div>
-            <br>
-            <h3>已有 {{$article->comment_total or 0}} 条评论</h3>
-            <br>
-            <div class="pinglun">
 
-            </div>
-            <div class="page-navigator" id="paginate">
+        </div>
+        <div class="page-navigator" id="paginate">
 
-            </div>
         </div>
     </div>
 @endsection
@@ -84,9 +56,6 @@
                     ,$ = layui.$
                     ,form = layui.form;
 
-            $('input[name=author]').val(getCookie('author'));
-            $('input[name=mail]').val(getCookie('mail'));
-            $('input[name=url]').val(getCookie('url'));
             laypage.render({
                 elem: 'paginate'
                 ,count: "{{$article->paginate_total}}"
@@ -99,7 +68,7 @@
                         url: "{{route('frontend::comment.paginate')}}",
                         data: {source: 1, article_id: "{{$article->id}}", limit: obj.limit, page: obj.curr},
                         success: function (res) {
-                            $('div.pinglun').html(makeCommentHtml(res.data));
+                            $('div#comments').html(makeCommentHtml(res));
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
 

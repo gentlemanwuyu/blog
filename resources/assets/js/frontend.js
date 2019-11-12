@@ -1,35 +1,91 @@
-var makeCommentHtml = function (comments) {
+var makeCommentHtml = function (res) {
     var html = '';
-    html += '<ol class="comment-list">';
-    comments.forEach(function (val) {
-        html += '<li id="li-comment-' + val.id + '" class="comment-body comment-parent comment-even">';
-        html += '<div id="comment-' + val.id + '" class="pl-dan comment-txt-box">';
-        html += '<div class="t-p comment-author">';
-        html += '<img class="avatar" src="' + val.avatar + '" alt="' + val.username + '" width="40" height="40">';
-        html += '</div>';
-        html += '<div class="t-u comment-author">';
-        html += '<strong>';
-        html += '<a href="' + val.link + '" rel="external nofollow">' + val.username + '</a>';
-        html += '<span class="layui-badge"></span>';
-        html += '</strong>';
-        html += '<div><b></b></div>';
-        html += '<div class="t-s">' + val.content + '</div>';
-        html += '<span class="t-btn"><a href="" rel="nofollow" onclick="">回复</a> <span class="t-g">' + val.created_at + '</span></span>';
-        html += '</div>';
-        html += '</div>';
-        if (val.children) {
-            html += '<div class="pl-list comment-children">';
-            html += '<ol class="comment-list">';
-            html += makeCommentHtml(val.children);
-            html += '</ol>';
-            html += '</div>';
-        }
-        html += '</li>';
-    });
-
-    html += '</ol>';
+    html += '<div id="respond-post-' + res.article_id + '" class="respond" style="margin-bottom: 15px;position: relative;">';
+    html += '<h4 id="response"><i class="layui-icon"></i> 评论啦~</h4>';
+    html += '<br>';
+    html += '<form method="post" role="form" lay-filter="article">';
+    html += '<input type="hidden" name="parent_id">';
+    html += '<div class="layui-form-item">';
+    html += '<textarea rows="5" cols="30" name="text" id="textarea" placeholder="嘿~ 大神，别默默的看了，快来点评一下吧" class="layui-textarea" lay-verify="required" lay-reqText="请点评一下吧!"></textarea>';
+    html += '</div>';
+    html += '<div class="layui-form-item layui-row layui-col-space5">';
+    html += '<div class="layui-col-md4">';
+    html += '<input type="text" name="author" id="author" lay-verify="required" lay-reqText="请问您怎么称呼？" class="layui-input" placeholder="* 怎么称呼" value="' + getCookie('author') + '">';
+    html += '</div>';
+    html += '<div class="layui-col-md4">';
+    html += '<input type="email" name="mail" id="mail" lay-verify="email" class="layui-input" placeholder="* 邮箱(放心~会保密~.~)" value="' + getCookie('mail') + '">';
+    html += '</div>';
+    html += '<div class="layui-col-md4">';
+    html += '<input type="url" name="url" id="url" class="layui-input" placeholder="http://您的主页" value="' + getCookie('url') + '">';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="layui-inline">';
+    html += '<button type="button" class="layui-btn" lay-submit lay-filter="article">提交评论</button>';
+    html += '</div>';
+    html += '</form>';
+    html += '<a href="javascript:closeReply(' + res.article_id + ');" id="close_reply" title="关闭" style="display: none;"><i class="layui-icon layui-icon-close" style="color: #FF5722;position: absolute;right: 0;top: 0;"></i></a>';
+    html += '</div>';
+    html += '<h3>已有 ' + res.comment_total + ' 条评论</h3>';
+    html += '<br>';
+    html += '<div class="pinglun">';
+    html += recursiveMakeCommentsHtml(res.data);
+    html += '</div>';
 
     return html;
+}
+    ,recursiveMakeCommentsHtml = function (comments) {
+    var comments_html = '';
+    comments_html += '<ol class="comment-list">';
+    comments.forEach(function (val) {
+        comments_html += '<li id="li-comment-' + val.id + '" class="comment-body comment-parent comment-even">';
+        comments_html += '<div id="comment-' + val.id + '" class="pl-dan comment-txt-box">';
+        comments_html += '<div class="t-p comment-author">';
+        comments_html += '<img class="avatar" src="' + val.avatar + '" alt="' + val.username + '" width="40" height="40">';
+        comments_html += '</div>';
+        comments_html += '<div class="t-u comment-author">';
+        comments_html += '<strong>';
+        comments_html += '<a href="' + val.link + '" rel="external nofollow">' + val.username + '</a>';
+        comments_html += '<span class="layui-badge"></span>';
+        comments_html += '</strong>';
+        comments_html += '<div><b></b></div>';
+        comments_html += '<div class="t-s">' + val.content + '</div>';
+        comments_html += '<span class="t-btn"><a href="javascript: replyComment(' + val.id + ', ' + val.article_id + ');" rel="nofollow" onclick="">回复</a> <span class="t-g">' + val.created_at + '</span></span>';
+        comments_html += '</div>';
+        comments_html += '</div>';
+        if (val.children) {
+            comments_html += '<div class="pl-list comment-children">';
+            comments_html += '<ol class="comment-list">';
+            comments_html += recursiveMakeCommentsHtml(val.children);
+            comments_html += '</ol>';
+            comments_html += '</div>';
+        }
+        comments_html += '</li>';
+    });
+
+    comments_html += '</ol>';
+    return comments_html;
+}
+    ,replyComment = function(comment_id, article_id) {
+    var comment_dom = $('#respond-post-' + article_id)[0];
+    $(comment_dom).remove();
+    $('#comment-' + comment_id).append(comment_dom);
+    $('#close_reply').show();
+    $('input[name=parent_id]').val(comment_id);
+    initCommentFormValue();
+}
+    , closeReply = function (article_id) {
+    var comment_dom = $('#respond-post-' + article_id)[0];
+    $(comment_dom).remove();
+    $('#comments').prepend(comment_dom);
+    $('#close_reply').hide();
+    $('input[name=parent_id]').val('');
+    initCommentFormValue();
+}
+    ,initCommentFormValue = function () {
+    $('textarea[name=text]').val('');
+    $('input[name=author]').val(getCookie('author'));
+    $('input[name=mail]').val(getCookie('mail'));
+    $('input[name=url]').val(getCookie('url'));
 }
     ,setCookie = function(c_name,value,expiredays) {
     var exdate=new Date()

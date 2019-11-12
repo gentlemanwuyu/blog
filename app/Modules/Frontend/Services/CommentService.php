@@ -34,7 +34,11 @@ class CommentService
             }
         }
 
-        return $comments;
+        // 添加自定义属性
+        return collect([
+            'comment_total' => Comment::where('article_id', $request->get('article_id'))->count(),
+            'article_id' => $request->get('article_id'),
+        ])->merge($comments);
     }
 
     protected function getChildrenComments($parent_id)

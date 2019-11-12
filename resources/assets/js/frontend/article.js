@@ -25,7 +25,7 @@ layui.use(['laypage', 'form'], function () {
         }
     });
 
-    form.on('submit(article)', function(data){
+    form.on('submit(comment)', function(data){
         data.field.source = 1;
         data.field.article_id = $('#comments').attr('data-article_id');
         var load_index = layer.load();

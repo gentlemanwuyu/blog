@@ -3,7 +3,7 @@ var makeCommentHtml = function (res) {
     html += '<div id="reply_div' + '" class="respond" style="margin-bottom: 15px;position: relative;">';
     html += '<h4 id="response"><i class="layui-icon"></i> 评论啦~</h4>';
     html += '<br>';
-    html += '<form method="post" role="form" lay-filter="article">';
+    html += '<form method="post" role="form" lay-filter="comment">';
     html += '<input type="hidden" name="parent_id">';
     html += '<div class="layui-form-item">';
     html += '<textarea rows="5" cols="30" name="text" id="textarea" placeholder="嘿~ 大神，别默默的看了，快来点评一下吧" class="layui-textarea" lay-verify="required" lay-reqText="请点评一下吧!"></textarea>';
@@ -20,7 +20,7 @@ var makeCommentHtml = function (res) {
     html += '</div>';
     html += '</div>';
     html += '<div class="layui-inline">';
-    html += '<button type="button" class="layui-btn" lay-submit lay-filter="article">提交评论</button>';
+    html += '<button type="button" class="layui-btn" lay-submit lay-filter="comment">提交评论</button>';
     html += '</div>';
     html += '</form>';
     html += '<a href="javascript:closeReply();" id="close_reply" title="关闭" style="display: none;"><i class="layui-icon layui-icon-close" style="color: #FF5722;position: absolute;right: 0;top: 0;"></i></a>';
@@ -48,7 +48,7 @@ var makeCommentHtml = function (res) {
         comments_html += '<span class="layui-badge"></span>';
         comments_html += '</strong>';
         if (val.parent_id) {
-            comments_html += '<div><b><a href="#comment-' + val.parent_id + '">@' + val.username + '</a></b></div>';
+            comments_html += '<div><b><a href="#comment-' + val.parent_id + '">@' + val.parent_name + '</a></b></div>';
         }
         comments_html += '<div class="t-s">' + val.content + '</div>';
         comments_html += '<span class="t-btn"><a href="javascript: replyComment(' + val.id + ');" rel="nofollow" onclick="">回复</a> <span class="t-g">' + val.created_at + '</span></span>';

@@ -28,6 +28,7 @@ class CommentService
 
         foreach ($comments as $comment) {
             $comment->avatar = Gravatar::get($comment->email);
+            $comment->parent_name = $comment->parent ? $comment->parent->username : '';
             $children = $this->getChildrenComments($comment->id);
             if ($children) {
                 $comment->children = $children;
@@ -48,6 +49,7 @@ class CommentService
         }
         foreach ($children as $child) {
             $child->avatar = Gravatar::get($child->email);
+            $child->parent_name = $child->parent ? $child->parent->username : '';
             $subs = $this->getChildrenComments($child->id);
             if ($subs) {
                 $child->children = $subs;

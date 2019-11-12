@@ -92,8 +92,7 @@ var makeCommentHtml = function (res) {
     ,setCookie = function(c_name,value,expiredays) {
     var exdate=new Date()
     exdate.setDate(exdate.getDate()+expiredays)
-    document.cookie=c_name+ "=" +escape(value)+
-        ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+    document.cookie=c_name + "=" + escape(value) + ';path=/' + ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
 }
     ,getCookie = function(c_name) {
     if (document.cookie.length>0)

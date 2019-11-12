@@ -1,6 +1,6 @@
 var makeCommentHtml = function (res) {
     var html = '';
-    html += '<div id="respond-post-' + res.article_id + '" class="respond" style="margin-bottom: 15px;position: relative;">';
+    html += '<div id="reply_div' + '" class="respond" style="margin-bottom: 15px;position: relative;">';
     html += '<h4 id="response"><i class="layui-icon"></i> 评论啦~</h4>';
     html += '<br>';
     html += '<form method="post" role="form" lay-filter="article">';
@@ -23,7 +23,7 @@ var makeCommentHtml = function (res) {
     html += '<button type="button" class="layui-btn" lay-submit lay-filter="article">提交评论</button>';
     html += '</div>';
     html += '</form>';
-    html += '<a href="javascript:closeReply(' + res.article_id + ');" id="close_reply" title="关闭" style="display: none;"><i class="layui-icon layui-icon-close" style="color: #FF5722;position: absolute;right: 0;top: 0;"></i></a>';
+    html += '<a href="javascript:closeReply();" id="close_reply" title="关闭" style="display: none;"><i class="layui-icon layui-icon-close" style="color: #FF5722;position: absolute;right: 0;top: 0;"></i></a>';
     html += '</div>';
     html += '<h3>已有 ' + res.comment_total + ' 条评论</h3>';
     html += '<br>';
@@ -51,7 +51,7 @@ var makeCommentHtml = function (res) {
             comments_html += '<div><b><a href="#comment-' + val.parent_id + '">@' + val.username + '</a></b></div>';
         }
         comments_html += '<div class="t-s">' + val.content + '</div>';
-        comments_html += '<span class="t-btn"><a href="javascript: replyComment(' + val.id + ', ' + val.article_id + ');" rel="nofollow" onclick="">回复</a> <span class="t-g">' + val.created_at + '</span></span>';
+        comments_html += '<span class="t-btn"><a href="javascript: replyComment(' + val.id + ');" rel="nofollow" onclick="">回复</a> <span class="t-g">' + val.created_at + '</span></span>';
         comments_html += '</div>';
         comments_html += '</div>';
         if (val.children) {
@@ -67,16 +67,16 @@ var makeCommentHtml = function (res) {
     comments_html += '</ol>';
     return comments_html;
 }
-    ,replyComment = function(comment_id, article_id) {
-    var comment_dom = $('#respond-post-' + article_id)[0];
+    ,replyComment = function(comment_id) {
+    var comment_dom = $('#reply_div')[0];
     $(comment_dom).remove();
     $('#comment-' + comment_id).append(comment_dom);
     $('#close_reply').show();
     $('input[name=parent_id]').val(comment_id);
     initCommentFormValue();
 }
-    , closeReply = function (article_id) {
-    var comment_dom = $('#respond-post-' + article_id)[0];
+    , closeReply = function () {
+    var comment_dom = $('#reply_div')[0];
     $(comment_dom).remove();
     $('#comments').prepend(comment_dom);
     $('#close_reply').hide();

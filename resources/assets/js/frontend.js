@@ -47,7 +47,9 @@ var makeCommentHtml = function (res) {
         comments_html += '<a href="' + val.link + '" rel="external nofollow">' + val.username + '</a>';
         comments_html += '<span class="layui-badge"></span>';
         comments_html += '</strong>';
-        comments_html += '<div><b></b></div>';
+        if (val.parent_id) {
+            comments_html += '<div><b><a href="#comment-' + val.parent_id + '">@' + val.username + '</a></b></div>';
+        }
         comments_html += '<div class="t-s">' + val.content + '</div>';
         comments_html += '<span class="t-btn"><a href="javascript: replyComment(' + val.id + ', ' + val.article_id + ');" rel="nofollow" onclick="">回复</a> <span class="t-g">' + val.created_at + '</span></span>';
         comments_html += '</div>';

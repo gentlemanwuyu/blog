@@ -23,7 +23,7 @@
     <div class="copy-text">
         <div>
             <p>非特殊说明，本博所有文章均为博主原创。</p>
-            <p class="hidden-xs">如若转载，请注明出处：<a href="#">typecho</a> </p>
+            <p class="hidden-xs">如若转载，请注明出处：{{url()->current()}} </p>
         </div>
     </div>
     <div class="page-text">

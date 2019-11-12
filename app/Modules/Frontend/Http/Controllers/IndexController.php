@@ -26,7 +26,6 @@ class IndexController extends Controller
     {
         $about = SystemConfig::where('name', 'about')->value('value');
         $paginate_total = Comment::where('source', 2)->where('parent_id', 0)->count();
-        $comment_total = Comment::where('source', 2)->count();
 
         return view('frontend::index.about', compact('about', 'paginate_total', 'comment_total'));
     }

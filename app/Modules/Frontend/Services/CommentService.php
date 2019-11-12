@@ -35,9 +35,16 @@ class CommentService
             }
         }
 
+        $comment_total = 0;
+        if (1 == $request->get('source')) {
+            $comment_total = Comment::where('article_id', $request->get('article_id'))->count();
+        }elseif (2 == $request->get('source')) {
+            $comment_total = Comment::where('source', 2)->count();
+        }
+
         // 添加自定义属性
         return collect([
-            'comment_total' => Comment::where('article_id', $request->get('article_id'))->count(),
+            'comment_total' => $comment_total,
         ])->merge($comments);
     }
 

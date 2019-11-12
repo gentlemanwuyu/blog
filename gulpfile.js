@@ -30,6 +30,7 @@ elixir(function(mix) {
     mix.version([
         'assets/css/frontend.css',
         'assets/js/frontend.js',
+        'assets/js/frontend/article.js',
         'assets/js/backend.js'
     ]);
 });

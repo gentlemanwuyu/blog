@@ -91,7 +91,15 @@ class CommentService
 
             Comment::create($data);
 
-            return ['status' => 'success'];
+            // 返回评论总数量
+            $paginate_total = 0;
+            if (1 == $request->get('source')) {
+                $paginate_total = Comment::where('article_id', $request->get('article_id'))->where('parent_id', 0)->count();
+            }elseif (2 == $request->get('source')) {
+                $paginate_total = Comment::where('source', 2)->where('parent_id', 0)->count();
+            }
+
+            return ['status' => 'success', 'paginate_total' => $paginate_total];
         }catch (\Exception $e) {
             return ['status' => 'fail', 'msg'=>$e->getMessage()];
         }

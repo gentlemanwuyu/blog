@@ -49,6 +49,7 @@ layui.use(['laypage', 'form'], function () {
                 layer.close(load_index);
                 if ('success' == data.status) {
                     layer.msg("谢谢您的点评!", {icon:1});
+                    paginate_options.count = data.paginate_total;
                     laypage.render(paginate_options);
                 } else {
                     layer.msg("对不起, 评论失败, 请联系博主!", {icon:2});

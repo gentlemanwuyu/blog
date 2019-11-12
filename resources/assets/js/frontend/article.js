@@ -1,9 +1,8 @@
 layui.use(['laypage', 'form'], function () {
     var laypage = layui.laypage
         ,$ = layui.$
-        ,form = layui.form;
-
-    laypage.render({
+        ,form = layui.form
+        ,paginate_options = {
         elem: 'paginate'
         ,count: $('#comments').attr('data-paginate_total')
         ,groups: 3
@@ -23,7 +22,9 @@ layui.use(['laypage', 'form'], function () {
                 }
             });
         }
-    });
+    };
+
+    laypage.render(paginate_options);
 
     form.on('submit(comment)', function(data){
         data.field.source = 1;
@@ -48,7 +49,7 @@ layui.use(['laypage', 'form'], function () {
                 layer.close(load_index);
                 if ('success' == data.status) {
                     layer.msg("谢谢您的点评!", {icon:1});
-                    window.location.reload();
+                    laypage.render(paginate_options);
                 } else {
                     layer.msg("对不起, 评论失败, 请联系博主!", {icon:2});
                     return false;

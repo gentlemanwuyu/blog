@@ -15,7 +15,7 @@ class SectionController extends Controller
 
     public function index($id)
     {
-        $articles = Article::OrderBy('id', 'desc')->get();
+        $articles = Article::where('section_id', $id)->OrderBy('id', 'desc')->limit(10)->get();
 
         return view('frontend::section.index', compact('articles'));
     }

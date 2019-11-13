@@ -17,6 +17,12 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">博主邮箱</label>
+            <div class="layui-input-block">
+                <input type="text" name="email" placeholder="" class="layui-input" value="{{$all_configs['email'] or ''}}">
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">博客标题</label>
             <div class="layui-input-block">
                 <input type="text" name="title" placeholder="" class="layui-input" value="{{$all_configs['title'] or ''}}">

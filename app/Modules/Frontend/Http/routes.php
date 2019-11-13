@@ -27,3 +27,7 @@ Route::group(['prefix' => 'comment', 'as' => 'comment.'], function() {
 	Route::post('/paginate', ['as'=>'paginate', 'uses'=>'CommentController@paginate']);
 	Route::post('/create_comment', ['as'=>'create_comment', 'uses'=>'CommentController@createComment']);
 });
+
+Route::group(['prefix' => 'section', 'as' => 'section.'], function() {
+	Route::get('/{id}.html', ['as'=>'index', 'uses'=>'SectionController@index']);
+});

@@ -48,7 +48,7 @@ class FrontComposer
         $navs[] = ['title' => '首页', 'url' => '/'];
         $sections = Section::all();
         foreach ($sections as $section) {
-            $navs[] = ['title' => $section->name, 'url' => '#'];
+            $navs[] = ['title' => $section->name, 'url' => route('frontend::section.index', ['id' => $section->id])];
         }
         $navs[] = ['title' => '关于', 'url' => '/about.html'];
 

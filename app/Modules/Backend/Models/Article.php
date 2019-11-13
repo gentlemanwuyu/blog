@@ -38,6 +38,13 @@ class Article extends Model
         return $this;
     }
 
+    public function getLabelsAttribute()
+    {
+        $label_ids = ArticleLabel::where('article_id', $this->id)->pluck('label_id')->toArray();
+
+        return Label::whereIn('id', $label_ids)->get();
+    }
+
     public function labelIds()
     {
         return $this->hasMany(ArticleLabel::class)->select('label_id');

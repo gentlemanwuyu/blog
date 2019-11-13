@@ -60,6 +60,7 @@ deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted univ
 apt upgrade</code></pre>',
             'summary' => 'Ubuntu18.04如何将apt的源更换为国内源，打开/etc/apt/sources.list，将源更新为阿里云源、清华源、中科大源，更新完文件之后，执行apt update和apt upgrade',
             'category_id' => 4,
+            'section_id' => 1,
         ]);
         ArticleLabel::create([
             'article_id' => $article->id,
@@ -87,6 +88,7 @@ apt upgrade</code></pre>',
 <p>修改完毕点击引用、确定，再双击图标即可。</p>',
             'summary' => 'window7下安装DockerToolbox时，安装成功后，双击桌面的Docker Quickstart Terminal快捷方式，会出现以下弹框：Windows 正在查找bash.exe。如果想亲自查找文件，请单击“浏览”。',
             'category_id' => 4,
+            'section_id' => 1,
         ]);
         ArticleLabel::create([
             'article_id' => $article->id,
@@ -142,6 +144,7 @@ apt upgrade</code></pre>',
 </div>',
             'summary' => '在navicat中连接虚拟机中的MySQL数据库时出现以下报错：1251 - Client does not support authentication protocol requested by server;consider upgrading MySQL client',
             'category_id' => 3,
+            'section_id' => 1,
         ]);
         ArticleLabel::create([
             'article_id' => $article->id,

@@ -21,6 +21,7 @@ class CreateArticlesTable extends Migration
 			$table->string('summary_image_url', 1024)->default('')->comment('摘要图片url');
 			$table->string('summary_image_desc')->default('')->comment('摘要图片描述');
 			$table->integer('category_id')->default(0)->comment('分类ID');
+			$table->tinyInteger('section_id')->default(0)->comment('版块ID');
 			$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('创建时间');
 			$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))->comment('最后更新时间');
 			$table->timestamp('deleted_at')->nullable()->comment('删除时间');

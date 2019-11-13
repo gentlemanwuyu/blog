@@ -11,6 +11,7 @@ namespace App\Modules\Backend\Services;
 use Illuminate\Support\Facades\DB;
 use App\Modules\Backend\Models\Article;
 use App\Modules\Backend\Models\SummaryImage;
+use App\Modules\Backend\Models\Category;
 
 class ArticleService
 {
@@ -47,6 +48,9 @@ class ArticleService
                 'summary_image_url' => $request->get('summary_image_url'),
                 'summary_image_desc' => $request->get('summary_image_desc'),
             ];
+
+            $category = Category::find($data['category_id']);
+            $data['section_id'] = $category->section_id;
 
             DB::beginTransaction();
             $article = Article::updateOrCreate(['id' => $request->get('article_id')], $data);

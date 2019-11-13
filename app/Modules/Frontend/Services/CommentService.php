@@ -10,6 +10,7 @@ namespace App\Modules\Frontend\Services;
 
 use Creativeorange\Gravatar\Facades\Gravatar;
 use App\Modules\Backend\Models\Comment;
+use App\Modules\Backend\Models\SystemConfig;
 
 class CommentService
 {
@@ -87,6 +88,11 @@ class CommentService
             }
             if ($request->get('parent_id')) {
                 $data['parent_id'] = $request->get('parent_id');
+            }
+
+            $master_email = SystemConfig::where('name', 'email')->value('value');
+            if ($data['email'] == $master_email) {
+                $data['is_master'] = 1;
             }
 
             Comment::create($data);

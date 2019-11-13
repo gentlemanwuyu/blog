@@ -45,7 +45,9 @@ var makeCommentHtml = function (res) {
         comments_html += '<div class="t-u comment-author">';
         comments_html += '<strong>';
         comments_html += '<a href="' + val.link + '" rel="external nofollow">' + val.username + '</a>';
-        comments_html += '<span class="layui-badge"></span>';
+        if (1 == val.is_master) {
+            comments_html += '&nbsp;<span class="layui-badge">博主</span>';
+        }
         comments_html += '</strong>';
         if (val.parent_id) {
             comments_html += '<div><b><a href="#comment-' + val.parent_id + '">@' + val.parent_name + '</a></b></div>';

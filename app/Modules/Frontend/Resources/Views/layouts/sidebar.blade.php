@@ -9,15 +9,28 @@
             </div>
         </form>
     </div>
+    @if(!empty($category_tree))
     <div class="column">
         <h3 class="title-sidebar"><i class="layui-icon">&#xe705;</i>版块分类</h3>
-        <ul class="layui-row layui-col-space5">
-            <li class="layui-col-md12 layui-col-xs6"><a href="#"><i class="layui-icon">&#xe63c;</i>心情随笔<span class="layui-badge layui-bg-gray">2</span></a></li>
-            <li class="layui-col-md12 layui-col-xs6"><a href="#"><i class="layui-icon">&#xe63c;</i>技术杂谈<span class="layui-badge layui-bg-gray">3</span></a></li>
-            <li class="layui-col-md12 layui-col-xs6"><a href="#"><i class="layui-icon">&#xe63c;</i>PHP<span class="layui-badge layui-bg-gray">5</span></a></li>
-            <li class="layui-col-md12 layui-col-xs6"><a href="#"><i class="layui-icon">&#xe63c;</i>Python<span class="layui-badge layui-bg-gray">4</span></a></li>
+        <ul class="layui-nav layui-nav-tree layui-inline">
+            @foreach($category_tree as $category)
+                <?php
+                    $href = empty($category['children']) ? '#' : 'javascript:;';
+                ?>
+            <li class="layui-nav-item">
+                <a href="{{$href}}"><i class="layui-icon layui-icon-release"></i>&nbsp;{{$category['name']}}</a>
+                @if(!empty($category['children']))
+                    <dl class="layui-nav-child">
+                        @foreach($category['children'] as $child)
+                        <dd><a href="javascript:;"><i class="layui-icon layui-icon-release"></i>&nbsp;{{$child['name']}}</a></dd>
+                        @endforeach
+                    </dl>
+                @endif
+            </li>
+            @endforeach
         </ul>
     </div>
+    @endif
     <div class="tags">
         <h3 class="title-sidebar"><i class="layui-icon">&#xe66e;</i>标签云</h3>
         <div>

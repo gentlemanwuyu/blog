@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Modules\Backend\Models\Article;
+use App\Modules\Backend\Models\Category;
 
 class SectionController extends Controller
 {
@@ -13,10 +14,12 @@ class SectionController extends Controller
         
 	}
 
-    public function index($id)
+    public function index($id, Request $request)
     {
         $articles = Article::where('section_id', $id)->OrderBy('id', 'desc')->limit(10)->get();
+        $category_tree = Category::getTree($id);
+        $request->merge(['section_id' => $id]);
 
-        return view('frontend::section.index', compact('articles'));
+        return view('frontend::section.index', compact('articles', 'category_tree'));
     }
 }

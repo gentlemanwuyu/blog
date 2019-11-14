@@ -1,6 +1,6 @@
 @extends('frontend::layouts.default')
 @section('content')
-    <div id="articles">
+    <div class="post">
         <input type="hidden" id="data" @if(!empty($section_id)) data-section_id="{{$section_id}}" @endif @if(!empty($category_id)) data-category_id="{{$category_id}}" @endif data-paginate_total="{{$articles->total()}}">
         @foreach($articles as $article)
             <div class="title-article list-card">

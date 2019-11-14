@@ -39,7 +39,7 @@
         <h3 class="title-sidebar"><i class="layui-icon">&#xe66e;</i>标签云</h3>
         <div>
             @foreach($labels as $label)
-            <a class="layui-btn layui-btn-xs layui-btn-primary" href="#" title=''>{{$label['name']}}</a>
+                <a class="layui-btn layui-btn-xs layui-btn-primary" href="#" style="color: rgb({{mt_rand(130, 220)}}, {{mt_rand(12, 90)}}, {{mt_rand(60, 180)}})">{{$label['name']}}</a>
             @endforeach
         </div>
     </div>

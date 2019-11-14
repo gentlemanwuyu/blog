@@ -12,7 +12,7 @@
         <div id="comments" data-paginate_total="{{$paginate_total}}">
 
         </div>
-        <div class="page-navigator" id="paginate">
+        <div id="paginate">
 
         </div>
     </div>

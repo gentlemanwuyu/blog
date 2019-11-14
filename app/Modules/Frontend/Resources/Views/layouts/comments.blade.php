@@ -228,7 +228,7 @@
                     </li>
                 </ol>
             </div>
-            <div class="page-navigator">
+            <div id="paginate">
                 <div class="layui-laypage layui-laypage-molv">
                     <a href="https://www.echo.so/life/41.html/comment-page-1#comments" class="current">1</a>
                     <a href="https://www.echo.so/life/41.html/comment-page-2#comments">2</a>

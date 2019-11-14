@@ -46,7 +46,7 @@
         <div id="comments" data-paginate_total="{{$article->paginate_total}}" data-article_id="{{$article->id}}">
 
         </div>
-        <div class="page-navigator" id="paginate">
+        <div id="paginate">
 
         </div>
     </div>

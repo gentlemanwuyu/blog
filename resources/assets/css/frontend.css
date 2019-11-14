@@ -551,7 +551,7 @@ textarea {
 }
 
 /* 页码 */
-.page-navigator {
+#paginate {
     padding: 15px;
     margin-left: auto;
     margin-right: auto;

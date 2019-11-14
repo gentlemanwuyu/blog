@@ -21,4 +21,29 @@ class Category extends Model
     {
         return $this->hasMany(self::class, 'parent_id');
     }
+
+    /**
+     * 获取分类树
+     *
+     * @param $section_id
+     * @param int $parent_id
+     * @return array
+     */
+    public static function getTree($section_id, $parent_id = 0)
+    {
+        $tree = [];
+        $categories = self::where('section_id', $section_id)->where('parent_id', $parent_id)->get();
+        foreach ($categories as $category) {
+            $item = [];
+            $item['id'] = $category->id;
+            $item['name'] = $category->name;
+            $subs = self::getTree($section_id, $category->id);
+            if ($subs) {
+                $item['children'] = $subs;
+            }
+            $tree[] = $item;
+        }
+
+        return $tree;
+    }
 }

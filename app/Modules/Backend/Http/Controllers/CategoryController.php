@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Modules\Backend\Models\Section;
+use App\Modules\Backend\Models\Category;
 use App\Modules\Backend\Services\CategoryService;
 
 class CategoryController extends Controller
@@ -25,7 +26,7 @@ class CategoryController extends Controller
 
     public function getTree(Request $request)
     {
-        return response()->json($this->categoryService->getTree($request->get('section_id')));
+        return response()->json(Category::getTree($request->get('section_id')));
     }
 
     public function createOrUpdateCategory(Request $request)

@@ -14,6 +14,7 @@
 Route::group(['as' => 'index.'], function() {
 	Route::get('/', ['as'=>'index', 'uses'=>'IndexController@index']);
 	Route::get('/about.html', ['as'=>'about', 'uses'=>'IndexController@about']);
+	Route::get('/search.html', ['as'=>'search', 'uses'=>'IndexController@search']);
 });
 
 Route::group(['prefix' => 'article', 'as' => 'article.'], function() {

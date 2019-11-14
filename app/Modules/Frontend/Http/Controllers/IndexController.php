@@ -7,12 +7,15 @@ use Illuminate\Http\Request;
 use App\Modules\Backend\Models\Article;
 use App\Modules\Backend\Models\Comment;
 use App\Modules\Backend\Models\SystemConfig;
+use App\Modules\Frontend\Services\ArticleService;
 
 class IndexController extends Controller
 {
-    public function __construct()
-    {
+    protected $articleService;
 
+    public function __construct(ArticleService $articleService)
+    {
+        $this->articleService = $articleService;
     }
 
     public function index()
@@ -28,5 +31,13 @@ class IndexController extends Controller
         $paginate_total = Comment::where('source', 2)->where('parent_id', 0)->count();
 
         return view('frontend::index.about', compact('about', 'paginate_total', 'comment_total'));
+    }
+
+    public function search(Request $request)
+    {
+        $request->merge(['limit' => 10]);
+        $articles = $this->articleService->paginate($request);
+
+        return view('frontend::index.search', compact('articles'));
     }
 }

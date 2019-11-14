@@ -1,8 +1,8 @@
 <div class="sidebar layui-col-md3 layui-col-lg3">
     <div class="component">
-        <form class="layui-form" id="search" method="post" action="" role="search">
+        <form class="layui-form" action="{{route('frontend::index.search')}}" role="search">
             <div class="layui-inline input">
-                <input type="text" id="s" name="s" class="layui-input" required lay-verify="required" placeholder="输入关键字搜索" />
+                <input type="text" name="search" class="layui-input" value="{{$search or ''}}" required lay-verify="required" placeholder="输入关键字搜索" />
             </div>
             <div class="layui-inline">
                 <button class="layui-btn layui-btn-sm layui-btn-primary"><i class="layui-icon">&#xe615;</i></button>

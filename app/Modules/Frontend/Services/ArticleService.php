@@ -8,6 +8,7 @@
 
 namespace App\Modules\Frontend\Services;
 
+use Illuminate\Support\Facades\DB;
 use App\Modules\Backend\Models\Article;
 use App\Modules\Backend\Models\ArticleLabel;
 
@@ -31,6 +32,18 @@ class ArticleService
         if ($request->get('label_id')) {
             $article_ids = ArticleLabel::where('label_id', $request->get('label_id'))->pluck('article_id')->toArray();
             $query = $query->whereIn('id', $article_ids);
+        }
+        if ($search = $request->get('search')) {
+            $article_ids = DB::table('articles AS a')
+                ->leftJoin('article_labels AS al', 'al.article_id', '=', 'a.id')
+                ->leftJoin('labels AS l', 'l.id', '=', 'al.label_id')
+                ->where('l.name', $search)
+                ->whereNull('a.deleted_at')
+                ->whereNull('l.deleted_at')
+                ->pluck('a.id');
+            $query = $query->where(function ($q) use ($article_ids, $search) {
+                $q->whereIn('id', $article_ids)->orWhere('title', 'like', "%{$search}%");
+            });
         }
 
         $articles = $query->orderBy('id', 'desc')->paginate($request->get('limit'));

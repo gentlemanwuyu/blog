@@ -389,6 +389,39 @@ textarea {
 }
 
 /* 分类 */
+.column .layui-nav {
+    width: 100%;
+    background: #fff;
+}
+.column .layui-nav .layui-nav-item a {
+    color: #666;
+}
+.column a:hover {
+    background-color: #fff!important;
+    color: #009688!important;
+}
+.column .layui-nav .layui-nav-more {
+    border-top-color: #666;
+}
+.column .layui-nav-itemed > a .layui-nav-more{
+    border-bottom-color: #666;
+    border-top-color: #fff;
+}
+.column .layui-nav-itemed>a{
+    color: #666 !important;
+}
+.column .layui-nav-itemed>.layui-nav-child {
+    background-color: #fff !important;
+}
+.column .layui-nav-tree .layui-nav-child dd.layui-this a{
+    background-color: #fff; color: #009688;
+}
+.column .layui-nav-tree .layui-nav-child dd a{
+    padding-left: 35px;
+}
+.column .layui-nav-tree .layui-nav-bar{
+    width: 1px;
+}
 .column {
     background: #fff;
     padding: 15px;
@@ -399,10 +432,6 @@ textarea {
 
 .column ul {
     overflow: hidden
-}
-
-.column ul li {
-    padding: 5px 10px
 }
 
 .column ul span {

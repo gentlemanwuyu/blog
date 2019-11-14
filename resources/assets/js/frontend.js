@@ -113,6 +113,14 @@ var makeCommentHtml = function (res) {
     ,removeCookie = function(name) {
     setCookie(name,'随便什么值，反正都要被删除了',-1);
 }
+    ,array_column = function (arr) {
+    var obj = {};
+    $.each(arr, function (key, val) {
+        obj[val.name] = val.value;
+    });
+
+    return obj;
+}
 
 layui.use(['layer', 'element', 'util'], function(){
     var $ = layui.$,
@@ -171,4 +179,11 @@ layui.use(['layer', 'element', 'util'], function(){
 
     // 代码加上行号
     $('pre').addClass("line-numbers").css("white-space", "pre-wrap");
+
+    $('.sidebar .component form').on('submit', function () {
+        var form_data = array_column($(this).serializeArray());
+        if (!$.trim(form_data.search)) {
+            return false;
+        }
+    });
 });

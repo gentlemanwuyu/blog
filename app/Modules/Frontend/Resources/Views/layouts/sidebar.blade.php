@@ -15,14 +15,14 @@
         <ul class="layui-nav layui-nav-tree layui-inline">
             @foreach($category_tree as $category)
                 <?php
-                    $href = empty($category['children']) ? '#' : 'javascript:;';
+                    $href = empty($category['children']) ? route('frontend::category.index', ['id' => $category['id']]) : 'javascript:;';
                 ?>
             <li class="layui-nav-item">
                 <a href="{{$href}}"><i class="layui-icon layui-icon-release"></i>&nbsp;{{$category['name']}}</a>
                 @if(!empty($category['children']))
                     <dl class="layui-nav-child">
                         @foreach($category['children'] as $child)
-                        <dd><a href="javascript:;"><i class="layui-icon layui-icon-release"></i>&nbsp;{{$child['name']}}</a></dd>
+                        <dd><a href="{{route('frontend::category.index', ['id' => $child['id']])}}"><i class="layui-icon layui-icon-release"></i>&nbsp;{{$child['name']}}</a></dd>
                         @endforeach
                     </dl>
                 @endif

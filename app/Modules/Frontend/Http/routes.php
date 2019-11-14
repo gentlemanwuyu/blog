@@ -31,3 +31,7 @@ Route::group(['prefix' => 'comment', 'as' => 'comment.'], function() {
 Route::group(['prefix' => 'section', 'as' => 'section.'], function() {
 	Route::get('/{id}.html', ['as'=>'index', 'uses'=>'SectionController@index']);
 });
+
+Route::group(['prefix' => 'category', 'as' => 'category.'], function() {
+	Route::get('/{id}.html', ['as'=>'index', 'uses'=>'CategoryController@index']);
+});

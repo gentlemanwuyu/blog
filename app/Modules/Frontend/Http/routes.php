@@ -33,3 +33,7 @@ Route::group(['prefix' => 'section', 'as' => 'section.'], function() {
 Route::group(['prefix' => 'category', 'as' => 'category.'], function() {
 	Route::get('/{id}.html', ['as'=>'index', 'uses'=>'CategoryController@index']);
 });
+
+Route::group(['prefix' => 'label', 'as' => 'label.'], function() {
+	Route::get('/{id}.html', ['as'=>'index', 'uses'=>'LabelController@index']);
+});

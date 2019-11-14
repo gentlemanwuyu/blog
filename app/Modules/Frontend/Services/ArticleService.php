@@ -9,6 +9,7 @@
 namespace App\Modules\Frontend\Services;
 
 use App\Modules\Backend\Models\Article;
+use App\Modules\Backend\Models\ArticleLabel;
 
 class ArticleService
 {
@@ -26,6 +27,10 @@ class ArticleService
         }
         if ($request->get('category_id')) {
             $query = $query->where('category_id', $request->get('category_id'));
+        }
+        if ($request->get('label_id')) {
+            $article_ids = ArticleLabel::where('label_id', $request->get('label_id'))->pluck('article_id')->toArray();
+            $query = $query->whereIn('id', $article_ids);
         }
 
         $articles = $query->orderBy('id', 'desc')->paginate($request->get('limit'));

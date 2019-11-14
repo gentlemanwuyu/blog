@@ -39,7 +39,7 @@
 
             laypage.render({
                 elem: 'paginate'
-                ,count: "{{$paginate_total or 0}}"
+                ,count: "{{$articles->total()}}"
                 ,groups: 3
                 ,prev: '<i class="layui-icon layui-icon-left"></i>'
                 ,next: '<i class="layui-icon layui-icon-right"></i>'

@@ -5,10 +5,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Modules\Backend\Models\Article;
-use App\Modules\Backend\Models\Category;
 use App\Modules\Frontend\Services\ArticleService;
 
-class CategoryController extends Controller
+class LabelController extends Controller
 {
     protected $articleService;
 
@@ -19,11 +18,9 @@ class CategoryController extends Controller
 
     public function index($id, Request $request)
     {
-        $category = Category::find($id);
-        $request->merge(['section_id' => $category->section_id, 'category_id' => $id, 'limit' => 10]);
+        $request->merge(['label_id' => $id, 'limit' => 10]);
         $articles = $this->articleService->paginate($request);
-        $category_tree = Category::getTree($category->section_id);
 
-        return view('frontend::category.index', compact('articles', 'category_tree'));
+        return view('frontend::label.index', compact('articles'));
     }
 }

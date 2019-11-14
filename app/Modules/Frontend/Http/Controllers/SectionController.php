@@ -23,8 +23,7 @@ class SectionController extends Controller
 
         $articles = $this->articleService->paginate($request);
         $category_tree = Category::getTree($id);
-        $paginate_total = Article::where('section_id', $id)->count();
 
-        return view('frontend::section.index', compact('articles', 'category_tree', 'paginate_total'));
+        return view('frontend::section.index', compact('articles', 'category_tree'));
     }
 }

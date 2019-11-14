@@ -19,7 +19,7 @@
     </div>
     <div class="tags-text">
         <i class="layui-icon">&#xe66e;</i>标签: {!! implode('', $article->labels->map(function ($label) {
-            return '<a class="layui-btn layui-btn-xs layui-btn-primary" href="#">' . $label->name . '</a>';
+            return '<a class="layui-btn layui-btn-xs layui-btn-primary" href="' . route('frontend::label.index', ['id' => $label->id]) . '">' . $label->name . '</a>';
         })->toArray()) !!}
     </div>
     <div class="copy-text">

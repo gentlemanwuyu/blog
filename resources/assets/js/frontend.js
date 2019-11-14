@@ -25,11 +25,13 @@ var makeCommentHtml = function (res) {
     html += '</form>';
     html += '<a href="javascript:closeReply();" id="close_reply" title="关闭" style="display: none;"><i class="layui-icon layui-icon-close" style="color: #FF5722;position: absolute;right: 0;top: 0;"></i></a>';
     html += '</div>';
-    html += '<h3>已有 ' + res.comment_total + ' 条评论</h3>';
-    html += '<br>';
-    html += '<div class="pinglun">';
-    html += recursiveMakeCommentsHtml(res.data);
-    html += '</div>';
+    if (res.total) {
+        html += '<h3>已有 ' + res.comment_total + ' 条评论</h3>';
+        html += '<br>';
+        html += '<div class="pinglun">';
+        html += recursiveMakeCommentsHtml(res.data);
+        html += '</div>';
+    }
 
     return html;
 }

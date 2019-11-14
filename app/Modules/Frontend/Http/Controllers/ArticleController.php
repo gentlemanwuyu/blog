@@ -5,12 +5,15 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Modules\Backend\Models\Article;
+use App\Modules\Frontend\Services\ArticleService;
 
 class ArticleController extends Controller
 {
-    public function __construct()
-    {
+    protected $articleService;
 
+    public function __construct(ArticleService $articleService)
+    {
+        $this->articleService = $articleService;
     }
 
     public function detail($id)
@@ -18,5 +21,10 @@ class ArticleController extends Controller
         $article = Article::find($id);
 
         return view('frontend::article.article', compact('article'));
+    }
+
+    public function paginate(Request $request)
+    {
+        return response()->json($this->articleService->paginate($request));
     }
 }

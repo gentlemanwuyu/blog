@@ -18,8 +18,9 @@ class SectionController extends Controller
     {
         $articles = Article::where('section_id', $id)->OrderBy('id', 'desc')->limit(10)->get();
         $category_tree = Category::getTree($id);
+        $paginate_total = Article::where('section_id', $id)->count();
         $request->merge(['section_id' => $id]);
 
-        return view('frontend::section.index', compact('articles', 'category_tree'));
+        return view('frontend::section.index', compact('articles', 'category_tree', 'paginate_total'));
     }
 }

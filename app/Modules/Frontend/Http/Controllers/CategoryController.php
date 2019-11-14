@@ -19,7 +19,7 @@ class CategoryController extends Controller
         $articles = Article::where('category_id', $id)->OrderBy('id', 'desc')->limit(10)->get();
         $category = Category::find($id);
         $category_tree = Category::getTree($category->section_id);
-        $request->merge(['section_id' => $category->section_id]);
+        $request->merge(['section_id' => $category->section_id, 'category_id' => $id]);
 
         return view('frontend::category.index', compact('articles', 'category_tree'));
     }

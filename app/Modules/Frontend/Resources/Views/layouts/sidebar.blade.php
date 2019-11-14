@@ -16,13 +16,17 @@
             @foreach($category_tree as $category)
                 <?php
                     $href = empty($category['children']) ? route('frontend::category.index', ['id' => $category['id']]) : 'javascript:;';
+                    $itemed = false;
+                    if (!empty($category['children']) && isset($category_id) && in_array($category_id, array_column($category['children'], 'id'))) {
+                        $itemed = true;
+                    }
                 ?>
-            <li class="layui-nav-item">
+            <li class="layui-nav-item @if($itemed) layui-nav-itemed @endif @if(empty($category['children']) && isset($category_id) && $category['id'] == $category_id) layui-this @endif">
                 <a href="{{$href}}"><i class="layui-icon layui-icon-release"></i>&nbsp;{{$category['name']}}</a>
                 @if(!empty($category['children']))
                     <dl class="layui-nav-child">
                         @foreach($category['children'] as $child)
-                        <dd><a href="{{route('frontend::category.index', ['id' => $child['id']])}}"><i class="layui-icon layui-icon-release"></i>&nbsp;{{$child['name']}}</a></dd>
+                        <dd @if(isset($category_id) && $child['id'] == $category_id) class="layui-this" @endif><a href="{{route('frontend::category.index', ['id' => $child['id']])}}"><i class="layui-icon layui-icon-release"></i>&nbsp;{{$child['name']}}</a></dd>
                         @endforeach
                     </dl>
                 @endif

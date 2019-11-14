@@ -413,7 +413,7 @@ textarea {
 .column .layui-nav-itemed>.layui-nav-child {
     background-color: #fff !important;
 }
-.column .layui-nav-tree .layui-nav-child dd.layui-this a{
+.column .layui-nav-tree .layui-nav-child dd.layui-this a, .column .layui-nav-tree .layui-this a{
     background-color: #fff; color: #009688;
 }
 .column .layui-nav-tree .layui-nav-child dd a{

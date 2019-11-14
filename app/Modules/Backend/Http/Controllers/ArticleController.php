@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Modules\Backend\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Modules\Backend\Models\Label;
+use App\Modules\Backend\Models\Section;
 use App\Modules\Backend\Models\Article;
 use App\Modules\Backend\Models\Category;
 use App\Modules\Backend\Models\SummaryImage;
@@ -33,7 +34,10 @@ class ArticleController extends Controller
 
     public function addArticle(Request $request)
     {
-        $categories = Category::all();
+        $categories = [];
+        foreach (Section::all() as $section) {
+            $categories = array_merge($categories, Category::getTree($section->id));
+        }
         $labels = Label::all();
         $data = compact('categories', 'labels');
         if ($request->get('article_id')) {

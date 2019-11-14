@@ -79,7 +79,14 @@
             <label class="layui-form-label">分类</label>
             <div class="layui-input-block">
                 @foreach($categories as $category)
-                    <input type="radio" name="category_id" value="{{$category->id}}" title="{{$category->name}}" @if(isset($article) && $article->category_id == $category->id) checked @endif>
+                    @if(empty($category['children']))
+                        <input type="radio" name="category_id" value="{{$category['id']}}" title="{{$category['name']}}" @if(isset($article) && $article->category_id == $category['id']) checked @endif>
+                    @else
+                        @foreach($category['children'] as $child)
+                            <input type="radio" name="category_id" value="{{$child['id']}}" title="<span style='color: rgba(0,0,0,.4);line-height:100%;'>{{$category['name']}}&nbsp;/&nbsp;</span>{{$child['name']}}" @if(isset($article) && $article->category_id == $child['id']) checked @endif>
+                        @endforeach
+                    @endif
+                    <br>
                 @endforeach
             </div>
         </div>

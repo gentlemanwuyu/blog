@@ -27,7 +27,15 @@
     <script>
         layui.use(['laypage', 'form'], function () {
             var laypage = layui.laypage
-                    ,$ = layui.$;
+                    ,$ = layui.$
+                    ,paginate_request = {};
+            @if(!empty($section_id))
+                paginate_request.section_id = "{{$section_id}}";
+            @endif
+            @if(!empty($category_id))
+                paginate_request.category_id = "{{$category_id}}";
+            @endif
+
 
             laypage.render({
                 elem: 'paginate'
@@ -40,7 +48,7 @@
                         $.ajax({
                             method: "post",
                             url: "/article/paginate",
-                            data: {section_id: "{{$section_id}}", limit: obj.limit, page: obj.curr},
+                            data: Object.assign(paginate_request, {limit: obj.limit, page: obj.curr}),
                             success: function (res) {
                                 var html = '';
                                 res.data.forEach(function (article) {

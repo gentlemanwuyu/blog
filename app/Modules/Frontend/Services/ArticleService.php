@@ -24,6 +24,9 @@ class ArticleService
         if ($request->get('section_id')) {
             $query = $query->where('section_id', $request->get('section_id'));
         }
+        if ($request->get('category_id')) {
+            $query = $query->where('category_id', $request->get('category_id'));
+        }
 
         $articles = $query->orderBy('id', 'desc')->paginate($request->get('limit'));
 

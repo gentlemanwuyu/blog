@@ -32,6 +32,7 @@ elixir(function(mix) {
         'assets/js/frontend.js',
         'assets/js/frontend/article.js',
         'assets/js/frontend/about.js',
+        'assets/js/frontend/article_list.js',
         'assets/js/backend.js'
     ]);
 });

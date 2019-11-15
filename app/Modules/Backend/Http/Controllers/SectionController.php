@@ -4,6 +4,7 @@ namespace App\Modules\Backend\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Modules\Backend\Http\Requests\SectionRequest;
 use App\Modules\Backend\Services\SectionService;
 
 class SectionController extends Controller
@@ -25,7 +26,7 @@ class SectionController extends Controller
         return response()->json($this->sectionService->paginate($request));
     }
 
-    public function createOrUpdateSection(Request $request)
+    public function createOrUpdateSection(SectionRequest $request)
     {
         return response()->json($this->sectionService->createOrUpdateSection($request));
     }

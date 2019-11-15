@@ -123,6 +123,13 @@ var makeCommentHtml = function (res) {
 
     return obj;
 }
+    ,track = function () {
+    $.ajax({
+        method: "post",
+        url: "/admin/visitor/track",
+        data: {url: window.location.href, device: window.navigator.userAgent}
+    });
+}
 
 layui.use(['layer', 'element', 'util'], function(){
     var $ = layui.$,
@@ -188,4 +195,7 @@ layui.use(['layer', 'element', 'util'], function(){
             return false;
         }
     });
+
+    // 上报访客数据
+    track();
 });

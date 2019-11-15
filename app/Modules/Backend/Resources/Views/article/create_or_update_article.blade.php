@@ -70,7 +70,7 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">摘要图片描述</label>
+            <label class="layui-form-label required">摘要图片描述</label>
             <div class="layui-input-block">
                 <input type="text" name="summary_image_desc" placeholder="" class="layui-input" value="{{$article->summary_image_desc or ''}}">
             </div>

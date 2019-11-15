@@ -47,7 +47,7 @@
         <h3 class="title-sidebar"><i class="layui-icon">&#xe64c;</i>友情链接</h3>
         <div>
             @foreach($friendlinks as $friendlink)
-                <a class="layui-btn layui-btn-xs layui-btn-primary" href="{{$friendlink['link']}}" title='{{$friendlink['name']}}' target="_blank">{{$friendlink['name']}}</a>
+                <a class="layui-btn layui-btn-xs layui-btn-primary" href="{{$friendlink['link']}}" title='{{$friendlink['desc']}}' target="_blank">{{$friendlink['name']}}</a>
             @endforeach
         </div>
     </div>

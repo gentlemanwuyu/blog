@@ -29,7 +29,7 @@ class FrontComposer
         }
         if ('frontend::layouts.sidebar' == $view->name()) {
             $view->with([
-                'friendlinks' => Friendlink::all(['name', 'link'])->toArray(),
+                'friendlinks' => Friendlink::all(['name', 'link', 'desc'])->toArray(),
                 'labels' => $this->handleLabels(),
             ]);
         }

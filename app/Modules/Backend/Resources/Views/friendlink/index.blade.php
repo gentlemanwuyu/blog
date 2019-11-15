@@ -33,6 +33,7 @@
                     {field: 'id', title: 'ID', align: 'center', sort: true, fixed: 'left'},
                     {field: 'name', title: '用户名', align: 'center'},
                     {field: 'link', title: '链接', align: 'center'},
+                    {field: 'desc', title: '描述', align: 'center'},
                     {field: 'created_at', title: '创建时间', align: 'center', sort: true},
                     {field: 'updated_at', title: '最后更新时间', align: 'center', sort: true},
                     {field: 'action', title: '操作', align: 'center', toolbar: "#action"}

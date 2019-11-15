@@ -210,6 +210,10 @@ textarea {
     max-width: 100%
 }
 
+.list-card .list-content {
+    margin-left: 175px;
+}
+
 .list-card p {
     display: -webkit-box;
     -webkit-line-clamp: 3;

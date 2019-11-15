@@ -4,6 +4,7 @@ namespace App\Modules\Backend\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Modules\Backend\Http\Requests\LabelRequest;
 use App\Modules\Backend\Services\LabelService;
 
 class LabelController extends Controller
@@ -25,7 +26,7 @@ class LabelController extends Controller
         return response()->json($this->labelService->paginate($request));
     }
 
-    public function createOrUpdateLabel(Request $request)
+    public function createOrUpdateLabel(LabelRequest $request)
     {
         return response()->json($this->labelService->createOrUpdateLabel($request));
     }

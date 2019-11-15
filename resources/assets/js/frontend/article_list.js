@@ -30,6 +30,7 @@ layui.use(['laypage', 'form'], function () {
                                 html += '<img src="' + article.summary_image_url + '" alt="' + article.summary_image_desc + '" class="img-full">';
                                 html += '</a>';
                                 html += '</div>';
+                                html += '<div class="list-content">';
                                 html += '<a href="' + article.href + '" title="' + article.title + '">';
                                 html += '<h1>' + article.title + '</h1>';
                                 html += '<p>' + article.summary + '</p>';
@@ -39,6 +40,7 @@ layui.use(['laypage', 'form'], function () {
                                 html += '<span><i class="layui-icon">&#xe60e;</i>&nbsp;' + article.create_date + '</span>';
                                 html += '<span class="layui-hide-xs"><i class="layui-icon">&#xe62c;</i>&nbsp;1176℃</span>';
                                 html += '<span class="layui-hide-xs"><i class="layui-icon">&#xe63a;</i>&nbsp;' + article.comment_total + '条</span>';
+                                html += '</div>';
                                 html += '</div>';
                                 html += '</div>';
                             });

@@ -7,15 +7,21 @@
                     <input type="hidden" name="friendlink_id" value="{{$friendlink_id}}">
                 @endif
                 <div class="layui-form-item">
-                    <label class="layui-form-label">名称</label>
+                    <label class="layui-form-label required">名称</label>
                     <div class="layui-input-block">
                         <input type="text" name="name" required placeholder="网站名称" class="layui-input" value="{{$friendlink->name or ''}}">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">链接</label>
+                    <label class="layui-form-label required">链接</label>
                     <div class="layui-input-block">
                         <input type="text" name="link" required placeholder="链接" class="layui-input" value="{{$friendlink->link or ''}}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label required">简介</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="desc" required placeholder="简介" class="layui-input" value="{{$friendlink->desc or ''}}">
                     </div>
                 </div>
             </form>

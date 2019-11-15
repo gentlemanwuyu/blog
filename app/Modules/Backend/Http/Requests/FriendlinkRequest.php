@@ -13,8 +13,9 @@ class FriendlinkRequest extends FormRequest
 	public function rules()
 	{
 		return [
-			'name' => 'required',
+			'name' => 'required|max:32',
 			'link' => 'required',
+			'desc' => 'required|max:64',
 		];
 	}
 
@@ -32,7 +33,10 @@ class FriendlinkRequest extends FormRequest
 	{
 		return [
 			'name.required' => "网站名称不能为空",
+			'name.max' => "网站名称不能为超过:max个字符",
 			'link.required' => "链接不能为空",
+			'desc.required' => "简介不能为空",
+			'desc.max' => "简介不能为超过:max个字符",
 		];
 	}
 }

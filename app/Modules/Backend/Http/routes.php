@@ -79,3 +79,8 @@ Route::group(['middleware'=>['auth'], 'prefix'=>'system', 'as'=>'system.'], func
     Route::get('config', ['as'=>'config', 'uses'=>'SystemController@config']);
     Route::post('save_config', ['as'=>'save_config', 'uses'=>'SystemController@saveConfig']);
 });
+
+// 访客控制器
+Route::group(['prefix'=>'visitor', 'as'=>'visitor.'], function (){
+    Route::post('track', ['as'=>'track', 'uses'=>'VisitorController@track']);
+});

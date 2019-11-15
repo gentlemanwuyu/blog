@@ -35,10 +35,10 @@ layui.use(['laypage', 'form'], function () {
                                 html += '<p>' + article.summary + '</p>';
                                 html += '</a>';
                                 html += '<div class="title-msg">';
-                                html += '<span><i class="layui-icon">&#xe705;</i>' + article.category_name + '</span>';
-                                html += '<span><i class="layui-icon">&#xe60e;</i>' + article.create_date + '</span>';
-                                html += '<span class="layui-hide-xs"><i class="layui-icon">&#xe62c;</i>1176℃</span>';
-                                html += '<span class="layui-hide-xs"><i class="layui-icon">&#xe63a;</i>' + article.comment_total + '条</span>';
+                                html += '<span><i class="layui-icon">&#xe705;</i>&nbsp;' + article.category_name + '</span>';
+                                html += '<span><i class="layui-icon">&#xe60e;</i>&nbsp;' + article.create_date + '</span>';
+                                html += '<span class="layui-hide-xs"><i class="layui-icon">&#xe62c;</i>&nbsp;1176℃</span>';
+                                html += '<span class="layui-hide-xs"><i class="layui-icon">&#xe63a;</i>&nbsp;' + article.comment_total + '条</span>';
                                 html += '</div>';
                                 html += '</div>';
                             });

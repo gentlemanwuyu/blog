@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Modules\Backend\Http\Requests\ArticleRequest;
+use App\Modules\Backend\Http\Requests\SummaryImageRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Modules\Backend\Models\Label;
 use App\Modules\Backend\Models\Section;
@@ -112,7 +113,7 @@ class ArticleController extends Controller
         return view('backend::article.create_or_update_summary_image', $data);
     }
 
-    public function createOrUpdateSummaryImage(Request $request)
+    public function createOrUpdateSummaryImage(SummaryImageRequest $request)
     {
         return response()->json($this->articleService->createOrUpdateSummaryImage($request->get('url'), $request->get('desc'), $request->get('summary_image_id')));
     }

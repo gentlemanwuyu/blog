@@ -14,7 +14,7 @@ class ArticleRequest extends FormRequest
 	{
 		return [
 			'title' => 'required|max:64',
-			'keywords' => 'required|max:300',
+			'keywords' => 'required|max:64',
 			'content' => 'required',
 			'summary' => 'required|max:300',
 			'category_id' => 'required',

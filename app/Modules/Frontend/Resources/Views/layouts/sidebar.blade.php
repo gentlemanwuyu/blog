@@ -38,11 +38,21 @@
     <div class="component hots">
         <h3 class="title-sidebar"><i class="layui-icon">&#xe63c;</i>热门文章</h3>
         <ul class="layui-row layui-col-space5">
-            @foreach($hot_articles as $article)
+            @foreach($hot_articles as $index => $article)
                 <li class="layui-col-md12 layui-col-xs6">
                     <a href="{{route('frontend::article.detail', ['id' => $article->id])}}">
                         <span class="layui-col-xs10 hots-title">{{$article->title}}</span>
-                        <span class="layui-badge layui-bg-gray layui-col-xs1 layui-col-xs-offset1">{{$article->views or 0}}</span>
+                        <span class="layui-badge layui-bg-blue layui-col-xs1 layui-col-xs-offset1"
+                              @if(0 == $index)
+                                style="background-color: #f54545!important;"
+                              @elseif(1 == $index)
+                                style="background-color: #ff8547!important;"
+                              @elseif(2 == $index)
+                                style="background-color: #ffac38!important;"
+                              @endif
+                        >
+                            {{$article->views or 0}}
+                        </span>
                     </a>
                 </li>
             @endforeach

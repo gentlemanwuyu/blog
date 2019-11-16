@@ -9,6 +9,8 @@
 namespace App\Modules\Backend\Services;
 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
 use App\Modules\Backend\Models\Visitor;
 
 class VisitorService
@@ -27,12 +29,38 @@ class VisitorService
     public function track($request)
     {
         try {
-            Visitor::create([
+            $data = [
                 'ip' => $request->getClientIp(),
                 'url' => $request->get('url'),
                 'referer' => $request->get('referer'),
                 'device' => $request->get('device'),
-            ]);
+            ];
+
+            $request = Request::create($data['url']);
+            $route = Route::getRoutes()->match($request);
+
+            if (!$request || !$route) {
+                throw new \Exception("Url匹配路由失败");
+            }
+
+            $data['route_name'] = $route->getName();
+            $data['query_string'] = $request->server('QUERY_STRING');
+
+            switch ($data['route_name']) {
+                case 'frontend::article.detail':
+                    $data['article_id'] = $route->parameter('id');
+                    break;
+
+                case 'frontend::section.index':
+                    $data['section_id'] = $route->parameter('id');
+                    break;
+
+                case 'frontend::category.index':
+                    $data['category_id'] = $route->parameter('id');
+                    break;
+            }
+
+            Visitor::create($data);
 
             return ['status' => 'success'];
         }catch (\Exception $e) {

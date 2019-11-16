@@ -93,13 +93,13 @@ var makeCommentHtml = function (res) {
     $('input[name=mail]').val(getCookie('mail'));
     $('input[name=url]').val(getCookie('url'));
 }
-    ,setCookie = function(c_name, value, expiredays, path) {
+    ,setCookie = function(c_name, value, expire_seconds, path) {
     if (!path) {
         path = '/';
     }
-    var exdate=new Date()
-    exdate.setDate(exdate.getDate()+expiredays)
-    document.cookie=c_name + "=" + escape(value) + ';path=' + path + ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+    var ex_time=new Date()
+    ex_time.setTime(ex_time.getTime() + expire_seconds * 1000)
+    document.cookie=c_name + "=" + escape(value) + ';path=' + path + ((expire_seconds==null) ? "" : ";expires="+ex_time.toGMTString())
 }
     ,getCookie = function(c_name) {
     if (document.cookie.length>0)
@@ -127,6 +127,12 @@ var makeCommentHtml = function (res) {
     return obj;
 }
     ,track = function () {
+    if (getCookie('TRACK_VALID') == window.location.pathname) {
+        return;
+    }
+
+    setCookie('TRACK_VALID', window.location.pathname, 60, window.location.pathname);
+
     $.ajax({
         method: "post",
         url: "/admin/visitor/track",

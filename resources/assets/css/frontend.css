@@ -364,8 +364,6 @@ textarea {
     margin-right: 10px
 }
 
-
-/* 搜索框 */
 .component {
     background: #fff;
     padding: 15px;
@@ -373,7 +371,9 @@ textarea {
     border-radius: 6px;
     overflow: hidden
 }
-.component .layui-input {
+
+/* 搜索框 */
+.sidebar .component .search .layui-input {
     width: 190px;
     height: 30px;
     padding-left: 12px;
@@ -393,69 +393,51 @@ textarea {
 }
 
 /* 分类 */
-.column .layui-nav {
+.category .layui-nav {
     width: 100%;
     background: #fff;
 }
-.column .layui-nav .layui-nav-item a {
+.category .layui-nav .layui-nav-item a {
     color: #666;
 }
-.column a:hover {
+.category a:hover {
     background-color: #fff!important;
     color: #009688!important;
 }
-.column .layui-nav .layui-nav-more {
+.category .layui-nav .layui-nav-more {
     border-top-color: #666;
 }
-.column .layui-nav-itemed > a .layui-nav-more{
+.category .layui-nav-itemed > a .layui-nav-more{
     border-bottom-color: #666;
     border-top-color: #fff;
 }
-.column .layui-nav-itemed>a{
+.category .layui-nav-itemed>a{
     color: #666 !important;
 }
-.column .layui-nav-itemed>.layui-nav-child {
+.category .layui-nav-itemed>.layui-nav-child {
     background-color: #fff !important;
 }
-.column .layui-nav-tree .layui-nav-child dd.layui-this a, .column .layui-nav-tree .layui-this a{
+.category .layui-nav-tree .layui-nav-child dd.layui-this a, .category .layui-nav-tree .layui-this a{
     background-color: #fff; color: #009688;
 }
-.column .layui-nav-tree .layui-nav-child dd a{
+.category .layui-nav-tree .layui-nav-child dd a{
     padding-left: 35px;
 }
-.column .layui-nav-tree .layui-nav-bar{
+.category .layui-nav-tree .layui-nav-bar{
     width: 1px;
 }
-.column {
-    background: #fff;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 6px;
+.category ul {
     overflow: hidden
 }
-
-.column ul {
-    overflow: hidden
-}
-
-.column ul span {
+.category ul span {
     float: right;
     color: #999
 }
-
-.column ul i {
+.category ul i {
     color: #666
 }
 
 /* 博主动态 */
-.dynamic {
-    background: #fff;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 6px;
-    overflow: hidden
-}
-
 .dynamic ul {
     padding-left: 10px;
     padding-right: 10px;
@@ -512,14 +494,6 @@ textarea {
 }
 
 /* 标签云 */
-.tags {
-    background: #fff;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 6px;
-    overflow: hidden
-}
-
 .tags div a {
     margin: 0 6px 5px 0 !important;
     white-space: nowrap;
@@ -532,14 +506,6 @@ textarea {
 }
 
 /* 友情链接 */
-.link {
-    background: #fff;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 6px;
-    overflow: hidden
-}
-
 .link div a {
     width: 45%;
     margin: 0 6px 5px 0 !important;
@@ -549,7 +515,6 @@ textarea {
     border: none;
     border-bottom: 1px solid #f0f0f0;
 }
-
 .link i {
     color: #666
 }

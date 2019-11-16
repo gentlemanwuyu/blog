@@ -1,5 +1,5 @@
 <div class="sidebar layui-col-md3 layui-col-lg3">
-    <div class="component">
+    <div class="component search">
         <form class="layui-form" action="{{route('frontend::index.search')}}" role="search">
             <div class="layui-inline input">
                 <input type="text" name="search" class="layui-input" value="{{$search or ''}}" placeholder="输入关键字搜索" />
@@ -10,7 +10,7 @@
         </form>
     </div>
     @if(!empty($category_tree))
-    <div class="column">
+    <div class="component category">
         <h3 class="title-sidebar"><i class="layui-icon">&#xe705;</i>版块分类</h3>
         <ul class="layui-nav layui-nav-tree layui-inline">
             @foreach($category_tree as $category)
@@ -35,7 +35,7 @@
         </ul>
     </div>
     @endif
-    <div class="tags">
+    <div class="component tags">
         <h3 class="title-sidebar"><i class="layui-icon">&#xe66e;</i>标签云</h3>
         <div>
             @foreach($labels as $label)
@@ -43,7 +43,7 @@
             @endforeach
         </div>
     </div>
-    <div class="link">
+    <div class="component link">
         <h3 class="title-sidebar"><i class="layui-icon">&#xe64c;</i>友情链接</h3>
         <div>
             @foreach($friendlinks as $friendlink)

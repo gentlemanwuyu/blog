@@ -35,6 +35,19 @@
         </ul>
     </div>
     @endif
+    <div class="component hots">
+        <h3 class="title-sidebar"><i class="layui-icon">&#xe63c;</i>热门文章</h3>
+        <ul class="layui-row layui-col-space5">
+            @foreach($hot_articles as $article)
+                <li class="layui-col-md12 layui-col-xs6">
+                    <a href="{{route('frontend::article.detail', ['id' => $article->id])}}">
+                        <span class="layui-col-xs10 hots-title">{{$article->title}}</span>
+                        <span class="layui-badge layui-bg-gray layui-col-xs1 layui-col-xs-offset1">{{$article->views or 0}}</span>
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
     <div class="component tags">
         <h3 class="title-sidebar"><i class="layui-icon">&#xe66e;</i>标签云</h3>
         <div>

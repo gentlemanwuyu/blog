@@ -437,6 +437,16 @@ textarea {
     color: #666
 }
 
+/* 热门文章 */
+.hots-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.hots li {
+    padding: 5px 10px;
+}
+
 /* 博主动态 */
 .dynamic ul {
     padding-left: 10px;

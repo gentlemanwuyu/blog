@@ -12,6 +12,7 @@ use Illuminate\Contracts\View\View;
 use Carbon\Carbon;
 use App\Modules\Backend\Models\Label;
 use App\Modules\Backend\Models\Section;
+use App\Modules\Backend\Models\Article;
 use App\Modules\Backend\Models\Friendlink;
 use App\Modules\Backend\Models\SystemConfig;
 
@@ -31,6 +32,7 @@ class FrontComposer
             $view->with([
                 'friendlinks' => Friendlink::all(['name', 'link', 'desc'])->toArray(),
                 'labels' => $this->handleLabels(),
+                'hot_articles' => $this->handleHotArticles(),
             ]);
         }
         if ('frontend::layouts.footer' == $view->name()) {
@@ -67,5 +69,15 @@ class FrontComposer
         $labels = Label::all(['id', 'name']);
 
         return $labels->toArray();
+    }
+
+    public function handleHotArticles()
+    {
+        return Article::leftJoin('article_data', 'articles.id', '=', 'article_data.article_id')
+            ->select('articles.id', 'articles.title', 'article_data.views')
+            ->orderBy('article_data.views', 'desc')
+            ->orderBy('articles.id', 'desc')
+            ->limit(10)
+            ->get();
     }
 }

@@ -16,7 +16,7 @@ class CreateVisitorsTable extends Migration
 			$table->increments('id');
 			$table->string('ip', 1024)->default('')->comment('ip地址');
 			$table->string('url', 1024)->default('')->comment('url');
-			$table->string('referrer')->default('')->comment('referrer');
+			$table->string('referer')->default('')->comment('referer');
 			$table->string('device')->default('')->comment('设备');
 			$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('创建时间');
 		});

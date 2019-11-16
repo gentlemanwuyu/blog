@@ -136,7 +136,7 @@ var makeCommentHtml = function (res) {
     $.ajax({
         method: "post",
         url: "/admin/visitor/track",
-        data: {url: window.location.href, device: window.navigator.userAgent}
+        data: {url: window.location.href, device: window.navigator.userAgent, referer: document.referrer}
     });
 }
 

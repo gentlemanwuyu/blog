@@ -30,6 +30,7 @@ class VisitorService
             Visitor::create([
                 'ip' => $request->getClientIp(),
                 'url' => $request->get('url'),
+                'referer' => $request->get('referer'),
                 'device' => $request->get('device'),
             ]);
 

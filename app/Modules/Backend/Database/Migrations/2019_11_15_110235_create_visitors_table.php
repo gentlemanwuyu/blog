@@ -14,8 +14,9 @@ class CreateVisitorsTable extends Migration
 	{
 		Schema::create('visitors', function (Blueprint $table) {
 			$table->increments('id');
-			$table->string('ip')->default('')->comment('ip地址');
-			$table->string('url')->default('')->comment('url');
+			$table->string('ip', 1024)->default('')->comment('ip地址');
+			$table->string('url', 1024)->default('')->comment('url');
+			$table->string('referrer')->default('')->comment('referrer');
 			$table->string('device')->default('')->comment('设备');
 			$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('创建时间');
 		});

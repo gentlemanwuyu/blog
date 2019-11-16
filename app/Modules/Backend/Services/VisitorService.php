@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use App\Modules\Backend\Models\Visitor;
+use App\Events\Track;
 
 class VisitorService
 {
@@ -60,7 +61,9 @@ class VisitorService
                     break;
             }
 
-            Visitor::create($data);
+            $visitor = Visitor::create($data);
+
+            event(new Track($visitor));
 
             return ['status' => 'success'];
         }catch (\Exception $e) {

@@ -17,7 +17,7 @@
                     <div class="title-msg">
                         <span><i class="layui-icon">&#xe705;</i>&nbsp;{{$article->category_name}}</span>
                         <span><i class="layui-icon">&#xe60e;</i>&nbsp;{{$article->create_date}}</span>
-                        <span class="layui-hide-xs"><i class="layui-icon">&#xe62c;</i>&nbsp;1176℃</span>
+                        <span class="layui-hide-xs"><i class="layui-icon">&#xe62c;</i>&nbsp;{{$article->views or 0}}℃</span>
                         <span class="layui-hide-xs"><i class="layui-icon">&#xe63a;</i>&nbsp;{{$article->comment_total}}条</span>
                     </div>
                 </div>

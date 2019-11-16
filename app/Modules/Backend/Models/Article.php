@@ -55,6 +55,11 @@ class Article extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function data()
+    {
+        return $this->hasOne(ArticleData::class);
+    }
+
     public function getCreateDateAttribute()
     {
         return Carbon::parse($this->created_at)->toDateString();

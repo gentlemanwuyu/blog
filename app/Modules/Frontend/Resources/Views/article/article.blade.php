@@ -5,7 +5,7 @@
         <div class="title-msg">
             <span><i class="layui-icon">&#xe612;</i>吴宇</span>
             <span><i class="layui-icon">&#xe60e;</i>{{$article->create_date}}</span>
-            <span><i class="layui-icon">&#xe62c;</i>6580℃</span>
+            <span><i class="layui-icon">&#xe62c;</i>{{$article->data->views or 0}}℃</span>
             <span><i class="layui-icon">&#xe63a;</i>{{$article->comment_total or 0}}条</span>
         </div>
     </div>

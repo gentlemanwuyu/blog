@@ -55,7 +55,7 @@ class ArticleService
             $article->create_date = $create_date;
             $comment_total = $article->comment_total;
             $article->comment_total = $comment_total;
-            $article->views = $article->data->views;
+            $article->views = isset($article->data->views) ? $article->data->views : 0;
         }
 
         return $articles;

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="csrf-token" content="{!! csrf_token() !!}">
     <link href="{{asset('/favicon.ico')}}" rel="shortcut icon" type="image/ico"/>
-    <link rel="stylesheet" href="{{asset('/assets/layui-src/src/css/layui.css')}}" media="all">
+    <link rel="stylesheet" href="{{asset('/assets/layui-src/dist/css/layui.css')}}" media="all">
     <link rel="stylesheet" href="{{asset('/assets/prism/prism.css')}}" media="all">
     <link rel="stylesheet" href="{{asset('/assets/css/frontend.css')}}" media="all">
     @yield('css')

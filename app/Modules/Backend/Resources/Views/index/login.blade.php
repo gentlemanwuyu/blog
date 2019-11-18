@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>登录 | Woozee后台管理</title>
-    <link rel="stylesheet" href="{{asset('/assets/layui-src/src/css/layui.css')}}" media="all">
+    <link rel="stylesheet" href="{{asset('/assets/layui-src/dist/css/layui.css')}}" media="all">
     <link rel="stylesheet" href="{{asset('/assets/layuiadmin/style/login.css')}}" media="all">
 </head>
 <body class="layui-layout-body">
@@ -49,7 +49,7 @@
         <p>© 2019 <a href="http://www.layui.com/" target="_blank">woozee.com.cn</a></p>
     </div>
 </div>
-<script src="{{asset('/assets/layui-src/src/layui.js')}}"></script>
+<script src="{{asset('/assets/layui-src/dist/layui.js')}}"></script>
 <script>
     layui.use(['form', 'layer'], function(){
         @if (isset($errors) && count($errors) > 0)

@@ -445,6 +445,11 @@ textarea {
 }
 .hots li {
     padding: 5px 10px;
+    position: relative;
+}
+.hots li span.layui-badge {
+    position: absolute;
+    right: 10px;
 }
 
 /* 博主动态 */

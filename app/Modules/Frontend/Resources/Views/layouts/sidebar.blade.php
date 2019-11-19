@@ -42,7 +42,7 @@
                 <li class="layui-col-md12 layui-col-xs6">
                     <a href="{{route('frontend::article.detail', ['id' => $article->id])}}">
                         <span class="layui-col-xs10 hots-title">{{$article->title}}</span>
-                        <span class="layui-badge layui-bg-blue layui-col-xs1 layui-col-xs-offset1"
+                        <span class="layui-badge layui-bg-blue"
                               @if(0 == $index)
                                 style="background-color: #f54545!important;"
                               @elseif(1 == $index)

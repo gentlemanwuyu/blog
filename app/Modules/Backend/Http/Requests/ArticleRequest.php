@@ -13,7 +13,7 @@ class ArticleRequest extends FormRequest
 	public function rules()
 	{
 		return [
-			'title' => 'required|max:64',
+			'title' => 'required|max:128',
 			'keywords' => 'required|max:64',
 			'content' => 'required',
 			'summary' => 'required|max:300',

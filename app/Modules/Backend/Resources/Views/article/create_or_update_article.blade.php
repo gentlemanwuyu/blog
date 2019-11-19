@@ -38,7 +38,7 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label required">内容</label>
             <div class="layui-input-block">
-                <textarea name="content" placeholder="" class="layui-textarea">{{$article['content'] or ''}}</textarea>
+                <textarea name="content" placeholder="" class="layui-textarea">{{htmlentities($article['content'])}}</textarea>
             </div>
         </div>
         <div class="layui-form-item layui-form-text">

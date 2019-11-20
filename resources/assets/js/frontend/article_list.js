@@ -44,7 +44,7 @@ layui.use(['laypage', 'form'], function () {
                                 html += '</div>';
                                 html += '</div>';
                             });
-                            $('.post').html(html);
+                            $('.article_list').html(html);
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
 
@@ -55,6 +55,6 @@ layui.use(['laypage', 'form'], function () {
             }
         });
     }else {
-        $('.post').html('<h2 class="post-title">没有找到内容</h2>');
+        $('.article_list').html('<div class="post"><h2 class="post-title">没有找到内容</h2></div>');
     }
 });

@@ -4,7 +4,7 @@ namespace App\Modules\Frontend\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Modules\Backend\Models\Article;
+use App\Modules\Backend\Models\Label;
 use App\Modules\Frontend\Services\ArticleService;
 
 class LabelController extends Controller
@@ -19,8 +19,9 @@ class LabelController extends Controller
     public function index($id, Request $request)
     {
         $request->merge(['label_id' => $id, 'limit' => 10]);
+        $label = Label::find($id);
         $articles = $this->articleService->paginate($request);
 
-        return view('frontend::label.index', compact('articles'));
+        return view('frontend::label.index', compact('label', 'articles'));
     }
 }

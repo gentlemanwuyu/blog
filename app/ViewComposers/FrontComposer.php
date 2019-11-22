@@ -40,7 +40,7 @@ class FrontComposer
                 'year_interval' => 2019 == Carbon::now()->year ? 2019 : '2019~' . Carbon::now()->year,
             ]);
         }
-        if (in_array($view->name(), ['frontend::article.article', 'frontend::index.about', 'frontend::index.search'])) {
+        if (in_array($view->name(), ['frontend::article.article', 'frontend::index.about', 'frontend::index.search', 'frontend::category.index', 'frontend::section.index', 'frontend::label.index'])) {
             $view->with([
                 'blog_name' => isset($system_configs['name']) ? $system_configs['name'] : '',
             ]);

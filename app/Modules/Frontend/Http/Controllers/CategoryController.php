@@ -24,6 +24,6 @@ class CategoryController extends Controller
         $articles = $this->articleService->paginate($request);
         $category_tree = Category::getTree($category->section_id);
 
-        return view('frontend::category.index', compact('articles', 'category_tree'));
+        return view('frontend::category.index', compact('category', 'articles', 'category_tree'));
     }
 }

@@ -856,6 +856,18 @@ textarea {
     color: #555
 }
 
+.error-404 {
+    text-align: center;
+    margin-top: 60px;
+}
+.error-404 h2 {
+    font-weight: inherit;
+    font-size: 20px;
+}
+
+.error-404 .error-content {
+    margin-top: 20px;
+}
 
 /* 自适应布局 */
 @media (min-width: 1200px) {

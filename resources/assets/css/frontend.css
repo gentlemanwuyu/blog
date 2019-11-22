@@ -43,6 +43,10 @@ html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,tab
     list-style: none
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
 h1,h2 {
     font-size: 18px;
     font-weight: 700;
@@ -57,10 +61,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -webkit-overflow-scrolling: touch;
     line-height: 1.5
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 500;
 }
 
 .md_content li {
@@ -964,16 +964,19 @@ textarea {
 .text p {
     margin: 14px 0px;
 }
-
 .text ol, .text ul {
     margin: 14px 0px;
     padding-left: 40px;
 }
-
 .text ol li {
     list-style: decimal;
 }
-
 .text ul li {
     list-style: disc;
+}
+.text a {
+    color: #1E9FFF;
+}
+.text a:hover {
+    color: #FF5722;
 }

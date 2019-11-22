@@ -1,4 +1,5 @@
 @extends('frontend::layouts.default')
+@section('title')关于{{$blog_name ? ' | ' . $blog_name : ''}}@endsection
 @section('content')
     <div class="title-article text-center">
         <h1>关于</h1>

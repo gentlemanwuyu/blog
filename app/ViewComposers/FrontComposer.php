@@ -40,9 +40,16 @@ class FrontComposer
                 'year_interval' => 2019 == Carbon::now()->year ? 2019 : '2019~' . Carbon::now()->year,
             ]);
         }
-        if ('frontend::article.article' == $view->name()) {
+        if (in_array($view->name(), ['frontend::article.article', 'frontend::index.index'])) {
             $view->with([
                 'blog_name' => isset($system_configs['name']) ? $system_configs['name'] : '',
+            ]);
+        }
+        if (in_array($view->name(), ['frontend::index.index'])) {
+            $view->with([
+                'blog_title' => isset($system_configs['title']) ? $system_configs['title'] : '',
+                'blog_keywords' => isset($system_configs['keywords']) ? $system_configs['keywords'] : '',
+                'blog_desc' => isset($system_configs['desc']) ? $system_configs['desc'] : '',
             ]);
         }
     }

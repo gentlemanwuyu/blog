@@ -1,4 +1,7 @@
 @extends('frontend::layouts.default')
+@section('title'){{$blog_title or ''}}@endsection
+@section('keywords'){{$blog_keywords or ''}}@endsection
+@section('description'){{$blog_desc or ''}}@endsection
 @section('content')
     @foreach($articles as $article)
         <div class="title-article list-card">

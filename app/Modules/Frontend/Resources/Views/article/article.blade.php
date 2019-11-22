@@ -1,4 +1,7 @@
 @extends('frontend::layouts.default')
+@section('title'){{$article->title}}{{$blog_name ? ' | ' . $blog_name : ''}}@endsection
+@section('keywords'){{$article->keywords}}@endsection
+@section('description'){{$article->summary}}@endsection
 @section('content')
     <div class="title-article">
         <h1>{{$article->title}}</h1>

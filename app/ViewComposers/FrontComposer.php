@@ -40,6 +40,11 @@ class FrontComposer
                 'year_interval' => 2019 == Carbon::now()->year ? 2019 : '2019~' . Carbon::now()->year,
             ]);
         }
+        if ('frontend::article.article' == $view->name()) {
+            $view->with([
+                'blog_name' => isset($system_configs['name']) ? $system_configs['name'] : '',
+            ]);
+        }
     }
 
     protected function handleNavs()

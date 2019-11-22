@@ -18,8 +18,12 @@ class LabelController extends Controller
 
     public function index($id, Request $request)
     {
-        $request->merge(['label_id' => $id, 'limit' => 10]);
         $label = Label::find($id);
+        if (!$label) {
+            abort(404);
+        }
+
+        $request->merge(['label_id' => $id, 'limit' => 10]);
         $articles = $this->articleService->paginate($request);
 
         return view('frontend::label.index', compact('label', 'articles'));

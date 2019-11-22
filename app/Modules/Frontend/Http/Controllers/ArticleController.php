@@ -19,6 +19,9 @@ class ArticleController extends Controller
     public function detail($id)
     {
         $article = Article::find($id);
+        if (!$article) {
+            abort(404);
+        }
 
         return view('frontend::article.article', compact('article'));
     }

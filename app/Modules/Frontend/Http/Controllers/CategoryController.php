@@ -20,6 +20,9 @@ class CategoryController extends Controller
     public function index($id, Request $request)
     {
         $category = Category::find($id);
+        if (!$category) {
+            abort(404);
+        }
         $request->merge(['section_id' => $category->section_id, 'category_id' => $id, 'limit' => 10]);
         $articles = $this->articleService->paginate($request);
         $category_tree = Category::getTree($category->section_id);

@@ -19,8 +19,12 @@ class SectionController extends Controller
 
     public function index($id, Request $request)
     {
-        $request->merge(['section_id' => $id, 'limit' => 10]);
         $section = Section::find($id);
+        if (!$section) {
+            abort(404);
+        }
+
+        $request->merge(['section_id' => $id, 'limit' => 10]);
         $articles = $this->articleService->paginate($request);
         $category_tree = Category::getTree($id);
 

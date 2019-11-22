@@ -2,7 +2,7 @@
 @section('body')
     <div class="layui-layout layui-layout-admin">
         <div class="layui-header">
-            <a href="{{route('admin::index')}}"><div class="layui-logo">Woozee后台管理</div></a>
+            <a href="{{route('admin::index')}}"><div class="layui-logo">博客后台管理</div></a>
             <ul class="layui-nav layui-layout-right">
                 <li class="layui-nav-item">
                     <a href="javascript:;">

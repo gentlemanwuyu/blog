@@ -31,6 +31,7 @@ class ViewComposerServiceProvider extends ServiceProvider
             'frontend::article.article',
             'frontend::index.index',
             'frontend::index.about',
+            'frontend::index.search',
         ], FrontComposer::class);
     }
 

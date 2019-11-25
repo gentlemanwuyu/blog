@@ -69,7 +69,10 @@
             plugins: 'lists,advlist image code codesample link paste',
             toolbar:'bold italic underline strikethrough alignleft aligncenter alignright alignjustify forecolor backcolor styleselect formatselect fontselect fontsizeselect bullist numlist outdent indent blockquote undo redo removeformat subscript superscript link image code codesample',
             statusbar: false,
-            height: 500
+            height: 500,
+            rel_list: [
+                {title: 'external-nofollow', value: 'external nofollow'}
+            ]
         });
 
         layui.use(['form'], function () {

@@ -116,6 +116,9 @@
             toolbar:'bold italic underline strikethrough alignleft aligncenter alignright alignjustify forecolor backcolor styleselect formatselect fontselect fontsizeselect bullist numlist outdent indent blockquote undo redo removeformat subscript superscript link image code codesample table',
             statusbar: false,
             height: 500,
+            rel_list: [
+                {title: 'external-nofollow', value: 'external nofollow'}
+            ],
             images_upload_url: "{{route('admin::article.upload')}}",
             paste_data_images: true,
             paste_postprocess: function(plugin, args) {

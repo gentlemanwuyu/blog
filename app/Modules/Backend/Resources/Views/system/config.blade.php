@@ -66,8 +66,8 @@
             selector: 'textarea[name=about]',
             language:'zh_CN',
             skin: 'oxide',
-            plugins: 'lists,advlist image codesample link paste',
-            toolbar:'bold italic underline strikethrough alignleft aligncenter alignright alignjustify forecolor backcolor styleselect formatselect fontselect fontsizeselect bullist numlist outdent indent blockquote undo redo removeformat subscript superscript link image codesample',
+            plugins: 'lists,advlist image code codesample link paste',
+            toolbar:'bold italic underline strikethrough alignleft aligncenter alignright alignjustify forecolor backcolor styleselect formatselect fontselect fontsizeselect bullist numlist outdent indent blockquote undo redo removeformat subscript superscript link image code codesample',
             statusbar: false,
             height: 500
         });

@@ -35,13 +35,13 @@
         @if($article->previous)
             <div>
                 <span class="layui-badge layui-bg-gray">上一篇</span>
-                <a href="{{route('frontend::article.detail', ['id' => $article->previous->id])}}">{{$article->previous->title}}</a>
+                <a href="{{route('frontend::article.detail', ['id' => $article->previous->id])}}" rel="prev">{{$article->previous->title}}</a>
             </div>
         @endif
         @if($article->next)
             <div>
                 <span class="layui-badge layui-bg-gray">下一篇</span>
-                <a href="{{route('frontend::article.detail', ['id' => $article->next->id])}}">{{$article->next->title}}</a>
+                <a href="{{route('frontend::article.detail', ['id' => $article->next->id])}}" rel="next">{{$article->next->title}}</a>
             </div>
         @endif
     </div>

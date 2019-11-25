@@ -31,7 +31,9 @@
                 },
                 cols: [[
                     {field: 'id', title: 'ID', align: 'center', sort: true, fixed: 'left'},
-                    {field: 'title', title: '标题', align: 'center'},
+                    {field: 'title', title: '标题', align: 'center', templet: function (d) {
+                        return '<a href="/article/' + d.id + '.html" target="_blank">' + d.title + '</a>';
+                    }},
                     {field: 'keywords', title: '关键词', align: 'center'},
                     {field: 'summary', title: '摘要', align: 'center'},
                     {field: 'category_name', title: '分类', align: 'center'},

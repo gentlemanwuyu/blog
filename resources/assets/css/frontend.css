@@ -210,10 +210,6 @@ textarea {
     max-width: 100%
 }
 
-.list-card .list-content {
-    margin-left: 175px;
-}
-
 .list-card p {
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -871,7 +867,9 @@ textarea {
 
 /* 自适应布局 */
 @media (min-width: 1200px) {
-
+    .list-card .list-content {
+        margin-left: 175px;
+    }
 }
 
 @media (max-width: 1200px) {

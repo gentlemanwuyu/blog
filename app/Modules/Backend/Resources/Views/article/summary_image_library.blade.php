@@ -15,11 +15,6 @@
         <button id="add_image" type="button" class="layui-btn layui-btn-sm layui-btn-normal">添加图片</button>
         <table id="summary_image_list"  lay-filter="list"></table>
     </div>
-    <script type="text/html" id="imgTpl">
-        <a data-fancybox href="@{{d.url}}">
-            <img src="@{{d.url}}" alt="@{{d.desc}}">
-        </a>
-    </script>
     <script type="text/html" id="action">
         <a class="layui-btn layui-btn-sm layui-btn-normal" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>修改</a>
         <a class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delete"><i class="layui-icon layui-icon-delete"></i>删除</a>
@@ -44,7 +39,9 @@
                 },
                 cols: [[
                     {field: 'id', title: 'ID', align: 'center', sort: true, fixed: 'left'},
-                    {field: 'url', title: '图片', align: 'center', templet: '#imgTpl'},
+                    {field: 'url', title: '图片', align: 'center', templet: function (d) {
+                        return '<img src="' + d.url + '" alt="' + d.desc + '" onclick="previewImage(\'' + d.url + '\');">';
+                    }},
                     {field: 'desc', title: '描述', align: 'center'},
                     {field: 'created_at', title: '创建时间', align: 'center', sort: true},
                     {field: 'updated_at', title: '最后更新时间', align: 'center', sort: true},

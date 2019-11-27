@@ -13,7 +13,7 @@ $.ajaxSetup({
  * @param text
  * @returns {string}
  */
-function packageValidatorResponseText (text) {
+var packageValidatorResponseText = function (text) {
     text = JSON.parse(text);
     var message = [];
     $.each(text, function (key, val) {
@@ -23,12 +23,30 @@ function packageValidatorResponseText (text) {
     });
     return message.join('<br>');
 }
-
-function array_column (arr) {
+    ,array_column = function (arr) {
     var obj = {};
     $.each(arr, function (key, val) {
         obj[val.name] = val.value;
     });
 
     return obj;
+}
+    ,previewImage = function (src) {
+    var img = new Image()
+        ,index = layer.load(2, {time: 0, scrollbar: false, shade: [0.02, '#000']});
+    img.style.background = '#fff';
+    img.style.display = 'none';
+    img.src = src;
+    document.body.appendChild(img);
+    img.onerror = function () {
+        layer.close(index);
+    };
+    img.onload = function () {
+        layer.open({
+            type: 1, shadeClose: true, success: img.onerror, content: $(img), title: false,
+            area: img.width > 1140 ? '1140px' : img.width, closeBtn: 1, skin: 'layui-layer-nobg', end: function () {
+                document.body.removeChild(img);
+            }
+        });
+    };
 }

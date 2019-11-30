@@ -61,7 +61,16 @@ return [
             'region' => 'your-region',
             'bucket' => 'your-bucket',
         ],
-
+        'qiniu' => [
+            'driver'  => 'qiniu',
+            'domain' => env('QINIU_DEFAULT_DOMAIN'),
+            'access_key'=> env('QINIU_ACCESS_KEY'),
+            'secret_key'=> env('QINIU_SECRET_KEY'),
+            'bucket'    => env('QINIU_BUCKET'),
+            'notify_url'=> '',  //持久化处理回调地址
+            'access'    => 'public',
+            'hotlink_prevention_key' => env('QINIU_PREVENT_KEY', null), // CDN 时间戳防盗链的 key。设置为 null 则不启用本功能。
+        ],
     ],
 
 ];

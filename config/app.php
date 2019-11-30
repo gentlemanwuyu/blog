@@ -170,6 +170,9 @@ return [
 
         // laravel-log-viewer
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+
+        // 七牛云存储
+        \zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class,
     ],
 
     /*

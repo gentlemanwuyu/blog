@@ -66,9 +66,9 @@ class ArticleController extends Controller
         $ext = $image->extension();
         $image_name = uniqid();
 
-        $result = Storage::disk('public')->put("images/article/{$image_name}.{$ext}", file_get_contents($image->path()), 'public');
+        $result = Storage::disk('qiniu')->put("article/{$image_name}.{$ext}", file_get_contents($image->path()), 'public');
         if ($result) {
-            return response()->json(['status' => true, "url" => trim(env('APP_URL'), '/') . "/storage/images/article/{$image_name}.{$ext}"]);
+            return response()->json(['status' => true, "url" => trim(env('QINIU_DEFAULT_DOMAIN'), '/') . "/article/{$image_name}.{$ext}"]);
         }else {
             return response()->json(['status' => false, "msg" => "图片上传失败"]);
         }
@@ -89,9 +89,9 @@ class ArticleController extends Controller
 
         $image_name = uniqid();
 
-        $result = Storage::disk('public')->put("images/article/{$image_name}.{$ext}", file_get_contents($request->get('image_url')), 'public');
+        $result = Storage::disk('qiniu')->put("article/{$image_name}.{$ext}", file_get_contents($request->get('image_url')), 'public');
         if ($result) {
-            return response()->json(['status' => true, "url" => trim(env('APP_URL'), '/') . "/storage/images/article/{$image_name}.{$ext}"]);
+            return response()->json(['status' => true, "url" => trim(env('QINIU_DEFAULT_DOMAIN'), '/') . "/article/{$image_name}.{$ext}"]);
         }else {
             return response()->json(['status' => false, "msg" => "图片上传失败"]);
         }

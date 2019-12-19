@@ -6,7 +6,7 @@
     </div>
     <div class="text" itemprop="articleBody" style="margin-bottom: 10px;">
         <div id="md_content_2" class="md_content markdown-body editormd-html-preview" style="min-height: 50px;">
-            {{$about or '这个家伙很懒，什么都没有留下。。。'}}
+            {!! $about !!}
         </div>
     </div>
     <div class="comment-text layui-form">

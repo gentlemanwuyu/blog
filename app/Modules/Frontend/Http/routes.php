@@ -17,6 +17,10 @@ Route::group(['as' => 'index.'], function() {
 	Route::get('/search.html', ['as'=>'search', 'uses'=>'IndexController@search']);
 });
 
+Route::group(['as' => 'sitemap.'], function() {
+	Route::get('/sitemap.xml', ['as'=>'index', 'uses'=>'SitemapController@index']);
+});
+
 Route::group(['prefix' => 'article', 'as' => 'article.'], function() {
 	Route::get('/{id}.html', ['as'=>'detail', 'uses'=>'ArticleController@detail']);
 	Route::post('/paginate', ['as'=>'paginate', 'uses'=>'ArticleController@paginate']);

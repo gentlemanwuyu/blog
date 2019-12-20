@@ -6,10 +6,7 @@
             <ul class="layui-nav layui-layout-right">
                 <li class="layui-nav-item">
                     <a href="javascript:;">
-                        <?php
-                        $gravatar = \Creativeorange\Gravatar\Facades\Gravatar::exists(Auth::user()->email) ? \Creativeorange\Gravatar\Facades\Gravatar::get(\Auth::user()->email) : asset('/assets/img/system/avatar_default.jpg');
-                        ?>
-                        <img src="{{$gravatar}}" class="layui-nav-img">{{\Auth::user()->name}}
+                        <img src="{{\Creativeorange\Gravatar\Facades\Gravatar::get(\Auth::user()->email)}}" class="layui-nav-img">{{\Auth::user()->name}}
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a href="{{route('admin::logout')}}">退出</a></dd>

@@ -10,7 +10,7 @@ return [
 
 		// the fallback image, can be a string or a url
 		// for more info, visit: http://en.gravatar.com/site/implement/images/#default-image
-		'fallback' => 'mm',
+		'fallback' => '',
 
 		// would you like to return a https://... image
 		'secure' => true,
@@ -29,6 +29,6 @@ return [
 		'forceDefault' => false,
 
 		// If you require a file-type extension (some places do) then you may also add an (optional) .jpg extension to that URL
-		'forceExtension' => 'jpg',
+		'forceExtension' => '',
 	]
 ];

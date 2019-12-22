@@ -1,30 +1,21 @@
 @extends('backend::layouts.template')
 @section('css')
     <style>
-        body {
-            background: #f2f2f2;
-        }
-        img {
-            max-height: 200px;
-            max-width: 200px;
-        }
-        .layui-card-header {
-            text-align: center;
-        }
-        .layui-card-body {
-            height: 200px;
-            vertical-align: middle!important;
-        }
+        body {background: #f2f2f2;}
+        img {height: auto; max-width: 100%;}
+        .layui-card-header {text-align: center;}
+        .layui-card-body {vertical-align: middle!important;}
+        #images_container{margin: 15px;}
     </style>
 @endsection
 @section('body')
     <form class="layui-form" lay-filter="summary_image">
         <input type="hidden" name="summary_image_url">
         <input type="hidden" name="summary_image_desc">
-        <div class="row" id="images_container">
+        <div class="layui-row layui-col-space30" id="images_container">
 
         </div>
-        <div class="row" style="text-align: center;clear: both;">
+        <div class="layui-row" style="text-align: center;clear: both;">
             <div id="paginate"></div>
 
         </div>
@@ -45,7 +36,7 @@
                     $.get("{{route('admin::article.summary_image_paginate')}}?limit=" + obj.limit + "&page=" + obj.curr, function (result) {
                         var html = '';
                         $.each(result.data, function (key, val) {
-                            html += '<div class="layui-col-xs2" style="padding: 15px;">';
+                            html += '<div class="layui-col-xs2">';
                             html += '<div class="layui-card">';
                             html += '<div class="layui-card-body">';
                             html += '<img src="' + val.url + '">';

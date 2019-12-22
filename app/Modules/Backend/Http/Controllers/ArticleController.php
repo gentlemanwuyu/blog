@@ -68,7 +68,8 @@ class ArticleController extends Controller
 
         $result = Storage::disk('qiniu')->put("article/{$image_name}.{$ext}", file_get_contents($image->path()), 'public');
         if ($result) {
-            return response()->json(['status' => true, "url" => trim(env('QINIU_DEFAULT_DOMAIN'), '/') . "/article/{$image_name}.{$ext}"]);
+            $image_size = getimagesize($image->path());
+            return response()->json(['status' => true, "url" => trim(env('QINIU_DEFAULT_DOMAIN'), '/') . "/article/{$image_name}.{$ext}", 'width' => $image_size ? $image_size[0] : 0, 'height' => $image_size ? $image_size[1] : 0]);
         }else {
             return response()->json(['status' => false, "msg" => "图片上传失败"]);
         }
@@ -115,7 +116,12 @@ class ArticleController extends Controller
 
     public function createOrUpdateSummaryImage(SummaryImageRequest $request)
     {
-        return response()->json($this->articleService->createOrUpdateSummaryImage($request->get('url'), $request->get('desc'), $request->get('summary_image_id')));
+        return response()->json($this->articleService->createOrUpdateSummaryImage([
+            'url' => $request->get('url'),
+            'desc' => $request->get('desc'),
+            'width' => $request->get('width'),
+            'height' => $request->get('height'),
+        ], $request->get('summary_image_id')));
     }
 
     public function summaryImagePaginate(Request $request)

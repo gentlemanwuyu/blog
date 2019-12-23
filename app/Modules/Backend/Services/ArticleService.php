@@ -106,15 +106,14 @@ class ArticleService
      * @param int|null $summary_image_id
      * @return array
      */
-    public function createOrUpdateSummaryImage($url, $desc, $summary_image_id = null)
+    public function createOrUpdateSummaryImage($data, $summary_image_id = null)
     {
         try {
-            $image_size = getimagesize($url);
             SummaryImage::updateOrCreate(['id' => $summary_image_id], [
-                'url' => $url,
-                'desc' => $desc,
-                'width' => $image_size[0],
-                'height' => $image_size[1],
+                'url' => $data['url'] ?: '',
+                'desc' => $data['desc'] ?: '',
+                'width' => $data['width'] ?: 0,
+                'height' => $data['height'] ?: 0,
             ]);
 
             return ['status' => 'success'];

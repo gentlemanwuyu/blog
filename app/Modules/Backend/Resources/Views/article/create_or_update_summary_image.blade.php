@@ -25,6 +25,8 @@
                 <div class="layui-form-item" style="">
                     <div class="layui-input-block">
                         <input type="hidden" name="url" value="{{$summary_image->url or ''}}">
+                        <input type="hidden" name="width" value="{{$summary_image->width or 0}}">
+                        <input type="hidden" name="height" value="{{$summary_image->height or 0}}">
                         <div class="img_container">
                             @if(isset($summary_image))
                                 <img src="{{$summary_image->url}}">
@@ -69,16 +71,22 @@
                     if (res.status) {
                         $('.img_container').html('<img src="' + res.url + '">');
                         $('input[name=url]').val(res.url);
+                        $('input[name=width]').val(res.width);
+                        $('input[name=height]').val(res.height);
                     }else {
                         layer.msg("图片上传失败", {icon:2});
                         $('.img_container').html('');
                         $('input[name=url]').val('');
+                        $('input[name=width]').val('');
+                        $('input[name=height]').val('');
                     }
                 }
                 ,error: function(index, upload){
                     layer.closeAll('loading');
                     $('.img_container').html('');
                     $('input[name=url]').val('');
+                    $('input[name=width]').val('');
+                    $('input[name=height]').val('');
                 }
             });
         });

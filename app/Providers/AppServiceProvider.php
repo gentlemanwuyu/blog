@@ -15,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \URL::forceSchema('https');
+        if (env('APP_ENV') == 'production') {
+            \URL::forceSchema('https');
+        }
     }
 
     /**
@@ -25,8 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (env('APP_ENV') == 'local')
-        {
+        if (env('APP_ENV') == 'local') {
             $this->app->register(IdeHelperServiceProvider::class);
             $this->app->register(DebugbarServiceProvider::class);
         }

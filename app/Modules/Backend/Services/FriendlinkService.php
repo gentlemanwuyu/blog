@@ -34,6 +34,7 @@ class FriendlinkService
             $data = [
                 'name' => $request->get('name'),
                 'link' => $request->get('link'),
+                'desc' => $request->get('desc'),
             ];
 
             Friendlink::updateOrCreate(['id' => $request->get('friendlink_id')], $data);
